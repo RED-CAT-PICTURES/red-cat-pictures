@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.6.1
+
+[compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.0...v3.6.1)
+
+### 🏡 Chore
+
+- **seo:** Technical seo fixed and improved, contant hyperlink added ([fe87713](https://github.com/Algostract/red-cat-pictures/commit/fe87713))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.6.0
 
 [compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.5.1...v3.6.0)
