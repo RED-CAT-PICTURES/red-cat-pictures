@@ -15,7 +15,7 @@ const emit = defineEmits<{
 <template>
   <NuxtLink :to="url" class="flex aspect-[32/28] max-w-[318px] flex-col overflow-hidden border border-primary-500 bg-light-500 dark:bg-dark-500" @click="emit('active')">
     <NuxtImg
-      :src="cover ?? ''"
+      :src="extractCdnId(cover) ?? ''"
       :alt="title"
       :width="640"
       :height="Math.round(640 / (16 / 9))"

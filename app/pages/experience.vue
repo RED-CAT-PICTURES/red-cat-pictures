@@ -1,17 +1,18 @@
 <script setup lang="ts">
+definePageMeta({ layout: false })
+
 const title = `Experience`
 const description = `Experience Our Image Gallery In 3D`
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
-const imageUrl = `${siteUrl}/previews/exprience.webp`
+const imageUrl = `${siteUrl}/previews/exprience.jpg`
 
-definePageMeta({ layout: false })
 useSeoMeta({
-  title,
+  title: title,
   ogTitle: title,
   twitterTitle: title,
-  description,
+  description: description,
   ogDescription: description,
   twitterDescription: description,
   ogImage: imageUrl,

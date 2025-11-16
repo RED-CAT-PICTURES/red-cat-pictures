@@ -7,7 +7,7 @@ const description = `Our team, vision, and clients`
 const {
   public: { siteUrl },
 } = useRuntimeConfig()
-const imageUrl = `${siteUrl}/previews/about.webp`
+const imageUrl = `${siteUrl}/previews/about.jpg`
 
 useHead({
   bodyAttrs: {

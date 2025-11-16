@@ -5,6 +5,7 @@ const description = `Create your brand identity that speaks to your clients, wit
 const {
   public: { siteUrl },
 } = useRuntimeConfig()
+const imageUrl = `${siteUrl}/previews/landing.jpg`
 
 useHead({
   bodyAttrs: {
@@ -13,6 +14,8 @@ useHead({
 })
 
 useSeoMeta({
+  ogImage: imageUrl,
+  twitterImage: imageUrl,
   title: title,
   ogTitle: title,
   twitterTitle: title,

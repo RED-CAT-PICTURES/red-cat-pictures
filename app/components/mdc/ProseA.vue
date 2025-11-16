@@ -30,30 +30,42 @@ function showTooltip(event: TouchEvent | MouseEvent | FocusEvent) {
 function hideTooltip() {
   hoveredLink.value = undefined
 }
+
+const activePhotoName = useState<string | null>()
+const activeVideoName = useState<string | null>()
 </script>
 
 <template>
   <Suspense suspensible>
     <template v-if="title === 'embed' || $slots.default?.()[0]?.children === 'embed'">
-      <img :src="href" alt="embed" class="aspect-video w-full object-cover" v-bind="attrs" />
+      <NuxtLink :to="`/photo/${extractCdnId(href)}`" @click="activePhotoName = extractCdnId(href)">
+        <NuxtImg
+          :src="extractCdnId(href)"
+          alt="image"
+          :width="Math.round(640 * (16 / 9))"
+          :height="640"
+          fit="cover"
+          loading="eager"
+          preload
+          :placeholder="[320, Math.round(320 / (16 / 9)), 50, 5]"
+          class="aspect-video w-full object-cover"
+          v-bind="attrs" />
+      </NuxtLink>
     </template>
     <template v-else-if="title === 'video' || $slots.default?.()[0]?.children === 'video'">
-      <!-- extract YouTube video ID and embed -->
-      <!-- <iframe :src="`https://www.youtube.com/embed/${href.split('/').pop()}?controls=0`" title="YouTube video player" frameborder="0" allowfullscreen class="aspect-video w-full" v-bind="attrs" /> -->
-      <video
-        ref="videoRef"
-        class="aspect-video w-full bg-black"
-        controls-list="nodownload"
-        preload="auto"
-        :poster="`${cdnUrl}/image/s_1280x720/${href.split('/').pop()}`"
-        :controls="false"
-        :autoplay="true"
-        :muted="true"
-        :playsinline="true"
-        :disablePictureInPicture="true">
-        <source :src="`${cdnUrl}/video/s_1280x720&c_av1&q_${75}/${href.split('/').pop()}`" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <NuxtLink :to="`/video/${extractCdnId(href)}`" @click="activeVideoName = extractCdnId(href)">
+        <NuxtVideo
+          :poster="`${cdnUrl}/image/fit_cover&s_1280x720/${extractCdnId(href)}`"
+          :source="videoGenerateSources(extractCdnId(href), landscapePreset)"
+          :disable-picture-in-picture="true"
+          controls-list="nodownload"
+          :autoplay="true"
+          :muted="true"
+          :playsinline="true"
+          :loop="true"
+          preload="metadata"
+          class="aspect-video" />
+      </NuxtLink>
     </template>
     <NuxtLink
       v-else-if="!href.startsWith('#')"

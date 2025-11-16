@@ -70,6 +70,11 @@ export default defineNuxtConfig({
     'magic-regexp/nuxt',
     'nuxt-splide',
   ],
+  vite: {
+    server: {
+      allowedHosts: true,
+    },
+  },
   nitro: {
     compressPublicAssets: true,
     storage: {

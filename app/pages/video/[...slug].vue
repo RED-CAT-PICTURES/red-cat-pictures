@@ -15,23 +15,27 @@ if (!activeVideo.value) {
 }
 
 const title = `${activeVideo.value.title}`
+const shortTitle = stringTrim(title, 45, 60)
 const description = `${activeVideo.value.description}`
+const shortDescription = stringTrim(description, 90, 110)
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
+const url = `${siteUrl}/video/${activeVideoSlug.value}`
 const cover = activeVideo.value?.poster ? extractCdnId(activeVideo.value?.poster) : ''
-const imageUrl = `${cdnUrl}/image/fit_cover&s_1200x630/${cover}`
+const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
 
 useSeoMeta({
-  title: title,
-  ogTitle: title,
-  twitterTitle: title,
-  description: description,
-  ogDescription: description,
-  twitterDescription: description,
+  ogType: 'video.other',
+  title: shortTitle,
+  ogTitle: shortTitle,
+  twitterTitle: shortTitle,
+  description: shortDescription,
+  ogDescription: shortDescription,
+  twitterDescription: shortDescription,
   ogImage: imageUrl,
   twitterImage: imageUrl,
-  ogUrl: `${siteUrl}/video/${activeVideoSlug.value}`,
+  ogUrl: url,
 })
 
 useSchemaOrg([
@@ -39,6 +43,7 @@ useSchemaOrg([
     name: title,
     description,
     thumbnailUrl: imageUrl,
+    url: url,
   }),
 ])
 

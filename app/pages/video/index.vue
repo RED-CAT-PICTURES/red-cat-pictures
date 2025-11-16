@@ -1,16 +1,12 @@
 <script setup lang="ts">
 const { data: videos } = await useAPI('/api/video', { default: () => [] })
 
-if (!videos.value[0]) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
-}
-
 const title = `Videos`
 const description = `Video Gallery`
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
-const imageUrl = videos.value?.length ? `${cdnUrl}/image/fit_cover&s_1200x630/${extractCdnId(videos.value[0].poster)}` : `${siteUrl}/preview/placeholder-empty.webp`
+const imageUrl = videos.value?.length ? `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(videos.value[0].poster)}` : `${siteUrl}/previews/placeholder-empty.jpg`
 
 useSeoMeta({
   title: title,

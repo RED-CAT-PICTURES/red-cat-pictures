@@ -15,20 +15,23 @@ if (!activePhoto.value) {
 }
 
 const title = `${activePhoto.value.title}`
+const shortTitle = stringTrim(title, 45, 60)
 const description = `${activePhoto.value.description}`
+const shortDescription = stringTrim(description, 90, 110)
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
+const url = `${siteUrl}/photo/${activePhotoSlug.value}`
 const cover = activePhoto.value?.image ? extractCdnId(activePhoto.value?.image) : ''
-const imageUrl = `${cdnUrl}/image/fit_cover&s_${Math.round(630 * activePhoto.value.aspectRatio)}x_630/${cover}`
+const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
 
 useSeoMeta({
-  title: title,
-  ogTitle: title,
-  twitterTitle: title,
-  description: description,
-  ogDescription: description,
-  twitterDescription: description,
+  title: shortTitle,
+  ogTitle: shortTitle,
+  twitterTitle: shortTitle,
+  description: shortDescription,
+  ogDescription: shortDescription,
+  twitterDescription: shortDescription,
   viewport: {
     initialScale: 1.0,
     maximumScale: 5.0,
@@ -38,18 +41,16 @@ useSeoMeta({
   },
   ogImage: imageUrl,
   twitterImage: imageUrl,
-  ogImageWidth: Math.round(630 * activePhoto.value.aspectRatio),
-  ogImageHeight: 630,
-  ogUrl: `${siteUrl}/photo/${activePhotoSlug.value}`,
+  ogUrl: url,
 })
 
 useSchemaOrg([
   defineImage({
-    url: `${siteUrl}/photo/${activePhotoSlug.value}`,
     contentUrl: imageUrl,
     caption: description,
     width: 720,
     height: Math.round(720 * activePhoto.value.aspectRatio),
+    url: url,
   }),
 ])
 

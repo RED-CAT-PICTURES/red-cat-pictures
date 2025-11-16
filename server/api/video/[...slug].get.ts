@@ -1,5 +1,3 @@
-import { convertSources, heroPreset, landscapePreset, portraitPreset } from './index.get'
-
 export default defineCachedEventHandler<Promise<VideoDetails>>(
   async (event) => {
     try {
@@ -26,7 +24,7 @@ export default defineCachedEventHandler<Promise<VideoDetails>>(
         description: notionTextStringify(video.properties.Description.rich_text),
         type: slug === 'hero' ? 'hero' : 'feature',
         poster: video.cover?.type === 'external' ? video.cover.external.url : undefined,
-        sources: convertSources(slug, slug === 'hero' ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
+        sources: videoGenerateSources(slug, slug === 'hero' ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
         url: `/video/${slug}`,
       } as VideoDetails
     } catch (error: unknown) {

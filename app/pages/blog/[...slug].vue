@@ -14,16 +14,17 @@ const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
 const title = `${blog.value.title}`
+const shortTitle = stringTrim(title, 45, 60)
 const description = `${blog.value.description}`
 const url = `${siteUrl}/blog/${slug}`
 const cover = blog.value.cover ? extractCdnId(blog.value.cover) : ''
-
-const imageUrl = `${cdnUrl}/image/fit_cover&s_1200x630/${cover}`
+const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
 
 useSeoMeta({
-  title: title,
-  ogTitle: title,
-  twitterTitle: title,
+  ogType: 'article',
+  title: shortTitle,
+  ogTitle: shortTitle,
+  twitterTitle: shortTitle,
   description: description,
   ogDescription: description,
   twitterDescription: description,

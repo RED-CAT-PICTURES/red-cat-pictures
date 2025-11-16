@@ -6,7 +6,7 @@ const description = `Photo Gallery`
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
-const imageUrl = photos.value?.length ? `${cdnUrl}/image/fit_cover&s_1200x630/${extractCdnId(photos.value[0]?.image)}` : `${siteUrl}/preview/placeholder-empty.webp`
+const imageUrl = photos.value?.length ? `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(photos.value[0]?.image)}` : `${siteUrl}/preview/placeholder-empty.jpg`
 
 useSeoMeta({
   title: title,

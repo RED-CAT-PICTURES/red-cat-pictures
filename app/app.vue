@@ -6,7 +6,7 @@ const {
   app: { buildTime },
   public: { siteUrl, vapidKey },
 } = useRuntimeConfig()
-const imageUrl = `${siteUrl}/previews/landing.webp`
+const imageUrl = `${siteUrl}/previews/placeholder-blank.jpg`
 
 useHead({
   htmlAttrs: {
@@ -22,9 +22,10 @@ useHead({
 })
 
 useSeoMeta({
-  ogType: 'profile',
+  ogSiteName: 'RED CAT PICTURES',
   ogLogo: `${siteUrl}/logo-dark.png`,
   ogImage: imageUrl,
+  twitterImage: imageUrl,
   ogImageWidth: 1200,
   ogImageHeight: 630,
   fbAppId: 966242223397117,
@@ -37,7 +38,6 @@ useSeoMeta({
     userScalable: 'no',
     viewportFit: 'cover',
   },
-  twitterImage: imageUrl,
 })
 
 useSchemaOrg([

@@ -39,7 +39,7 @@ export default defineCachedEventHandler<Promise<ContentDetails>>(
         createdAt: content.created_time as string,
         modifiedAt: content.last_edited_time as string,
         publishedAt: content.properties['Publish date'].date.start as string,
-        description: `${mdToText(markdown.split('. ').splice(0, 2).join('. '))}...`,
+        description: `${mdToText(stringTrim(markdown, 90, 110))}...`,
         markdown,
         url: `/${contentType}/${slugify(title)}_${id}`,
       } as ContentDetails
