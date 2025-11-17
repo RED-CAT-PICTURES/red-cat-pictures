@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.6.2
+
+[compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.1...v3.6.2)
+
+### 🩹 Fixes
+
+- Schema video uploadDate added, image schema dimension fixed ([6dbcb20](https://github.com/Algostract/red-cat-pictures/commit/6dbcb20))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.6.1
 
 [compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.0...v3.6.1)
