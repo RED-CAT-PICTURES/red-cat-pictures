@@ -205,8 +205,8 @@ export default defineNuxtConfig({
     injectRegister: 'auto',
     registerType: 'autoUpdate',
     manifest: {
-      name: 'RED CAT PICTURES | Product, Food Photography & Videography in Kolkata, India',
-      short_name: 'RED CAT PICTURES',
+      name: 'RED CAT PICTURES',
+      short_name: 'RCP',
       description: 'Create your brand identity that speaks to your clients, with our product photography/videograpy service',
       theme_color: '#CD2D2D',
       background_color: '#FFFFFF',

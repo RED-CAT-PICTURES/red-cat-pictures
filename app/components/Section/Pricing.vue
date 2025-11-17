@@ -47,9 +47,9 @@ const columns = computed<Photo[][]>(() => {
         <div class="flex flex-col items-center gap-4 text-left md:gap-10">
           <h1 class="sweep-gradient font-extrabold bg-gradient-to-r from-primary-500 from-50% to-white text-center text-xl md:text-4xl">Signature Visuals for Brands That Dare to Lead</h1>
           <p class="mx-auto max-w-[52rem] text-sm !leading-8 md:text-lg">
-            We specializes in <strong>food/product photography</strong>, and <strong>creative videography</strong> in Kolkata, India.<br />
-            Your product deserves an experience — not a price tag. We partner with forward-thinking brands to create stunning imagery that tells stories, drives desire, and elevates perceived value.
-            Our portfolio covers Kolkata’s top D2Cs, F&B ventures, and consumer brands looking for impactful food and product visuals in India’s creative capital.
+            RED CAT PICTURES is Kolkata's best food photography and product photography studio. We specializes in crafting creative media for brands in India.<br />
+            Your product deserves an experience not a price tag. We partner with forward-thinking brands to create stunning imagery that tells stories, drives desire, and elevates perceived value. Our
+            portfolio covers Kolkata's top D2Cs, F&B ventures, and consumer brands looking for impactful food and product visuals in India's creative capital.
           </p>
           <ul class="text-md max-w-[52rem] list-inside list-disc space-y-3 text-left">
             <li>Strategy-first <strong>food & product photography</strong> concepts tailored for your launch objectives in Kolkata, India</li>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-const title = `Product, Food Photography & Videography in Kolkata, India`
-const description = `Create your brand identity that speaks to your clients, with our product photography/videograpy service`
+const title = `Product Photographer in Kolkata | India`
+const description = `Create your brand identity that speaks to your clients, with our product photography and videograpy service`
 
 const {
-  app: { buildTime },
   public: { siteUrl, vapidKey },
 } = useRuntimeConfig()
 const imageUrl = `${siteUrl}/previews/placeholder-blank.jpg`
@@ -24,6 +23,10 @@ useHead({
 useSeoMeta({
   ogSiteName: 'RED CAT PICTURES',
   ogLogo: `${siteUrl}/logo-dark.png`,
+  title: title,
+  ogTitle: title,
+  description: description,
+  ogDescription: description,
   ogImage: imageUrl,
   twitterImage: imageUrl,
   ogImageWidth: 1200,
@@ -39,42 +42,6 @@ useSeoMeta({
     viewportFit: 'cover',
   },
 })
-
-useSchemaOrg([
-  defineWebPage({
-    datePublished: new Date(2023, 10, 24).toISOString(),
-    dateModified: buildTime,
-    author: 'Shirsendu Bairagi',
-  }),
-  defineWebSite({
-    url: siteUrl,
-    name: title,
-    description: description,
-  }),
-  defineLocalBusiness({
-    '@type': 'ProfessionalService',
-    name: 'RED CAT PICTURES',
-    description: description,
-    image: imageUrl,
-    logo: siteUrl + '/logo-dark.png',
-    url: siteUrl,
-    address: {
-      streetAddress: '17 NS Road, Vivekananda pally near Joyram Bhavan, rajpur sonarpur',
-      addressLocality: 'Kolkata',
-      addressRegion: 'WB',
-      postalCode: '700146',
-      addressCountry: 'IN',
-    },
-    sameAs: [
-      'https://wa.me/c/918910489578',
-      'https://www.instagram.com/redcatpictures',
-      'https://www.facebook.com/redcatpictures',
-      'https://www.linkedin.com/company/red-cat-pictures',
-      'https://www.youtube.com/@red_cat_pictures',
-      'https://maps.app.goo.gl/uWqh8LjcF5ez4WZY8',
-    ],
-  }),
-])
 
 const { $api } = useNuxtApp()
 const { isSupported, permissionGranted } = useWebNotification()

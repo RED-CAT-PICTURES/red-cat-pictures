@@ -23,7 +23,7 @@ const {
 } = useRuntimeConfig()
 const url = `${siteUrl}/photo/${activePhotoSlug.value}`
 const cover = activePhoto.value?.image ? extractCdnId(activePhoto.value?.image) : ''
-const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
+const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_${Math.round(640 * activePhoto.value.aspectRatio)}x${640}/${cover}`
 
 useSeoMeta({
   title: shortTitle,
@@ -46,10 +46,17 @@ useSeoMeta({
 
 useSchemaOrg([
   defineImage({
+    caption: title,
     contentUrl: imageUrl,
-    caption: description,
-    width: 720,
-    height: Math.round(720 * activePhoto.value.aspectRatio),
+    width: Math.round(640 * activePhoto.value.aspectRatio),
+    height: 640,
+    license: `${siteUrl}/license`,
+    creditText: 'RED CAT PICTURES',
+    creator: {
+      '@type': 'ORGANIZATION',
+      name: 'RED CAT PICTURES',
+    },
+    copyrightNotice: 'RED CAT PICTURES',
     url: url,
   }),
 ])
@@ -79,10 +86,9 @@ const isImageLoaded = ref(false)
         :alt="activePhoto.description"
         :width="Math.round(640 * activePhoto.aspectRatio)"
         :height="640"
-        fit="cover"
         loading="eager"
         preload
-        :placeholder="img(cover, { w: 240, h: Math.round(240 / activePhoto.aspectRatio), q: 80 })"
+        :placeholder="img(cover, { width: Math.round(240 * activePhoto.aspectRatio), height: 240, q: 80 })"
         class="size-full object-cover"
         :class="{ shimmer: !isImageLoaded }"
         @load="isImageLoaded = true" />

@@ -12,7 +12,7 @@
 
 ![Landing](public/previews/landing.webp)
 
-> Product, Food Photography & Videography in Kolkata, India
+> Product Photographer in Kolkata | Indiaa
 
 - 📦 SSR
 - 🖼️ OG Tags
@@ -32,7 +32,6 @@
 - [ ] Update Photo page with title and description
 - [ ] Instagram Automation
 - [ ] Modify Photo page to Project page
-- [ ] Videos and Video page
 - [ ] Like/Dislike Count Content
 - [ ] Add live streaming page
 - [ ] Audio Dictation of Content

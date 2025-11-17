@@ -16,13 +16,14 @@ export default defineCachedEventHandler<Promise<PhotoDetails>>(
       }
 
       const [aW, aH] = photo.properties['Aspect ratio'].select.name.split(':').map((item) => parseInt(item))
+      const aspectRatio = aW / aH
 
       return {
         id: slug,
         title: notionTextStringify(photo.properties.Name.title),
         description: notionTextStringify(photo.properties.Description.rich_text),
         image: photo.cover?.type === 'external' ? photo.cover.external.url : undefined,
-        aspectRatio: aW / aH,
+        aspectRatio: aspectRatio,
         category: photo.properties.Segment.select.name,
         featured: photo.properties.Featured.number,
         gallery: photo.properties.Gallery.checkbox,

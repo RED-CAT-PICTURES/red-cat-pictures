@@ -16,7 +16,7 @@ export default defineCachedEventHandler<Promise<Video[]>>(
             const pb = a.properties['Project Index'].rollup?.array[0]?.number ?? 0
             return pa - pb || (b.properties.Index?.number ?? 0) - (a.properties.Index?.number ?? 0)
           })
-          .map<Promise<Video>>(async ({ cover, properties }) => {
+          .map<Promise<Video>>(async ({ cover, properties, created_time }) => {
             const slug: string = properties.Slug.formula.string
 
             // if (slugify(notionTextStringify(properties.Slug.rich_text)) !== slug)
@@ -32,10 +32,12 @@ export default defineCachedEventHandler<Promise<Video[]>>(
               poster: cover?.type === 'external' ? cover.external.url : undefined,
               sources: videoGenerateSources(slug, slug.includes('featured-video') ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
               type: slug.includes('featured-video') ? 'hero' : 'feature',
+              aspectRatio: aspectRatio,
               category: properties.Segment.select.name,
               gallery: properties.Gallery.checkbox,
               featured: properties.Featured.number,
               url: `/video/${slug}`,
+              uploadDate: created_time,
             }
           })
       )

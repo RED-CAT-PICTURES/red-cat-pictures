@@ -23,13 +23,14 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
             //   slugMap[slugify(notionTextStringify(properties.Slug.rich_text))] = slug
 
             const [aW, aH] = properties['Aspect ratio'].select.name.split(':').map((item) => parseInt(item))
+            const aspectRatio = aW / aH
 
             return {
               id: slug,
               title: notionTextStringify(properties.Name.title),
               description: notionTextStringify(properties.Description.rich_text),
               image: cover?.type === 'external' ? cover.external.url : undefined,
-              aspectRatio: aW / aH,
+              aspectRatio: aspectRatio,
               category: properties.Segment.select.name,
               gallery: properties.Gallery.checkbox,
               featured: properties.Featured.number,

@@ -25,7 +25,12 @@ export default defineCachedEventHandler<Promise<VideoDetails>>(
         type: slug === 'hero' ? 'hero' : 'feature',
         poster: video.cover?.type === 'external' ? video.cover.external.url : undefined,
         sources: videoGenerateSources(slug, slug === 'hero' ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
+        aspectRatio: aspectRatio,
+        category: video.properties.Segment.select.name,
+        gallery: video.properties.Gallery.checkbox,
+        featured: video.properties.Featured.number,
         url: `/video/${slug}`,
+        uploadDate: video.created_time,
       } as VideoDetails
     } catch (error: unknown) {
       console.error('API video/slug GET', error)

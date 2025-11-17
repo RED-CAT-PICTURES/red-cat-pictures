@@ -63,6 +63,7 @@ export interface Video {
   featured: null | number
   sources: Source[]
   url: string
+  uploadDate: string
 }
 
 export interface VideoDetails extends Video {

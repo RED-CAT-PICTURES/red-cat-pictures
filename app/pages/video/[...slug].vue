@@ -24,6 +24,8 @@ const {
 const url = `${siteUrl}/video/${activeVideoSlug.value}`
 const cover = activeVideo.value?.poster ? extractCdnId(activeVideo.value?.poster) : ''
 const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
+const videoUrl = `${cdnUrl}/video/s_${Math.round(720 * activeVideo.value.aspectRatio)}x${720}&c_avc&q_75/${activeVideoSlug.value}`
+const uploadDate = activeVideo.value.uploadDate
 
 useSeoMeta({
   ogType: 'video.other',
@@ -41,8 +43,21 @@ useSeoMeta({
 useSchemaOrg([
   defineVideo({
     name: title,
+    caption: title,
     description,
+    contentUrl: videoUrl,
+    width: Math.round(720 * activeVideo.value.aspectRatio),
+    height: 720,
     thumbnailUrl: imageUrl,
+    uploadDate: uploadDate,
+    isFamilyFriendly: true,
+    license: `${siteUrl}/license`,
+    creditText: 'RED CAT PICTURES',
+    creator: {
+      '@type': 'ORGANIZATION',
+      name: 'RED CAT PICTURES',
+    },
+    copyrightNotice: 'RED CAT PICTURES',
     url: url,
   }),
 ])
