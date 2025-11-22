@@ -5,7 +5,6 @@ WORKDIR /app
 COPY package.json bun.lock ./
 COPY nuxt.config.ts ./
 
-# Build-time parameters (declare before use)
 ARG SITE_URL
 ARG CDN_URL
 

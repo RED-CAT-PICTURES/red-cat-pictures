@@ -28,14 +28,14 @@ export default defineTask({
           res.value.map(async (record) => {
             if (typeof record === 'string') return
 
-            const resource = (await resourceStorage.getItem(normalizeNotionId(record.id))) ?? {
+            const resource = (await resourceStorage.getItem(notionNormalizeId(record.id))) ?? {
               type,
               notificationStatus: false,
               record,
             }
 
             resource.record = record
-            resourceStorage.setItem(normalizeNotionId(record.id), resource)
+            resourceStorage.setItem(notionNormalizeId(record.id), resource)
           })
         )
       else console.warn(`Notion fetch failed for ${type}:`, res.reason)

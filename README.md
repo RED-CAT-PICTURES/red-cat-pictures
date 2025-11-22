@@ -12,7 +12,7 @@
 
 ![Landing](public/previews/landing.webp)
 
-> Product Photographer in Kolkata | Indiaa
+> Product Photographer in Kolkata | India
 
 - 📦 SSR
 - 🖼️ OG Tags

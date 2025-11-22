@@ -36,7 +36,7 @@ export default defineTask({
 
         const id = content.record.id
         const title = notionTextStringify(content.record.properties.Name.title)
-        const markdown = await convertNotionPageToMarkdown(n2m, id)
+        const markdown = await notionPageToMarkdown(n2m, id)
         const contentType = content.record.properties['Type'].select?.name
         const description = `${mdToText(markdown.split('. ').splice(0, 2).join('. '))}...`
         const url = `/${contentType}/${slugify(title)}_${id}`
@@ -84,7 +84,7 @@ export default defineTask({
           )
         }
         content.notificationStatus = true
-        await resourceStorage.setItem(`${content.type}/${normalizeNotionId(id)}`, content)
+        await resourceStorage.setItem(`${content.type}/${notionNormalizeId(id)}`, content)
       })
     )
 

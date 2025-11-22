@@ -59,6 +59,9 @@ const emit = defineEmits<{
       <li>
         <NuxtLink to="/cancellation">Cancellation</NuxtLink>
       </li>
+      <li>
+        <NuxtLink to="/license">License</NuxtLink>
+      </li>
     </ul>
   </footer>
 </template>

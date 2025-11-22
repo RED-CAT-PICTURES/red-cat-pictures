@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const title = `Product Photographer in Kolkata | India`
-const description = `Create your brand identity that speaks to your clients, with our product photography and videograpy service`
+const description = `Create your brand identity that speaks to your clients, with our product photography and videography service`
 
 const {
   app: { buildTime },

@@ -4,8 +4,8 @@ services:
     build:
       context: .
       args:
-        SITE_URL: https://letting-pioneer-blond-regulated.trycloudflare.com
-        CDN_URL: https://cdn.redcatpictures.com/media
+        SITE_URL: https://telephony-practical-conversations-formatting.trycloudflare.com
+        CDN_URL: https://steven-lows-oasis-possibility.trycloudflare.com/media
     restart: on-failure:3
     env_file:
       - .env.prod

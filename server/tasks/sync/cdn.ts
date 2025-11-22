@@ -13,14 +13,14 @@ export default defineTask({
       // update cover -> https://cdn.redcatpictures.com/media/w_1620&h_1080/product-photo-033-033
 
       // asset.properties.Type.select.name === 'Photo' && asset.properties.Status.status.name === 'Plan'
-      if (!(asset.properties.Status.status.name === 'Plan')) continue
+      // if (!(asset.properties.Status.status.name === 'Plan')) continue
 
       const slug = asset.properties.Slug?.formula?.string === 'featured-video-000-000' ? asset.properties.Slug?.formula?.string + '-landscape' : asset.properties.Slug?.formula?.string
       const [aW, aH] = asset.properties['Aspect ratio'].select.name.split(':').flatMap((item) => parseInt(item))
       const aspectRatio = aW / aH
       const { width: coverWidth, height: coverHeight } = calculateDimension(1080, aspectRatio)
 
-      let updateCoverURL = `${config.public.cdnUrl}/image/w_${coverWidth}&h_${coverHeight}/${slug}`
+      let updateCoverURL = `${config.public.cdnUrl}/image/s_${coverWidth}x${coverHeight}/${slug}`
 
       let coverExists = false
       try {
@@ -35,7 +35,7 @@ export default defineTask({
         continue
       }
 
-      updateCoverURL = `https://cdn.redcatpictures.com/media/image/w_${coverWidth}&h_${coverHeight}/${slug}`
+      updateCoverURL = `https://cdn.redcatpictures.com/media/image/s_${coverWidth}x${coverHeight}/${slug}`
       console.log('🍃 Updating', { slug, updateCoverURL })
 
       await notion.pages.update({

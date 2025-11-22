@@ -180,7 +180,7 @@ export default defineTask({
         })
 
         prospect.record.properties.Status.status.name = 'Initiate'
-        await prospectStorage.setItem(normalizeNotionId(prospectId), prospect)
+        await prospectStorage.setItem(notionNormalizeId(prospectId), prospect)
       })
     )
 

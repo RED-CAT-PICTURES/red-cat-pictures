@@ -463,8 +463,8 @@ export default defineTask({
         }
 
         const termsUpdateDate = ((await notion.pages.retrieve({ page_id: notionDbId.terms })) as unknown as NotionAsset).last_edited_time
-        const termsMarkdown = `**Last Updated**: ${formatDate(termsUpdateDate)}\n` + (await convertNotionPageToMarkdown(n2m, notionDbId.terms, false))
-        const budgetMarkdown = (await convertNotionPageToMarkdown(n2m, projectId, false)).split('\n---\n')[0]
+        const termsMarkdown = `**Last Updated**: ${formatDate(termsUpdateDate)}\n` + (await notionPageToMarkdown(n2m, notionDbId.terms, false))
+        const budgetMarkdown = (await notionPageToMarkdown(n2m, projectId, false)).split('\n---\n')[0]
 
         console.log('📥 Quotation Details Fetched', { clientDetails, projectDetails })
 
@@ -565,7 +565,7 @@ export default defineTask({
         console.log('📤 Quotation Sent')
 
         project.record.properties.Status.status.name = 'Shoot'
-        await projectStorage.setItem(normalizeNotionId(projectId), project)
+        await projectStorage.setItem(notionNormalizeId(projectId), project)
       })
     )
 
