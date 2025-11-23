@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  app:
+    image: ghcr.io/algostract/red-cat-pictures:latest
+    env_file:
+      - .env
+    volumes:
+      - red-cat-pictures_static:/app/static
+      - red-cat-pictures_data:/app/.data
+    expose:
+      - 3000
+    networks:
+      - internal
+    depends_on:
+      - browserless
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    environment:
+      - CORS=true
+    networks:
+      - internal
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+volumes:
+  red-cat-pictures_static:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/red-cat-pictures/static
+  red-cat-pictures_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/red-cat-pictures/.data
+
+networks:
+  internal:
+    driver: overlay

@@ -1,10 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-  ],
+import type { Config } from 'tailwindcss'
+
+export default <Partial<Config>>{
   darkMode: 'class',
   theme: {
     fontSize: {
@@ -21,37 +17,53 @@ module.exports = {
       '5xl': ['3.5rem', '4.1875rem'],
     },
     fontFamily: {
-      head: ['"Exo 2"', 'sans-serif'],
-      body: ['"Exo 2"', 'sans-serif'],
+      main: ['Oxanium', 'sans-serif'],
+      sub: ['Oxanium', 'sans-serif'],
     },
     fontWeight: {
-      light: 300,
-      regular: 400,
-      'semi-bold': 500,
-      bold: 600,
+      light: '300',
+      regular: '400',
+      'semi-bold': '500',
+      bold: '600',
     },
     colors: {
       transparent: 'transparent',
       white: '#FFFFFF',
       light: {
-        400: '#EDF0F5',
-        500: '#C1C9D6',
-        600: '#9AA5B8',
+        400: '#F8FAFC',
+        500: '#F1F5F9',
+        600: '#CBD5E1',
       },
       black: '#000000',
       dark: {
-        400: '#1A1B20',
-        500: '#22252A',
-        600: '#2D2F34',
+        400: '#171717',
+        500: '#262626',
+        600: '#404040',
       },
       primary: {
-        300: '#60A5fA',
-        400: '#3B82F6',
-        500: '#2563EB',
-      }
+        400: '#FB3737',
+        500: '#CD2D2D',
+        600: '#813232',
+      },
+      success: {
+        400: '#89E774',
+        500: '#4AD42B',
+        600: '#66BE52',
+      },
+      warning: {
+        400: '#F0CD42',
+        500: '#ECC113',
+        600: '#D7B942',
+      },
+      alert: {
+        400: '#F24067',
+        500: '#E11D48',
+        600: '#C02650',
+      },
     },
-    extend: {
-    }
-  }
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 }
-
