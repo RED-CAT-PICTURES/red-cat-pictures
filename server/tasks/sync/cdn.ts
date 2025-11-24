@@ -85,6 +85,6 @@ export default defineTask({
       })
     }
 
-    return { result: '' }
+    return { result: 'Success' }
   },
 })

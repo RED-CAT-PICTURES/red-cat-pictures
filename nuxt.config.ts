@@ -110,9 +110,9 @@ export default defineNuxtConfig({
     '/api/**': { cors: true },
     '/image/**': { redirect: { to: '/photo/**', statusCode: 301 } },
     '/photos/**': { redirect: { to: '/photo/**', statusCode: 301 } },
-    '/photo/**': { headers: { 'cache-control': 'max-age=31536000' } },
+    '/photo/**': { isr: 3600 },
     '/videos/**': { redirect: { to: '/video/**', statusCode: 301 } },
-    '/video/**': { headers: { 'cache-control': 'max-age=31536000' } },
+    '/video/**': { isr: 3600 },
     '/episodes/**': { redirect: { to: '/episode/**', statusCode: 301 } },
     '/episode/**': { isr: 3600 },
     '/blogs/**': { redirect: { to: '/blog/**', statusCode: 301 } },
@@ -121,6 +121,7 @@ export default defineNuxtConfig({
     '/terms': { isr: 86400 },
     '/privacy': { isr: 86400 },
     '/cancellation': { isr: 86400 },
+    '/license': { isr: 86400 },
   },
   runtimeConfig: {
     app: {
@@ -201,15 +202,18 @@ export default defineNuxtConfig({
   },
   robots: {},
   pwa: {
+    srcDir: '../public/services',
+    filename: 'sw-main.ts',
+    strategies: 'injectManifest',
     injectRegister: 'auto',
     registerType: 'autoUpdate',
+    includeManifestIcons: false,
     manifest: {
       name: 'RED CAT PICTURES',
       short_name: 'RCP',
-      description: 'Create your brand identity that speaks to your clients, with our product photography/videography service',
+      description: 'Tech-enabled Creative Media Agency',
       theme_color: '#CD2D2D',
       background_color: '#FFFFFF',
-      // orientation: 'natural',
       display: 'fullscreen',
       shortcuts: [
         {
@@ -358,33 +362,10 @@ export default defineNuxtConfig({
         },
       ],
     },
-    workbox: {
-      globPatterns: ['**/*.{html,css,js,jpg,jpeg,png,svg,webp,ico,mp3,wav,ogg,mp4,webm,mov,m4a,aac}'],
-      runtimeCaching: [
-        {
-          urlPattern: /\.(?:html|js|css)$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'dynamic-assets',
-          },
-        },
-        {
-          urlPattern: /\.(?:png|jpg|jpeg|svg|webp|ico|mp3|wav|ogg|mp4|webm|mov|m4a|aac)$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'static-assets',
-            expiration: { maxEntries: 100, maxAgeSeconds: 7 * 24 * 60 * 60 },
-          },
-        },
-      ],
-      navigateFallback: '/',
-      cleanupOutdatedCaches: true,
-      importScripts: ['/sw-push.js'],
+    injectManifest: {
+      globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+      globIgnores: ['manifest**.webmanifest'],
       maximumFileSizeToCacheInBytes: 3000000,
-    },
-    client: {
-      installPrompt: true,
-      periodicSyncForUpdates: 3600,
     },
     devOptions: {
       type: 'module',

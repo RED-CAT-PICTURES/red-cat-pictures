@@ -84,8 +84,8 @@ docker service ps red-cat-pictures_app
 
 ## License
 
-Published under the [MIT](https://github.com/Algostract/red-cat-pictures/blob/main/LICENSE) license.
+Published under the [MIT](https://github.com/RED-CAT-PICTURES/red-cat-pictures/blob/main/LICENSE) license.
 <br><br>
-<a href="https://github.com/Algostract/red-cat-pictures/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=Algostract/red-cat-pictures" />
+<a href="https://github.com/RED-CAT-PICTURES/red-cat-pictures/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=RED-CAT-PICTURES/red-cat-pictures" />
 </a>

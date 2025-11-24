@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const title = `Product Photographer in Kolkata | India`
+const title = `Tech-enabled Creative Media Agency`
 const description = `Create your brand identity that speaks to your clients, with our product photography and videography service`
 
 const {

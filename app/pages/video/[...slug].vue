@@ -40,7 +40,10 @@ useSeoMeta({
   ogUrl: url,
 })
 
-const toISO = (s: number) => `PT${(s / 3600) | 0 || ''}H${((s % 3600) / 60) | 0 || ''}M${s % 60 || ''}S`
+const toISO = (seconds: number) => {
+  const s = Math.trunc(seconds)
+  return `PT${(s / 3600) | 0 || ''}H${((s % 3600) / 60) | 0 || ''}M${s % 60 || ''}S`
+}
 
 useSchemaOrg([
   defineVideo({
