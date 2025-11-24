@@ -12,7 +12,7 @@
 
 ![Landing](public/previews/landing.webp)
 
-> Product Photographer in Kolkata | India
+> Tech-enabled Creative Media Agency
 
 - 📦 SSR
 - 🖼️ OG Tags
