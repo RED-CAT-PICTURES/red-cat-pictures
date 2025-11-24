@@ -13,7 +13,7 @@ export default defineTask({
       // update cover -> https://cdn.redcatpictures.com/media/w_1620&h_1080/product-photo-033-033
 
       // asset.properties.Type.select.name === 'Photo' && asset.properties.Status.status.name === 'Plan'
-      // if (!(asset.properties.Status.status.name === 'Plan')) continue
+      if (asset.properties.Type.select.name === 'Photo') continue
 
       const slug = asset.properties.Slug?.formula?.string === 'featured-video-000-000' ? asset.properties.Slug?.formula?.string + '-landscape' : asset.properties.Slug?.formula?.string
       const [aW, aH] = asset.properties['Aspect ratio'].select.name.split(':').flatMap((item) => parseInt(item))
@@ -38,6 +38,30 @@ export default defineTask({
       updateCoverURL = `https://cdn.redcatpictures.com/media/image/s_${coverWidth}x${coverHeight}/${slug}`
       console.log('🍃 Updating', { slug, updateCoverURL })
 
+      const metaData =
+        import.meta.env.NODE_ENV === 'production'
+          ? await $fetch<{
+              format: {
+                filename: string
+                formatName: string
+                duration: number
+                size: number
+                bitRate: number
+              }
+              stream: {
+                codecName: string
+                codecType: string
+                width: number
+                height: number
+                bitRate: number
+                duration: number
+                frameRate: number
+              }
+            }>(`/media/videos/${slug}`, {
+              baseURL: 'https://cdn.redcatpictures.com/api',
+            })
+          : undefined
+
       await notion.pages.update({
         page_id: asset.id,
         cover: coverExists
@@ -52,6 +76,11 @@ export default defineTask({
               name: asset.properties.Status.status.name, //coverExists ? (asset.properties.Status.status.name !== 'Plan' ? asset.properties.Status.status.name : 'Draft') : 'Plan',
             },
           },
+          ...(metaData && {
+            Additional: {
+              rich_text: [{ text: { content: `${JSON.stringify({ duration: metaData.format.duration })}` } }],
+            },
+          }),
         },
       })
     }

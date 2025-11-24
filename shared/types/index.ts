@@ -58,6 +58,8 @@ export interface Video {
   description: string
   type: 'hero' | 'feature'
   poster?: string
+  aspectRatio: number
+  duration: number
   category: Category
   gallery: boolean
   featured: null | number
@@ -484,6 +486,14 @@ export interface NotionAsset {
       select: {
         name: AspectRatio
       }
+    }
+    Additional: {
+      type: 'rich_text'
+      rich_text: {
+        text: {
+          content: string
+        }
+      }[]
     }
   }
 }

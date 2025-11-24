@@ -23,7 +23,7 @@ const {
 } = useRuntimeConfig()
 const url = `${siteUrl}/video/${activeVideoSlug.value}`
 const cover = activeVideo.value?.poster ? extractCdnId(activeVideo.value?.poster) : ''
-const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
+const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_${Math.round(640 * activeVideo.value.aspectRatio)}x${640}/${cover}`
 const videoUrl = `${cdnUrl}/video/s_${Math.round(720 * activeVideo.value.aspectRatio)}x${720}&c_avc&q_75/${activeVideoSlug.value}`
 const uploadDate = activeVideo.value.uploadDate
 
@@ -40,6 +40,8 @@ useSeoMeta({
   ogUrl: url,
 })
 
+const toISO = (s: number) => `PT${(s / 3600) | 0 || ''}H${((s % 3600) / 60) | 0 || ''}M${s % 60 || ''}S`
+
 useSchemaOrg([
   defineVideo({
     name: title,
@@ -53,10 +55,10 @@ useSchemaOrg([
     isFamilyFriendly: true,
     license: `${siteUrl}/license`,
     creditText: 'RED CAT PICTURES',
-    creator: {
-      '@type': 'ORGANIZATION',
+    duration: toISO(activeVideo.value.duration),
+    creator: defineOrganization({
       name: 'RED CAT PICTURES',
-    },
+    }),
     copyrightNotice: 'RED CAT PICTURES',
     url: url,
   }),
