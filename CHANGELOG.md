@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.3
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.2...v3.9.3)
+
+### 🩹 Fixes
+
+- Update video quality and improve formatting in NuxtVideo component ([89fd761](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/89fd761))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.2
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.1...v3.9.2)
