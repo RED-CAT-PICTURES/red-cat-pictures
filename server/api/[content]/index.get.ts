@@ -23,7 +23,7 @@ export default defineCachedEventHandler<Promise<Content[]>>(
           if (properties.Type?.select.name.toLowerCase() !== contentType) return null
           if (!(properties.Status.status.name === 'Publish')) return null
 
-          const markdown = await convertNotionPageToMarkdown(n2m, id)
+          const markdown = await notionPageToMarkdown(n2m, id)
           const title = notionTextStringify(properties.Name.title)
 
           return {

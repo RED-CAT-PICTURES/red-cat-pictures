@@ -76,8 +76,8 @@ export default async function (n2m: NotionToMarkdown, pageId: string, replaceNot
         mdString = mdString.replace(
           createRegExp(exactly('\n\nchild_database\n\n'), [global]),
           await (async () => {
-            const currentContent = await resourceStorage.getItem<Resource<'content'>>(`content:${normalizeNotionId(pageId)}`)
-            const currentAssets = await resourceStorage.getItems<Resource<'asset'>>(currentContent?.record.properties.Asset.relation.flatMap(({ id }) => `asset:${normalizeNotionId(id)}`) ?? [])
+            const currentContent = await resourceStorage.getItem<Resource<'content'>>(`content:${notionNormalizeId(pageId)}`)
+            const currentAssets = await resourceStorage.getItems<Resource<'asset'>>(currentContent?.record.properties.Asset.relation.flatMap(({ id }) => `asset:${notionNormalizeId(id)}`) ?? [])
 
             return `\n::gallery{photos="${currentAssets.flatMap(({ value }) => value.record.properties.Slug.formula.string).join(',')}"}\n::\n`
           })()

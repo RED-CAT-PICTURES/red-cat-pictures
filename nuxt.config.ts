@@ -142,7 +142,6 @@ export default defineNuxtConfig({
       notionDbId: '',
       vapidKey: '',
       vapidSubject: '',
-      emailMetaData: '',
       facebookPageId: '',
       facebookAccessToken: '',
       paymentUpiInfo: '',
@@ -207,7 +206,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'RED CAT PICTURES',
       short_name: 'RCP',
-      description: 'Create your brand identity that speaks to your clients, with our product photography/videograpy service',
+      description: 'Create your brand identity that speaks to your clients, with our product photography/videography service',
       theme_color: '#CD2D2D',
       background_color: '#FFFFFF',
       // orientation: 'natural',
@@ -391,19 +390,6 @@ export default defineNuxtConfig({
       type: 'module',
       enabled: false,
       suppressWarnings: false,
-    },
-  },
-  nodemailer: {
-    from: '',
-    host: '',
-    port: '',
-    secure: true,
-    auth: {
-      user: '',
-      pass: '',
-    },
-    tls: {
-      rejectUnauthorized: false,
     },
   },
   splide: {

@@ -58,6 +58,8 @@ export interface Video {
   description: string
   type: 'hero' | 'feature'
   poster?: string
+  aspectRatio: number
+  duration: number
   category: Category
   gallery: boolean
   featured: null | number
@@ -122,7 +124,7 @@ export interface WhatsappSubscription {
 }
 
 /* Server Only */
-export const resourceTypes = ['prospect', 'client', 'project', 'content', 'asset', 'terms', 'privacy', 'cancellation'] as const
+export const resourceTypes = ['prospect', 'client', 'project', 'content', 'asset', 'terms', 'privacy', 'cancellation', 'license'] as const
 
 export type ResourceType = (typeof resourceTypes)[number]
 
@@ -484,6 +486,14 @@ export interface NotionAsset {
       select: {
         name: AspectRatio
       }
+    }
+    Additional: {
+      type: 'rich_text'
+      rich_text: {
+        text: {
+          content: string
+        }
+      }[]
     }
   }
 }

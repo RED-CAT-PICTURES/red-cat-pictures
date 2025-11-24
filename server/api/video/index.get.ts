@@ -25,14 +25,19 @@ export default defineCachedEventHandler<Promise<Video[]>>(
             const [aW, aH] = properties['Aspect ratio'].select.name.split(':').map((item) => parseInt(item))
             const aspectRatio = aW / aH
 
+            const additionalProperties = JSON.parse(notionTextStringify(properties['Additional'].rich_text)) as {
+              duration: number
+            }
+
             return {
               id: slug,
               title: notionTextStringify(properties.Name.title),
               description: notionTextStringify(properties.Description.rich_text),
+              type: slug.includes('featured-video') ? 'hero' : 'feature',
               poster: cover?.type === 'external' ? cover.external.url : undefined,
               sources: videoGenerateSources(slug, slug.includes('featured-video') ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
-              type: slug.includes('featured-video') ? 'hero' : 'feature',
               aspectRatio: aspectRatio,
+              duration: additionalProperties.duration,
               category: properties.Segment.select.name,
               gallery: properties.Gallery.checkbox,
               featured: properties.Featured.number,
