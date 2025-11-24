@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.2
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.1...v3.9.2)
+
+### 🩹 Fixes
+
+- Pwa startegey change and schema duration format change ([cda48ee](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/cda48ee))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.1
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.0...v3.9.1)
