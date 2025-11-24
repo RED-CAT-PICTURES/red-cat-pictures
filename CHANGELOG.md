@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.1
+
+[compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.9.0...v3.9.1)
+
+### 🩹 Fixes
+
+- Add aws4fetch dependency in package.json and bun.lock ([d5732df](https://github.com/Algostract/red-cat-pictures/commit/d5732df))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.0
 
 [compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.2...v3.9.0)
