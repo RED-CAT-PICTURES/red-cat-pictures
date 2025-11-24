@@ -1,5 +1,31 @@
 # red-cat-pictures
 
+## v3.8.0
+
+[compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.2...v3.8.0)
+
+### 🚀 Enhancements
+
+- Add video duration and aspect ratio to video interface, update related logic ([1c57a01](https://github.com/Algostract/red-cat-pictures/commit/1c57a01))
+
+### 🩹 Fixes
+
+- License added, warmup caching code added, tauri reinit ([49fd350](https://github.com/Algostract/red-cat-pictures/commit/49fd350))
+
+### 🏡 Chore
+
+- Update package dependencies and package manager version ([eea6b44](https://github.com/Algostract/red-cat-pictures/commit/eea6b44))
+
+### 🤖 CI
+
+- **release:** Update version ([8faaaa3](https://github.com/Algostract/red-cat-pictures/commit/8faaaa3))
+- **release:** Update version ([3e68e6c](https://github.com/Algostract/red-cat-pictures/commit/3e68e6c))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v3.7.0
 
 [compare changes](https://github.com/Algostract/red-cat-pictures/compare/v3.6.2...v3.7.0)
