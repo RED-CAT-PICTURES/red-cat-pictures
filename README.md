@@ -10,7 +10,7 @@
   </a>
 </p>
 
-![Landing](public/previews/landing.webp)
+![Landing](public/previews/landing.jpg)
 
 > Tech-enabled Creative Media Agency
 
