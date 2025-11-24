@@ -42,7 +42,11 @@ useSeoMeta({
 
 const toISO = (seconds: number) => {
   const s = Math.trunc(seconds)
-  return `PT${(s / 3600) | 0 || ''}H${((s % 3600) / 60) | 0 || ''}M${s % 60 || ''}S`
+  const h = Math.floor(s / 3600)
+  const m = Math.floor((s % 3600) / 60)
+  const sec = s % 60
+
+  return `PT${h ? `${h}H` : ''}${m ? `${m}M` : ''}${sec ? `${sec}S` : !h && !m ? '0S' : ''}`
 }
 
 useSchemaOrg([

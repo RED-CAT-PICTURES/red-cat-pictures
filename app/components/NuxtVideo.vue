@@ -123,7 +123,7 @@ function handleEnded() {
   emit('ended')
 }
 
-const qualtiy = 75
+const qualtiy = 80
 const { width, height } = useElementSize(videoRef)
 
 // TODO: remove when hero video is same as landscape and portrait
