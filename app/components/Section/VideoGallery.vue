@@ -92,7 +92,7 @@ function slideClick() {
     <div v-if="filterVideos.length" ref="video-container-wrapper" class="relative left-1/2 flex h-screen -translate-x-1/2 items-center justify-center overflow-hidden bg-black">
       <ClientOnly>
         <NuxtVideo
-          :key="activeVideoIndex"
+          :key="activeVideo.id"
           class="aspect-video"
           :class="isLandscapeOriented(deviceOrientation?.split('-')[0]!, activeVideo.sources[0]!.orientation) ? 'w-[100vh] max-w-[100vh] rotate-90' : ''"
           :poster="activeVideo.poster"

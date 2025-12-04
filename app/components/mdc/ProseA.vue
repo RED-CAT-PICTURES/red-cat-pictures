@@ -44,18 +44,18 @@ const activeVideoName = useState<string | null>()
           alt="image"
           :width="Math.round(640 * (16 / 9))"
           :height="640"
-          fit="cover"
+          fit="contain"
           loading="eager"
           preload
           :placeholder="[320, Math.round(320 / (16 / 9)), 50, 5]"
-          class="aspect-video w-full object-cover"
+          class="aspect-video w-full object-contain"
           v-bind="attrs" />
       </NuxtLink>
     </template>
     <template v-else-if="title === 'video' || $slots.default?.()[0]?.children === 'video'">
       <NuxtLink :to="`/video/${extractCdnId(href)}`" @click="activeVideoName = extractCdnId(href)">
         <NuxtVideo
-          :poster="`${cdnUrl}/image/fit_cover&s_1280x720/${extractCdnId(href)}`"
+          :poster="`${cdnUrl}/image/fit_contain&s_1280x720/${extractCdnId(href)}`"
           :source="videoGenerateSources(extractCdnId(href), landscapePreset)"
           :disable-picture-in-picture="true"
           controls-list="nodownload"

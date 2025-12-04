@@ -25,7 +25,7 @@ const activeEpisode = useState()
 
 <template>
   <section class="relative">
-    <ul v-if="episodes?.length" class="mx-auto mt-28 grid h-full w-fit max-w-[76rem] grow grid-cols-1 justify-center gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <ul v-if="episodes?.length" class="mx-auto mt-28 grid h-full w-fit max-w-screen-2xl grow grid-cols-1 justify-center gap-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       <li v-for="{ id, cover, title, description, url, createdAt, publishedAt, modifiedAt } in episodes" :key="id">
         <CardContent
           :id="id"
@@ -40,7 +40,7 @@ const activeEpisode = useState()
           @active="activeEpisode = id" />
       </li>
     </ul>
-    <div v-else class="mx-auto flex h-full w-full max-w-[76rem] grow items-center justify-center">
+    <div v-else class="mx-auto flex h-full w-full max-w-screen-2xl grow items-center justify-center">
       <span>No Episode Published Yet!</span>
     </div>
   </section>

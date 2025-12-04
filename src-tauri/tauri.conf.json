@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "RED CAT PICTURES",
   "version": "../package.json",
-  "identifier": "com.redcatpictures.app",
+  "identifier": "com.redcatpictures.studio",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3002",

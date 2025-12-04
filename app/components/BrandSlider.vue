@@ -13,8 +13,8 @@ useIntersectionObserver(slider, onIntersectionObserver)
 
 <template>
   <section v-if="clients" ref="sliderRef" class="text-shadow-none relative bottom-0 w-screen text-white md:bottom-8" aria-label="Trusted by our clients" role="region">
-    <div class="flex items-center gap-0 bg-white px-2 dark:bg-black md:px-20">
-      <div class="h-11 w-2 bg-[url('assets/images/line.svg')]" />
+    <div class="flex items-center gap-0 overflow-hidden bg-white dark:bg-black md:px-20">
+      <div class="strip" />
       <div class="trap w-full bg-gradient-to-r from-primary-500 to-transparent to-75% md:max-w-[700px]">
         <div
           class="autoscroll-x flex w-fit gap-12 md:gap-16"
@@ -28,7 +28,7 @@ useIntersectionObserver(slider, onIntersectionObserver)
                 :href="website ? `${website}?utm_source=redcatpictures.com` : ''"
                 target="_blank"
                 rel="noopener"
-                class="relative size-11 overflow-hidden rounded-full bg-black dark:bg-white"
+                class="relative size-12 overflow-hidden rounded-full bg-black dark:bg-white"
                 :aria-label="`Visit ${name} website`">
                 <NuxtImg :src="extractCdnId(logo)" :alt="name" :width="64" :height="64" fit="contain" loading="lazy" />
               </NuxtLink>
@@ -36,10 +36,10 @@ useIntersectionObserver(slider, onIntersectionObserver)
           </template>
         </div>
       </div>
-      <div class="-ml-20 flex translate-x-12 gap-5 overflow-visible md:ml-0 md:-translate-x-8">
-        <div class="strip" />
-        <div class="strip" />
-        <div class="strip" />
+      <div class="-ml-20 flex translate-x-14 gap-5 overflow-visible md:ml-0 md:-translate-x-6">
+        <div class="strip strip-rotated" />
+        <div class="strip strip-rotated" />
+        <div class="strip strip-rotated" />
       </div>
       <span class="ml-6 hidden whitespace-nowrap text-lg font-semi-bold uppercase text-black dark:text-white lg:inline"> Trusted Us </span>
     </div>
@@ -52,11 +52,15 @@ useIntersectionObserver(slider, onIntersectionObserver)
 }
 
 .strip {
-  @apply h-11 w-2 rotate-45 scale-y-125 bg-[url('assets/images/line.svg')];
+  @apply aspect-[1/10] h-12 scale-y-150 bg-[url('assets/images/line.svg')] bg-contain bg-no-repeat;
+}
+
+.strip-rotated {
+  @apply rotate-45;
 }
 
 .trap {
-  --cut: 64px;
+  --cut: 48px;
   clip-path: polygon(0 0, 100% 0, calc(100% - var(--cut)) 100%, 0 100%);
 }
 </style>

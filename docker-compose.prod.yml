@@ -7,8 +7,6 @@ services:
     volumes:
       - red-cat-pictures_static:/app/static
       - red-cat-pictures_data:/app/.data
-    expose:
-      - 3000
     networks:
       - internal
     depends_on:

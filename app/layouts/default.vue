@@ -25,8 +25,8 @@ const isDarkMode = computed(() => route.path.includes('/blog/'))
     <LazyAppHeader hydrate-on-idle :color-mode="isLightMode ? 'light' : isDarkMode ? 'dark' : 'auto'" />
     <main class="relative mx-auto flex w-full grow flex-col gap-4 px-2 md:px-4">
       <slot />
-      <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
     </main>
     <LazyAppFooter hydrate-on-visible @contact="onContact(true)" />
+    <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
   </div>
 </template>

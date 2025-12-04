@@ -9,16 +9,15 @@ const emit = defineEmits<{
 
 const isMobile = useMediaQuery('(max-width: 767px)')
 
-const COLS = computed<number>(() => (isMobile.value ? 3 : 7))
-
 const allPhotos = computed(() => {
   return props.photos.filter(({ gallery }) => gallery)
 })
 
 const columns = computed<Photo[][]>(() => {
-  const cols: Photo[][] = Array.from({ length: COLS.value }, () => [])
+  const COLS = isMobile.value ? 3 : 6
+  const cols: Photo[][] = Array.from({ length: COLS }, () => [])
   allPhotos.value.forEach((photo, idx) => {
-    cols[idx % COLS.value].push(photo)
+    cols[idx % COLS].push(photo)
   })
   return cols
 })
@@ -28,8 +27,8 @@ const columns = computed<Photo[][]>(() => {
   <section id="pricing">
     <SectionLabel icon="chess-knight" title="Signature Branding" />
     <div class="bg-neutral-900 relative flex h-screen w-full items-center justify-center overflow-hidden">
-      <div class="pointer-events-none absolute inset-0 flex -rotate-12 scale-[1.4] items-center justify-center before:absolute before:inset-0 before:z-10 before:bg-black/90 before:content-['']">
-        <div class="size-screen grid gap-1" :class="`grid-cols-${COLS}`">
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center before:absolute before:z-10 before:size-full before:bg-black/90 before:content-['']">
+        <div class="grid h-[200vh] w-[200vw] -rotate-12 grid-cols-3 gap-1 md:grid-cols-6">
           <div
             v-for="(col, colIdx) in columns"
             :key="colIdx"
@@ -37,7 +36,7 @@ const columns = computed<Photo[][]>(() => {
             :class="colIdx % 2 === 0 ? 'animate-marquee-y' : 'animate-marquee-y-reverse'"
             class="w-fit">
             <div v-for="(card, i) in col" :key="i" class="aspect-[3/4] h-auto w-full">
-              <NuxtImg :src="extractCdnId(card.image!)" alt="Card" :width="256" :height="341" loading="lazy" class="size-full object-cover" :draggable="false" />
+              <NuxtImg :src="extractCdnId(card.image!)" alt="Card" sizes="33vw md:16vw 2xl:16vw" fit="cover" loading="lazy" class="size-full object-cover" :draggable="false" />
             </div>
           </div>
         </div>
@@ -67,10 +66,6 @@ const columns = computed<Photo[][]>(() => {
 </template>
 
 <style scoped>
-:root {
-  @apply grid-cols-3 grid-cols-7;
-}
-
 .animate-marquee-y {
   animation: marquee-y linear infinite;
 }

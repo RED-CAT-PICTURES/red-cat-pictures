@@ -32,19 +32,19 @@ const activePhotoName = useState<string | null>()
     <section>
       <div v-for="category in categoryOrder" :key="category" class="flex flex-col gap-3">
         <h2 class="font-semibold text-md text-center uppercase md:text-xl">{{ category }}</h2>
-        <div class="columns-3 gap-2 md:columns-4 lg:columns-6">
+        <div class="columns-2 gap-2 md:columns-4 2xl:columns-6">
           <div v-for="photo in groupedPhotos[category]" :key="photo.id" class="mb-2 overflow-hidden bg-light-600 duration-200 ease-in-out hover:scale-110 dark:bg-dark-500">
             <NuxtLink :to="photo.url" @click="activePhotoName = photo.title">
               <NuxtImg
                 :src="extractCdnId(photo.image)"
                 :alt="photo.description"
-                :width="240"
-                :height="Math.round(240 / photo.aspectRatio)"
+                sizes="50vw md:25vw 2xl:16vw"
                 fit="cover"
                 loading="lazy"
                 :placeholder="[120, Math.round(120 / photo.aspectRatio), 50, 5]"
-                class="w-full object-cover"
-                :class="{ active: activePhotoName === photo.title }" />
+                class="size-full object-cover"
+                :class="{ active: activePhotoName === photo.title }"
+                :style="{ aspectRatio: photo.aspectRatio }" />
             </NuxtLink>
           </div>
         </div>

@@ -35,12 +35,11 @@ const { height: sliderHeight } = useElementSize(slider)
             <NuxtImg
               :src="extractCdnId(image)"
               :alt="description"
-              :width="420"
-              :height="Math.round(420 / (3 / 4))"
+              sizes="50vw md:25vw 2xl:16vw"
               fit="cover"
               loading="lazy"
               :placeholder="[120, Math.round(120 / (3 / 4)), 50, 5]"
-              class="aspect-[3/4] h-full bg-light-600 object-cover dark:bg-dark-500"
+              class="aspect-[3/4] size-full bg-light-600 object-cover dark:bg-dark-500"
               :class="{ active: activePhoto === `${dupIndex}-${title}` }" />
           </NuxtLink>
         </template>

@@ -32,7 +32,7 @@ const isAnimate = ref(false)
 <template>
   <div v-show="isOpen || isAnimate" class="fixed left-0 top-0 z-50 h-screen w-screen bg-black/70 md:hidden" @click.self="emit('close')">
     <Transition @before-enter="isAnimate = true" @after-leave="isAnimate = false">
-      <div v-show="isOpen" class="bg-red-600 fixed right-0 z-50 h-screen w-64 bg-primary-500 text-white">
+      <div v-show="isOpen" class="bg-red-600 fixed right-0 z-50 h-screen w-64 bg-light-400 bg-gradient-to-br from-primary-500 to-transparent to-60% text-black dark:bg-dark-400 dark:text-white">
         <div class="flex h-full w-full flex-col items-end justify-between">
           <NuxtLink
             to="/"

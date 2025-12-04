@@ -1,4 +1,4 @@
-package com.redcatpictures.app
+package com.redcatpictures.studio
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

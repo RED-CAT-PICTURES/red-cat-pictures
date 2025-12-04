@@ -105,8 +105,7 @@ const photos = computed<GalleryPhoto[]>(() =>
         <NuxtImg
           :src="extractCdnId(image)"
           :alt="description"
-          :width="480"
-          :height="Math.round(480 / aspectRatio)"
+          sizes="100vw md:50vw 2xl:50vw"
           fit="cover"
           loading="lazy"
           :placeholder="[240, Math.round(240 / aspectRatio), 50, 5]"

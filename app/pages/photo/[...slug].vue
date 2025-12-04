@@ -84,8 +84,7 @@ const isImageLoaded = ref(false)
       <NuxtImg
         :src="cover"
         :alt="activePhoto.description"
-        :width="Math.round(640 * activePhoto.aspectRatio)"
-        :height="640"
+        height="100vh"
         loading="eager"
         preload
         :placeholder="img(cover, { width: Math.round(240 * activePhoto.aspectRatio), height: 240, q: 80 })"

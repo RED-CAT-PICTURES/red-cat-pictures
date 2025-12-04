@@ -109,6 +109,7 @@ export default defineNuxtConfig({
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/api/**': { cors: true },
     '/image/**': { redirect: { to: '/photo/**', statusCode: 301 } },
+    '/images/**': { redirect: { to: '/photo/**', statusCode: 301 } },
     '/photos/**': { redirect: { to: '/photo/**', statusCode: 301 } },
     '/photo/**': { isr: 3600 },
     '/videos/**': { redirect: { to: '/video/**', statusCode: 301 } },
@@ -210,25 +211,18 @@ export default defineNuxtConfig({
     includeManifestIcons: false,
     manifest: {
       name: 'RED CAT PICTURES',
-      short_name: 'RCP',
+      short_name: 'RED CAT PICTURES',
       description: 'Tech-enabled Creative Media Agency',
       theme_color: '#CD2D2D',
       background_color: '#FFFFFF',
       display: 'fullscreen',
       shortcuts: [
         {
-          name: 'Book a Session by Call',
-          short_name: 'Book Session (Call)',
-          description: 'Book a photography/videography session by call',
-          url: 'tel:+91801-727-5285',
+          name: 'Book a Session',
+          short_name: 'Book a Session',
+          description: 'Book a Session of Photography/Videography',
+          url: '/?action=connect',
           icons: [{ src: '/pwa/phone-v2.png', sizes: '512x512' }],
-        },
-        {
-          name: 'Book a Session by Whatsapp',
-          short_name: 'Book Session (Whatsapp)',
-          description: 'Book a photography/videography session by whatsapp',
-          url: 'https://wa.me/918017275285',
-          icons: [{ src: '/pwa/whatsapp-v2.png', sizes: '512x512' }],
         },
       ],
       icons: [

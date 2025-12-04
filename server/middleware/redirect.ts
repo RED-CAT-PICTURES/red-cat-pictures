@@ -161,6 +161,15 @@ const routeRedirects: Record<string, Record<string, string>> = {
      'product-008-001': 'product-photo-000-006',
      'product-006-001': 'product-photo-000-005',
    }, */
+  photo: {
+    'Food-008-001': 'ecommerce-photo-008-002',
+    'Product-016-001': 'food-photo-016-002',
+    'Product-015-001': 'ecommerce-photo-015-001',
+    'Ecommerce-002-002': 'product-photo-002-002',
+    'Product-011-004': 'food-photo-011-004',
+    'Ecommerce-003-002': 'food-photo-003-002',
+    'Product-005-001': 'food-photo-005-002',
+  },
   video: {
     'sanitary-pad-reel': 'product-video-026-001',
     'wallet-belt': 'product-video-024-001',
