@@ -76,6 +76,11 @@ export default defineTask({
               name: asset.properties.Status.status.name, //coverExists ? (asset.properties.Status.status.name !== 'Plan' ? asset.properties.Status.status.name : 'Draft') : 'Plan',
             },
           },
+          'Aspect ratio': {
+            select: {
+              name: `${aW}:${aH}`,
+            },
+          },
           ...(metaData && {
             Additional: {
               rich_text: [{ text: { content: `${JSON.stringify({ duration: metaData.format.duration })}` } }],

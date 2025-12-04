@@ -36,7 +36,16 @@ const columns = computed<Photo[][]>(() => {
             :class="colIdx % 2 === 0 ? 'animate-marquee-y' : 'animate-marquee-y-reverse'"
             class="w-fit">
             <div v-for="(card, i) in col" :key="i" class="aspect-[3/4] h-auto w-full">
-              <NuxtImg :src="extractCdnId(card.image!)" alt="Card" sizes="33vw md:16vw 2xl:16vw" fit="cover" loading="lazy" class="size-full object-cover" :draggable="false" />
+              <NuxtImg
+                :src="extractCdnId(card.image!)"
+                alt="Card"
+                sizes="33vw md:16vw 2xl:16vw"
+                :width="420"
+                :height="Math.round(420 / (3 / 4))"
+                fit="cover"
+                loading="lazy"
+                class="size-full object-cover"
+                :draggable="false" />
             </div>
           </div>
         </div>
