@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.4
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.3...v3.9.4)
+
+### 🎨 Styles
+
+- Fixed images fit in blog, minor style refactors ([516645d](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/516645d))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.3
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.2...v3.9.3)
