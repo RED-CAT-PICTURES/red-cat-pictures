@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.5
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.4...v3.9.5)
+
+### 🩹 Fixes
+
+- Image dimensions ([231b8b5](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/231b8b5))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.4
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.3...v3.9.4)
