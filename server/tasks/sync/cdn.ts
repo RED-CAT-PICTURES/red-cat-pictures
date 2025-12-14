@@ -13,10 +13,9 @@ export default defineTask({
       // update cover -> https://cdn.redcatpictures.com/media/w_1620&h_1080/product-photo-033-033
 
       // asset.properties.Type.select.name === 'Photo' && asset.properties.Status.status.name === 'Plan'
-      if (asset.properties.Status.status.name !== 'Plan') continue
+      // if (asset.properties.Status.status.name !== 'Plan') continue
 
-      const slug =
-        asset.properties.Slug?.formula?.string.split('-').slice(0, -1).join('-') === 'video-0000-0000' ? asset.properties.Slug?.formula?.string + '-landscape' : asset.properties.Slug?.formula?.string
+      const slug = asset.properties.Slug?.formula?.string.includes('video-0000-0000') ? asset.properties.Slug?.formula?.string + '-landscape' : asset.properties.Slug?.formula?.string
       const [aW, aH] = asset.properties['Aspect ratio'].select.name.split(':').flatMap((item) => parseInt(item))
       const aspectRatio = aW / aH
       const { width: coverWidth, height: coverHeight } = calculateDimension(1080, aspectRatio)
