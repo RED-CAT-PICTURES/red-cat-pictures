@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.8
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.7...v3.9.8)
+
+### 🩹 Fixes
+
+- Update video filtering logic to exclude specific titles and improve source generation ([1165975](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/1165975))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.7
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.6...v3.9.7)
