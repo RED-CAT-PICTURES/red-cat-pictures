@@ -83,7 +83,7 @@ export default function (name: string, sources: FileSources): Source[] {
       const media = hasBoth ? (orientation === 'landscape' ? '(orientation: landscape)' : '(orientation: portrait)') : ''
       // const src = `${cdnUrl}/video/h_${resolution.slice(0, -1)}&c_${codec}&q_90/${name}` // -${orientation}
       result.push({
-        src: name === 'featured-video-000-000' ? `${name}-${orientation}` : name,
+        src: name.includes('video-0000-0000') ? `${name}-${orientation}` : name,
         type: typeWithCodecs,
         orientation,
         media,

@@ -4,8 +4,8 @@ services:
     build:
       context: .
       args:
-        SITE_URL: http://localhost:4300
-        CDN_URL: http://localhost:3500/media
+        SITE_URL: https://algorithm-personal-being-realized.trycloudflare.com
+        CDN_URL: https://fin-quarters-shared-flexibility.trycloudflare.com/media
     restart: on-failure:3
     env_file:
       - .env.prod

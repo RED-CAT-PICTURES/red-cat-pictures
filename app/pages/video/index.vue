@@ -22,8 +22,8 @@ useSeoMeta({
 
 const activeVideoName = useState<string | null>()
 // Split videos into reels (portrait) and landscape
-const reels = computed(() => videos.value.filter((v) => v.sources[0]?.orientation === 'portrait' && v.title !== 'featured-video-000-000'))
-const landscapeVideos = computed(() => videos.value.filter((v) => v.sources[0]?.orientation !== 'portrait' && v.title !== 'featured-video-000-000'))
+const reels = computed(() => videos.value.filter((v) => v.sources[0]?.orientation === 'portrait' && !v.title.includes('video-0000-0000')))
+const landscapeVideos = computed(() => videos.value.filter((v) => v.sources[0]?.orientation !== 'portrait' && !v.title.includes('video-0000-0000')))
 </script>
 
 <template>

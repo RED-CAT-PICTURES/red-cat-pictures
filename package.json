@@ -43,7 +43,7 @@
     "@notionhq/client": "^4.0.2",
     "@nuxt/eslint": "^1.12.1",
     "@nuxt/fonts": "^0.12.1",
-    "@nuxt/icon": "^2.1.0",
+    "@nuxt/icon": "^2.1.1",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "^0.13.1",
     "@nuxt/test-utils": "^3.21.0",
@@ -51,8 +51,8 @@
     "@nuxtjs/mdc": "^0.19.1",
     "@nuxtjs/seo": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
-    "@shba007/unai": "^0.3.6",
-    "@tresjs/cientos": "^5.1.2",
+    "@shba007/unai": "^0.3.7",
+    "@tresjs/cientos": "^5.2.0",
     "@tresjs/nuxt": "^5.1.2",
     "@types/k6": "^1.4.0",
     "@types/markdown-it": "^14.1.2",
@@ -84,7 +84,7 @@
     "vue": "latest",
     "vue-router": "latest",
     "web-push": "^3.6.7",
-    "zod": "^4.1.13"
+    "zod": "^4.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
