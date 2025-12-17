@@ -23,7 +23,7 @@ const {
 } = useRuntimeConfig()
 const url = `${siteUrl}/photo/${activePhotoSlug.value}`
 const cover = activePhoto.value?.image ? extractCdnId(activePhoto.value?.image) : ''
-const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_${Math.round(640 * activePhoto.value.aspectRatio)}x${640}/${cover}`
+const imageUrl = `${cdnUrl}/media/image/f_jpeg&fit_cover&s_${Math.round(640 * activePhoto.value.aspectRatio)}x${640}/${cover}`
 
 useSeoMeta({
   title: shortTitle,

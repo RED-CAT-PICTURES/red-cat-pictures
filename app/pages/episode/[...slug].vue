@@ -18,7 +18,7 @@ const shortTitle = stringTrim(title, 45, 60)
 const description = `${episode.value.description}`
 const url = `${siteUrl}/episode/${slug}`
 const cover = episode.value.cover ? extractCdnId(episode.value.cover) : ''
-const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${cover}`
+const imageUrl = `${cdnUrl}/media/image/f_jpeg&fit_cover&s_1200x630/${cover}`
 
 useSeoMeta({
   ogType: 'article',

@@ -5,7 +5,7 @@ services:
       context: .
       args:
         SITE_URL: https://algorithm-personal-being-realized.trycloudflare.com
-        CDN_URL: https://fin-quarters-shared-flexibility.trycloudflare.com/media
+        CDN_URL: https://fin-quarters-shared-flexibility.trycloudflare.com
     restart: on-failure:3
     env_file:
       - .env.prod

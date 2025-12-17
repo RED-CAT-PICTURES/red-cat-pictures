@@ -23,8 +23,8 @@ const {
 } = useRuntimeConfig()
 const url = `${siteUrl}/video/${activeVideoSlug.value}`
 const cover = activeVideo.value?.poster ? extractCdnId(activeVideo.value?.poster) : ''
-const imageUrl = `${cdnUrl}/image/f_jpeg&fit_cover&s_${Math.round(640 * activeVideo.value.aspectRatio)}x${640}/${cover}`
-const videoUrl = `${cdnUrl}/video/s_${Math.round(720 * activeVideo.value.aspectRatio)}x${720}&c_avc&q_75/${activeVideoSlug.value}`
+const imageUrl = `${cdnUrl}/media/image/f_jpeg&fit_cover&s_${Math.round(640 * activeVideo.value.aspectRatio)}x${640}/${cover}`
+const videoUrl = `${cdnUrl}/media/video/s_${Math.round(720 * activeVideo.value.aspectRatio)}x${720}&c_avc&q_75/${activeVideoSlug.value}`
 const uploadDate = activeVideo.value.uploadDate
 
 useSeoMeta({

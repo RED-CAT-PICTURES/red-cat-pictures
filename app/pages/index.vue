@@ -81,7 +81,7 @@ useSchemaOrg([
   /*   featuredPhotos.map(({ title, image, aspectRatio, url }) =>
       defineImage({
         caption: title,
-        contentUrl: `${cdnUrl}/image/f_jpeg&fit_cover&s_${Math.round(640 * aspectRatio)}x${640}/${extractCdnId(image)}`,
+        contentUrl: `${cdnUrl}/media/image/f_jpeg&fit_cover&s_${Math.round(640 * aspectRatio)}x${640}/${extractCdnId(image)}`,
         width: Math.round(640 * aspectRatio),
         height: 640,
         url: url,

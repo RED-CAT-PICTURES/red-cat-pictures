@@ -42,8 +42,8 @@ export default defineTask({
         const url = `/${contentType}/${slugify(title)}_${id}`
         const image =
           content.record.cover?.type === 'external'
-            ? `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(content.record.cover.external.url)}`
-            : `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/placeholder-blank`
+            ? `${cdnUrl}/media/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(content.record.cover.external.url)}`
+            : `${cdnUrl}/media/image/f_jpeg&fit_cover&s_1200x630/placeholder-blank`
 
         console.log(`Publishing new ${contentType} content →`, title)
 

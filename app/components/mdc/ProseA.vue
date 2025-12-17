@@ -55,7 +55,7 @@ const activeVideoName = useState<string | null>()
     <template v-else-if="title === 'video' || $slots.default?.()[0]?.children === 'video'">
       <NuxtLink :to="`/video/${extractCdnId(href)}`" @click="activeVideoName = extractCdnId(href)">
         <NuxtVideo
-          :poster="`${cdnUrl}/image/fit_contain&s_1280x720/${extractCdnId(href)}`"
+          :poster="`${cdnUrl}/media/image/fit_contain&s_1280x720/${extractCdnId(href)}`"
           :source="videoGenerateSources(extractCdnId(href), landscapePreset)"
           :disable-picture-in-picture="true"
           controls-list="nodownload"

@@ -89,7 +89,7 @@ const frames = computed(() =>
       <PhotoFrame
         v-for="{ image, aspectRatio, position } in frames"
         :key="image"
-        :photo="`${cdnUrl}/image/s_${Math.round(720 * aspectRatio)}x720/${image}`"
+        :photo="`${cdnUrl}/media/image/s_${Math.round(720 * aspectRatio)}x720/${image}`"
         :aspect-ratio="aspectRatio"
         :position="position" />
     </Suspense>

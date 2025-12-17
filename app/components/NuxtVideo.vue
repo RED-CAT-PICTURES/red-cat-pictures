@@ -129,7 +129,7 @@ const { width, height } = useElementSize(videoRef)
 // TODO: remove when hero video is same as landscape and portrait
 const adaptivePoster = computed(() => {
   const orientation = width.value > height.value ? 'landscape' : 'portrait'
-  return props.poster ? `${cdnUrl}/image/fit_cover&${orientation === 'portrait' ? 'h' : 'w'}_720/${extractCdnId(props.poster)}` : '/previews/placeholder-blank.jpg'
+  return props.poster ? `${cdnUrl}/media/image/fit_cover&${orientation === 'portrait' ? 'h' : 'w'}_720/${extractCdnId(props.poster)}` : '/previews/placeholder-blank.jpg'
 })
 </script>
 
@@ -158,13 +158,13 @@ const adaptivePoster = computed(() => {
       <source
         v-for="{ src, type, media, codec, orientation } of source"
         :key="src"
-        :src="`${cdnUrl}/video/s_${videoFitCoverAspect(orientation, orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${codec}&q_${qualtiy}/${src}`"
+        :src="`${cdnUrl}/media/video/s_${videoFitCoverAspect(orientation, orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${codec}&q_${qualtiy}/${src}`"
         :type="type"
         :media="media" />
     </template>
     <template v-else>
       <source
-        :src="`${cdnUrl}/video/s_${videoFitCoverAspect(source.orientation, source.orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${source.codec}&q_${qualtiy}/${source.src}`"
+        :src="`${cdnUrl}/media/video/s_${videoFitCoverAspect(source.orientation, source.orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${source.codec}&q_${qualtiy}/${source.src}`"
         :type="source.type" />
     </template>
     Your browser does not support the video tag.

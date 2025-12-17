@@ -6,7 +6,7 @@ const description = `Video Gallery`
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
-const imageUrl = videos.value?.length ? `${cdnUrl}/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(videos.value[0].poster)}` : `${siteUrl}/previews/placeholder-empty.jpg`
+const imageUrl = videos.value?.length ? `${cdnUrl}/media/image/f_jpeg&fit_cover&s_1200x630/${extractCdnId(videos.value[0].poster)}` : `${siteUrl}/previews/placeholder-empty.jpg`
 
 useSeoMeta({
   title: title,

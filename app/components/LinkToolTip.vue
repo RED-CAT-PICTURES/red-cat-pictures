@@ -23,7 +23,7 @@ watch(url, async (value) => {
 const title = computed(() => data.value?.ogTitle ?? props.activeLink?.title)
 const description = computed(() => data.value?.ogDescription)
 const lastUpdated = computed(() => data.value?.lastUpdated)
-const image = computed<string>(() => data.value?.ogImage?.toString() ?? `${cdnUrl}/image/f_jpeg&fit_cover&s_2560x1440/placeholder-blank`)
+const image = computed<string>(() => data.value?.ogImage?.toString() ?? `${cdnUrl}/media/image/f_jpeg&fit_cover&s_2560x1440/placeholder-blank`)
 const logo = computed<string>(() => data.value?.logo?.toString() ?? (isDark.value ? '/logo-light.png' : '/logo-dark.png'))
 </script>
 
