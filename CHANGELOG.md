@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.10
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.9...v3.9.10)
+
+### 🩹 Fixes
+
+- Update zod and vitest versions in package.json and bun.lock ([3a6c5b0](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/3a6c5b0))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.9
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.8...v3.9.9)
