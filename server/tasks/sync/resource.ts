@@ -11,11 +11,11 @@ export default defineTask({
     const config = useRuntimeConfig()
     const notionDbId = config.private.notionDbId as unknown as NotionDB
     const resources: ResourceQueries = {
-      prospect: await notionQueryDb<NotionProspect>(notion, notionDbId.prospect),
-      client: await notionQueryDb<NotionProjectClient>(notion, notionDbId.client),
-      project: await notionQueryDb<NotionProject>(notion, notionDbId.project),
-      content: await notionQueryDb<NotionContent>(notion, notionDbId.content),
-      asset: await notionQueryDb<NotionAsset>(notion, notionDbId.asset),
+      prospect: (await notionQueryDb<NotionProspect>(notion, notionDbId.prospect)).filter((a) => !!a),
+      client: (await notionQueryDb<NotionProjectClient>(notion, notionDbId.client)).filter((a) => !!a),
+      project: (await notionQueryDb<NotionProject>(notion, notionDbId.project)).filter((a) => !!a),
+      content: (await notionQueryDb<NotionContent>(notion, notionDbId.content)).filter((a) => !!a),
+      asset: (await notionQueryDb<NotionAsset>(notion, notionDbId.asset)).filter((a) => !!a),
     }
     const results = await Promise.allSettled(Object.values(resources))
 

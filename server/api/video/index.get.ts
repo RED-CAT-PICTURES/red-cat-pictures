@@ -4,7 +4,7 @@ export default defineCachedEventHandler<Promise<Video[]>>(
       const assetStorage = useStorage<Resource<'asset'>>(`data:resource:asset`)
       const assets = (await assetStorage.getItems(await assetStorage.getKeys())).flatMap(({ value }) => value.record)
 
-      const videos = assets.filter(({ properties }) => properties.Type?.select?.name === 'Video' && properties.Status.status?.name === 'Release')
+      const videos = assets.filter(({ properties }) => properties.Type?.select.name === 'Video' && properties.Status.status.name === 'Release')
 
       if (!videos) throw createError({ statusCode: 500, statusMessage: 'videos is undefined' })
 

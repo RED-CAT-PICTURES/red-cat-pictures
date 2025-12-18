@@ -98,7 +98,7 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      '*/3 * * * *': ['sync:resource', 'sync:cdn'],
+      '*/3 * * * *': ['sync:resource'],
       '*/5 * * * *': ['workflow:quotation', 'prospect:marketing'],
       '*/7 * * * *': ['notify:content'],
     },
@@ -175,7 +175,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'ipx',
     ipx: {
-      baseURL: `${process.env.NUXT_PUBLIC_CDN_URL}/image`,
+      baseURL: `${process.env.NUXT_PUBLIC_CDN_URL}/media/image`,
       modifiers: {
         format: 'auto',
         quality: 80,

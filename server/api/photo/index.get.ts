@@ -4,7 +4,7 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
       const assetStorage = useStorage<Resource<'asset'>>(`data:resource:asset`)
       const assets = (await assetStorage.getItems(await assetStorage.getKeys())).flatMap(({ value }) => value.record)
 
-      const photos = assets.filter(({ properties }) => properties.Type?.select?.name === 'Photo' && properties.Status.status?.name === 'Release')
+      const photos = assets.filter(({ properties }) => properties.Type?.select.name === 'Photo' && properties.Status?.status.name === 'Release')
 
       if (!photos) throw createError({ statusCode: 500, statusMessage: 'photos is undefined' })
 
@@ -12,9 +12,9 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
       const results = await Promise.allSettled(
         photos
           .toSorted((a, b) => {
-            const pa = b.properties['Project Index'].rollup?.array[0]?.number ?? 0
-            const pb = a.properties['Project Index'].rollup?.array[0]?.number ?? 0
-            return pa - pb || (b.properties.Index?.number ?? 0) - (a.properties.Index?.number ?? 0)
+            const pa = b.properties['Project Index']?.rollup?.array[0]?.number ?? 0
+            const pb = a.properties['Project Index']?.rollup?.array[0]?.number ?? 0
+            return pa - pb || (b.properties?.Index?.number ?? 0) - (a.properties.Index?.number ?? 0)
           })
           .map(async ({ cover, properties }): Promise<Photo> => {
             const slug: string = properties.Slug.formula.string
@@ -23,6 +23,7 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
             //   slugMap[slugify(notionTextStringify(properties.Slug.rich_text))] = slug
 
             const [aW, aH] = properties['Aspect ratio'].select.name.split(':').map((item) => parseInt(item))
+
             const aspectRatio = aW / aH
 
             return {
@@ -38,8 +39,6 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
             }
           })
       )
-
-      // return slugMap
 
       return results.filter((result) => result.status === 'fulfilled').map((result) => result.value)
     } catch (error: unknown) {
