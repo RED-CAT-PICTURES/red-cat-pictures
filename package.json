@@ -15,7 +15,7 @@
     "pnpm": "^9.15.0 || ^10.2.0",
     "bun": "^1.2.9"
   },
-  "packageManager": "bun@1.3.4",
+  "packageManager": "bun@1.3.5",
   "scripts": {
     "prepare": "husky || true",
     "postinstall": "nuxt prepare",
@@ -83,7 +83,7 @@
     "vue": "latest",
     "vue-router": "latest",
     "web-push": "^3.6.7",
-    "zod": "^4.2.0"
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
@@ -96,7 +96,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "~5.9.3",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.16"
   },
   "trustedDependencies": [
     "@parcel/watcher",
