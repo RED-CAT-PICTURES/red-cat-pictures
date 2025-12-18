@@ -1,5 +1,18 @@
 # red-cat-pictures
 
+## v3.9.9
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.8...v3.9.9)
+
+### 🩹 Fixes
+
+- Update CDN URL paths to use the media directory for images and videos ([8246cc6](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/8246cc6))
+- Improve asset filtering and handling in API endpoints and tasks ([ad9990a](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/ad9990a))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.8
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.7...v3.9.8)
