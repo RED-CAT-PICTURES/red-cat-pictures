@@ -68,8 +68,6 @@ export default defineTask({
         const originalWidth = !('stream' in metaData) ? metaData.format.width : metaData.stream.width
         const originalHeight = !('stream' in metaData) ? metaData.format.height : metaData.stream.height
 
-        console.log({ originalWidth, originalHeight })
-
         const resolutionLabel = getResolution(originalWidth, originalHeight)
         const aspectRatioLabel = getAspectRatio(originalWidth, originalHeight)
         const [aW, aH] = aspectRatioLabel.split(':').flatMap((item) => parseInt(item))
@@ -120,8 +118,6 @@ export default defineTask({
             page_size: 10,
           })
           const projectId = results[0].id
-
-          console.log({ projectId })
 
           await notion.pages.create({
             parent: {

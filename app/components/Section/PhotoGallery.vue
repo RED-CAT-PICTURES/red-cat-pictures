@@ -12,13 +12,7 @@ const categoryOrder = ['product', 'food', 'ecommerce'] as Category[]
 
 const allPhotos = computed(() => {
   const filterPhotos = props.photos.filter(({ gallery }) => gallery)
-  const needed = (12 - (filterPhotos.length % 12)) % 12
-  const indexToSlice = filterPhotos.findIndex(({ category }) => category === 'food')
-  const extra = filterPhotos.slice(indexToSlice, indexToSlice + needed)
-
-  const orderedPhotos = categoryOrder.flatMap((cat) => filterPhotos.concat(extra).filter((p) => p.category === cat))
-
-  return orderedPhotos
+  return categoryOrder.flatMap((cat) => filterPhotos.filter((p) => p.category === cat))
 })
 
 const slider = useTemplateRef<HTMLDivElement>('slider')

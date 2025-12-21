@@ -41,7 +41,7 @@ const links = computed(() =>
     url,
     platform,
     icon: platforms[platform as SocialPlatforms].icon,
-    color: '#1DA1F2',
+    color: platforms[platform as SocialPlatforms].color,
   }))
 )
 
@@ -191,7 +191,7 @@ function triggerAnimation() {
       <p class="pt-1.5 text-base font-semi-bold !leading-relaxed md:pt-3" :class="{ 'md:text-lg': isHero }">{{ content }}</p>
       <div class="flex gap-4 pt-6 md:pt-12">
         <template v-for="{ visible, platform, url, icon, color } in links" :key="platform">
-          <NuxtLink v-if="visible" :to="url" external target="_blank" rel="noopener" :aria-label="platform" class="transition-colors ease-out" :class="`hover:text-[${color}]`">
+          <NuxtLink v-if="visible" :to="url" external target="_blank" rel="noopener" :aria-label="platform" class="transition-colors ease-out" :style="{ color: color }">
             <NuxtIcon :name="icon" class="text-[36px]" />
           </NuxtLink>
         </template>

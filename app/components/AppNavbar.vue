@@ -15,9 +15,8 @@ function onNavigate(section: string) {
 }
 
 const urls = ref([
-  { url: '/photo', id: 'photos', label: 'Photos' },
-  { url: '/video', id: 'video', label: 'Videos' },
   { url: '/#pricing', id: 'pricing', label: 'Pricing' },
+  { url: '/media', id: 'media', label: 'Media' },
   { url: '/episode', id: 'episodes', label: 'Episodes' },
   { url: '/blog', id: 'blogs', label: 'Blogs' },
   // { url: '/experience', id: 'experience', label: 'Experience' },
