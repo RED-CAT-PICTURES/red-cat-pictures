@@ -24,8 +24,8 @@ type ProjectMediaItem =
 const { data: photos } = await useAPI<Photo[]>('/api/photo', { default: (): Photo[] => [] })
 const { data: videos } = await useAPI<Video[]>('/api/video', { default: (): Video[] => [] })
 
-const title = 'Media'
-const description = 'Media gallery'
+const title = 'Projects'
+const description = 'All of our projects'
 const {
   public: { siteUrl, cdnUrl },
 } = useRuntimeConfig()
@@ -40,7 +40,7 @@ useSeoMeta({
   twitterDescription: description,
   ogImage: imageUrl,
   twitterImage: imageUrl,
-  ogUrl: `${siteUrl}/photo`,
+  ogUrl: `${siteUrl}/project`,
 })
 
 function extractProjectId(mediaId: string): string {
@@ -61,7 +61,7 @@ const mediaItems = computed<ProjectMediaItem[]>(() => {
   }))
 
   const videoItems: ProjectMediaItem[] = (videos.value || [])
-    .filter((v) => !v.title.includes('video-0000-0000'))
+    .filter((v) => !v.id.includes('video-0000-0000'))
     .map((v) => {
       const orientation = v.sources?.[0]?.orientation === 'portrait' ? 'portrait' : 'landscape'
       return {
@@ -136,12 +136,8 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                 </div>
                 <div class="pointer-events-none absolute inset-0 z-[5] grid place-items-center transition-opacity duration-150">
                   <div class="rounded-full bg-black/40 p-3 backdrop-blur-[1px]">
-                    <svg v-if="activeMediaId === item.id" viewBox="0 0 24 24" class="h-6 w-6 fill-white" aria-hidden="true">
-                      <path d="M6 5h4v14H6V5Zm8 0h4v14h-4V5Z" />
-                    </svg>
-                    <svg v-else viewBox="0 0 24 24" class="h-6 w-6 fill-white" aria-hidden="true">
-                      <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.29-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z" />
-                    </svg>
+                    <NuxtIcon v-if="activeMediaId === item.id" name="local:pause" class="fill-white text-[24px]" />
+                    <NuxtIcon v-else name="local:play" class="fill-white text-[24px]" />
                   </div>
                 </div>
                 <div class="w-full overflow-hidden" :class="item.orientation === 'portrait' ? 'aspect-[9/16]' : 'aspect-video'">
