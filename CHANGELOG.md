@@ -1,5 +1,21 @@
 # red-cat-pictures
 
+## v3.10.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.10...v3.10.0)
+
+### 🚀 Enhancements
+
+- Implement media gallery page and update redirects for media routes ([cd59c7b](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/cd59c7b))
+
+### 🏡 Chore
+
+- Add pause and play SVG icons and refactor media.vue for improved readability ([d48d0d5](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/d48d0d5))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.9.10
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.9...v3.9.10)
