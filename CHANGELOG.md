@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.9.11
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.10.0...v3.9.11)
+
+### 💅 Refactors
+
+- Update styles in MarkdownContent.vue and privacy.vue, remove unused dependencies ([e8af313](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/e8af313))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.10.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.10...v3.10.0)
