@@ -12,10 +12,10 @@ useHead({
 })
 
 useSeoMeta({
-  title: title,
+  title,
   ogTitle: title,
   twitterTitle: title,
-  description: description,
+  description,
   ogDescription: description,
   twitterDescription: description,
   ogUrl: `${siteUrl}/privacy`,

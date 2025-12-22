@@ -68,7 +68,6 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vueuse/nuxt',
     'magic-regexp/nuxt',
-    'nuxt-splide',
   ],
   vite: {
     server: {
@@ -82,14 +81,6 @@ export default defineNuxtConfig({
         driver: 'fs',
         base: './static',
       },
-      /*  r2: {
-         driver: 's3',
-         accessKeyId: '',
-         secretAccessKey: '',
-         endpoint: '',
-         bucket: '',
-         region: '',
-       }, */
     },
     rollupConfig: {
       plugins: [vue()],
@@ -108,19 +99,12 @@ export default defineNuxtConfig({
     '/_ipx/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/fonts/**': { headers: { 'cache-control': 'max-age=31536000' } },
     '/api/**': { cors: true },
-    '/image': { redirect: { to: '/project', statusCode: 301 } },
     '/image/**': { redirect: { to: '/photo/**', statusCode: 301 } },
-    '/images': { redirect: { to: '/project', statusCode: 301 } },
     '/images/**': { redirect: { to: '/photo/**', statusCode: 301 } },
-    '/photos': { redirect: { to: '/project', statusCode: 301 } },
     '/photos/**': { redirect: { to: '/photo/**', statusCode: 301 } },
-    '/photo': { redirect: { to: '/project', statusCode: 301 } },
     '/photo/**': { isr: 3600 },
-    '/videos': { redirect: { to: '/project', statusCode: 301 } },
     '/videos/**': { redirect: { to: '/video/**', statusCode: 301 } },
-    '/video': { redirect: { to: '/project', statusCode: 301 } },
     '/video/**': { isr: 3600 },
-    '/project/**': { isr: 3600 },
     '/episodes/**': { redirect: { to: '/episode/**', statusCode: 301 } },
     '/episode/**': { isr: 3600 },
     '/blogs/**': { redirect: { to: '/blog/**', statusCode: 301 } },
@@ -196,7 +180,7 @@ export default defineNuxtConfig({
     },
   },
   colorMode: {
-    preference: 'dark',
+    preference: 'system',
     fallback: 'light',
     classSuffix: '',
   },

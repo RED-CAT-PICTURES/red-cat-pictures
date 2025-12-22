@@ -18,7 +18,7 @@ const props = defineProps<{ content: string }>()
 }
 
 .content h3 {
-  @apply my-2 text-base font-semi-bold text-alert-600 md:text-xl;
+  @apply my-2 text-base font-semi-bold text-primary-500 md:text-xl;
 }
 
 .content h4 {

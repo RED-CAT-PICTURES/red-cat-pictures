@@ -1,6 +1,6 @@
 {
   "name": "red-cat-pictures",
-  "version": "3.10.0",
+  "version": "3.9.10",
   "description": "Tech-enabled Creative Media Agency",
   "author": "Shirsendu Bairagi <shirsendu2001@gmail.com>",
   "license": "GPL-3.0-only",
@@ -61,7 +61,6 @@
     "@vite-pwa/nuxt": "^1.1.0",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
-    "aws4fetch": "^1.0.20",
     "date-fns": "^4.1.0",
     "eslint": "^9.39.2",
     "fast-xml-parser": "^5.3.3",
@@ -71,7 +70,6 @@
     "markdown-it": "^14.1.0",
     "notion-to-md": "^3.1.9",
     "nuxt": "^4.2.2",
-    "nuxt-splide": "^1.1.2",
     "p-map": "^7.0.4",
     "puppeteer": "^24.33.0",
     "regl": "^2.1.1",

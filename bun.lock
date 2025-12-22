@@ -28,7 +28,6 @@
         "@vite-pwa/nuxt": "^1.1.0",
         "@vueuse/core": "^14.1.0",
         "@vueuse/nuxt": "^14.1.0",
-        "aws4fetch": "^1.0.20",
         "date-fns": "^4.1.0",
         "eslint": "^9.39.2",
         "fast-xml-parser": "^5.3.3",
@@ -38,7 +37,6 @@
         "markdown-it": "^14.1.0",
         "notion-to-md": "^3.1.9",
         "nuxt": "^4.2.2",
-        "nuxt-splide": "^1.1.2",
         "p-map": "^7.0.4",
         "puppeteer": "^24.33.0",
         "regl": "^2.1.1",
@@ -1032,10 +1030,6 @@
     "@sindresorhus/merge-streams": ["@sindresorhus/merge-streams@4.0.0", "", {}, "sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ=="],
 
     "@speed-highlight/core": ["@speed-highlight/core@1.2.12", "", {}, "sha512-uilwrK0Ygyri5dToHYdZSjcvpS2ZwX0w5aSt3GCEN9hrjxWCoeV4Z2DTXuxjwbntaLQIEEAlCeNQss5SoHvAEA=="],
-
-    "@splidejs/splide": ["@splidejs/splide@4.1.4", "", {}, "sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA=="],
-
-    "@splidejs/vue-splide": ["@splidejs/vue-splide@0.6.12", "", { "dependencies": { "@splidejs/splide": "^4.1.3" } }, "sha512-eQb8pnGMN8Tr0FVaQo1PUMZlMHl8fSqHNXPTx79eeE2dkZqbsvq6jRzXoT9ZF7hFkxdOEmB6qYNp93SUwV684g=="],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.0.0", "", {}, "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="],
 
@@ -2626,8 +2620,6 @@
     "nuxt-site-config": ["nuxt-site-config@3.2.14", "", { "dependencies": { "@nuxt/kit": "^4.2.2", "nuxt-site-config-kit": "3.2.14", "pathe": "^2.0.3", "pkg-types": "^2.3.0", "sirv": "^3.0.2", "site-config-stack": "3.2.14", "ufo": "^1.6.1" }, "peerDependencies": { "h3": ">=1" } }, "sha512-/IzAkBFpe8kDJiSK7fw7G0EPnNImIh0x4jdwil8Mmaz03usTtkeWgnfZu9NJpMSI9eO5jJ+dxd/avjxssvdqwQ=="],
 
     "nuxt-site-config-kit": ["nuxt-site-config-kit@3.2.14", "", { "dependencies": { "@nuxt/kit": "^4.2.2", "pkg-types": "^2.3.0", "site-config-stack": "3.2.14", "std-env": "^3.10.0", "ufo": "^1.6.1" } }, "sha512-HOdYOLWL8f25aNEPdf72OuvL4Z7bMCNDm+XXDQ9bykNA1X3wJ8/vcMfU3tS4nPccoyaW100RTgTFSitAWp+iuA=="],
-
-    "nuxt-splide": ["nuxt-splide@1.1.2", "", { "dependencies": { "@nuxt/kit": "^4.0.1", "@splidejs/vue-splide": "^0.6.12", "defu": "^6.1.4" } }, "sha512-nEZTF35WvH+O1jyV0tUgUfEEWsgcYKgmSDhbc1jgJxlof2QG5IPrMn9uquEr1xofn8+NzCTSJj1/t9FPk/Hw+w=="],
 
     "nypm": ["nypm@0.6.2", "", { "dependencies": { "citty": "^0.1.6", "consola": "^3.4.2", "pathe": "^2.0.3", "pkg-types": "^2.3.0", "tinyexec": "^1.0.1" }, "bin": { "nypm": "dist/cli.mjs" } }, "sha512-7eM+hpOtrKrBDCh7Ypu2lJ9Z7PNZBdi/8AT3AX8xoCj43BBVHD0hPSTEvMtkMpfs8FCqBGhxB+uToIQimA111g=="],
 
