@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import puppeteer from 'puppeteer'
 import { NotionToMarkdown } from 'notion-to-md'
+import { inspect } from 'node:util'
 
 let n2m: NotionToMarkdown
 const md = new MarkdownIt({
@@ -343,6 +344,7 @@ export async function sendDocument({
   const config = useRuntimeConfig()
   const { documensoApi, documensoApiKey } = config.private
 
+  // 1. Create the document
   const {
     uploadUrl,
     documentId,
@@ -372,6 +374,7 @@ export async function sendDocument({
     },
   })
 
+  // 2. Upload the pdf
   await $fetch(uploadUrl, {
     method: 'PUT',
     headers: {
@@ -387,7 +390,7 @@ export async function sendDocument({
     headers: {
       Authorization: `Bearer ${documensoApiKey}`,
     },
-    body: fields.map<DocumentField>(({ recipient, type, page, x, y, width, height, fieldMeta }) => ({
+    body: fields.map<DocumentField>(({ recipient, type, page, x, y, width, height, label, fieldMeta, ...opts }) => ({
       recipientId: recipientsDetails.find((r) => r.email === recipient)!.recipientId,
       type,
       pageNumber: page,
@@ -395,6 +398,9 @@ export async function sendDocument({
       pageY: y,
       pageWidth: width,
       pageHeight: height,
+      required: true,
+      label: label,
+      ...opts,
       fieldMeta,
     })),
   })
@@ -435,137 +441,144 @@ export default defineTask({
 
     await Promise.allSettled(
       (await projectStorage.getItems(await projectStorage.getKeys())).map(async ({ value: project }) => {
-        const projectId = project.record.id
-        const status = project.record.properties.Status.status.name
+        try {
+          const projectId = project.record.id
+          const status = project.record.properties.Status.status.name
 
-        if (!(status === 'Quotation')) return
+          if (!(status === 'Quotation')) return
 
-        console.log('✅ Quotation Started:', notionTextStringify(project.record.properties.Name.title))
+          console.log('✅ Quotation Started:', notionTextStringify(project.record.properties.Name.title))
 
-        const client = (await notion.pages.retrieve({ page_id: project.record.properties.Client.relation[0].id })) as unknown as NotionProjectClient
+          const client = (await notion.pages.retrieve({ page_id: project.record.properties.Client.relation[0].id })) as unknown as NotionProjectClient
 
-        const redcatpicturesDetails = {
-          name: 'Aratrik Nandy',
-          email: 'ceo@redcatpictures.com',
-        }
-        const clientDetails = {
-          name: notionTextStringify(client.properties.Company.rich_text),
-          address: notionTextStringify(client.properties.Address.rich_text),
-          phone: client.properties.Phone?.phone_number,
-          email: import.meta.env.NODE_ENV === 'production' ? client.properties.Email.email : 'redcatpictures24@gmail.com',
-        }
-        const projectDetails = {
-          quoteNumber: `RCP-Q-${project.record.properties.Index.number}-${project.record.properties.Quotation.number}`,
-          quoteDate: formatDate(today),
-          quoteExpiry: formatDate(expiry),
-          shootDate: formatDate(project.record.properties.Date.date.start),
-          shootLocation: notionTextStringify(project.record.properties.Address.rich_text),
-        }
+          const redcatpicturesDetails = {
+            name: 'Aratrik Nandy',
+            email: 'ceo@redcatpictures.com',
+          }
+          const clientDetails = {
+            name: notionTextStringify(client.properties.Company.rich_text),
+            address: notionTextStringify(client.properties.Address.rich_text),
+            phone: client.properties.Phone?.phone_number,
+            email: import.meta.env.NODE_ENV === 'production' ? client.properties.Email.email : 'mohit@modak.biz',
+          }
+          const projectDetails = {
+            quoteNumber: `RCP-Q-${project.record.properties.Index.number}-${project.record.properties.Quotation.number}`,
+            quoteDate: formatDate(today),
+            quoteExpiry: formatDate(expiry),
+            shootDate: formatDate(project.record.properties.Date.date.start),
+            shootLocation: notionTextStringify(project.record.properties.Address.rich_text),
+          }
 
-        const termsUpdateDate = ((await notion.pages.retrieve({ page_id: notionDbId.terms })) as unknown as NotionAsset).last_edited_time
-        const termsMarkdown = `**Last Updated**: ${formatDate(termsUpdateDate)}\n` + (await notionPageToMarkdown(n2m, notionDbId.terms, false))
-        const budgetMarkdown = (await notionPageToMarkdown(n2m, projectId, false)).split('\n---\n')[0]
+          const termsUpdateDate = ((await notion.pages.retrieve({ page_id: notionDbId.terms })) as unknown as NotionAsset).last_edited_time
+          const termsMarkdown = `**Last Updated**: ${formatDate(termsUpdateDate)}\n` + (await notionPageToMarkdown(n2m, notionDbId.terms, false))
+          const budgetMarkdown = (await notionPageToMarkdown(n2m, projectId, false)).split('\n---\n')[0]
 
-        console.log('📥 Quotation Details Fetched', { clientDetails, projectDetails })
+          console.log('📥 Quotation Details Fetched', { clientDetails, projectDetails })
 
-        const pdf = await createDocument({
-          termsMarkdown,
-          budgetMarkdown,
-          clientDetails,
-          projectDetails,
-        })
+          const pdf = await createDocument({
+            termsMarkdown,
+            budgetMarkdown,
+            clientDetails,
+            projectDetails,
+          })
 
-        console.log('📄 Quotation Created:', pdf.fileName)
+          console.log('📄 Quotation Created:', pdf.fileName)
 
-        // const documentStorage = useStorage('fs')
-        // await documentStorage.setItemRaw(`documents/${pdf.fileName}`, pdf.fileBuffer)
+          // const documentStorage = useStorage('fs')
+          // await documentStorage.setItemRaw(`documents/${pdf.fileName}`, pdf.fileBuffer)
 
-        // const doc = (await getAllDocuments())[0];
-        // const meta = await getDocument(doc.id);
+          // const doc = (await getAllDocuments())[0];
+          // const meta = await getDocument(doc.id);
 
-        await sendDocument({
-          title: pdf.fileName,
-          recipients: [
-            { name: clientDetails.name, email: clientDetails.email, role: 'SIGNER', signingOrder: 1 },
-            { name: redcatpicturesDetails.name, email: redcatpicturesDetails.email, role: 'SIGNER', signingOrder: 2 },
-          ],
-          pdfBuffer: pdf.fileBuffer,
-          fields: [
-            { type: 'SIGNATURE', page: 1, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
-            { type: 'SIGNATURE', page: 2, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
-            { type: 'SIGNATURE', page: 3, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
-            { type: 'SIGNATURE', page: 4, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
-            { type: 'NAME', page: 5, x: 11.06, y: 9.1, width: 21.3, height: 4, recipient: clientDetails.email },
-            { type: 'SIGNATURE', page: 5, x: 61, y: 22.6, width: 21.3, height: 4, recipient: clientDetails.email },
-            { type: 'NAME', page: 5, x: 61, y: 28.47, width: 21.3, height: 4, recipient: clientDetails.email },
-            { type: 'DATE', page: 5, x: 61, y: 34.33, width: 21.3, height: 4, recipient: clientDetails.email },
-            {
-              type: 'TEXT',
-              page: 5,
-              x: 61,
-              y: 40.2,
-              width: 21.3,
-              height: 4,
-              recipient: clientDetails.email,
-              fieldMeta: {
-                label: 'Place',
-                required: true,
-                readOnly: false,
-                type: 'text',
-                fontSize: 12,
-                textAlign: 'left',
+          await sendDocument({
+            title: pdf.fileName,
+            recipients: [
+              { name: clientDetails.name, email: clientDetails.email, role: 'SIGNER', signingOrder: 1 },
+              { name: redcatpicturesDetails.name, email: redcatpicturesDetails.email, role: 'SIGNER', signingOrder: 2 },
+            ],
+            pdfBuffer: pdf.fileBuffer,
+            fields: [
+              { type: 'SIGNATURE', page: 1, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
+              { type: 'SIGNATURE', page: 2, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
+              { type: 'SIGNATURE', page: 3, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
+              { type: 'SIGNATURE', page: 4, x: 18.7, y: 91.3, width: 21.3, height: 5.3, recipient: clientDetails.email },
+              { type: 'NAME', page: 5, x: 11.06, y: 9.1, width: 21.3, height: 4, recipient: clientDetails.email },
+              { type: 'SIGNATURE', page: 5, x: 61, y: 22.6, width: 21.3, height: 4, recipient: clientDetails.email },
+              { type: 'NAME', page: 5, x: 61, y: 28.47, width: 21.3, height: 4, recipient: clientDetails.email },
+              { type: 'DATE', page: 5, x: 61, y: 34.33, width: 21.3, height: 4, recipient: clientDetails.email },
+              {
+                type: 'TEXT',
+                page: 5,
+                x: 61,
+                y: 40.2,
+                width: 21.3,
+                height: 4,
+                recipient: clientDetails.email,
+                fieldMeta: {
+                  label: 'Place',
+                  required: true,
+                  readOnly: false,
+                  type: 'text',
+                  fontSize: 12,
+                  textAlign: 'left',
+                },
+              },
+              { type: 'SIGNATURE', page: 5, x: 21, y: 22.6, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
+              { type: 'NAME', page: 5, x: 21, y: 28.47, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
+              { type: 'DATE', page: 5, x: 21, y: 34.33, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
+              {
+                type: 'TEXT',
+                page: 5,
+                x: 21,
+                y: 40.2,
+                width: 21.3,
+                height: 4,
+                recipient: redcatpicturesDetails.email,
+                fieldMeta: {
+                  label: 'Place',
+                  required: true,
+                  readOnly: false,
+                  type: 'text',
+                  fontSize: 12,
+                  textAlign: 'left',
+                },
+              },
+            ],
+            meta: {
+              subject: 'RED CAT PICTURES Quotation',
+              message: 'Please review and sign',
+              timezone: 'Asia/Kolkata',
+              dateFormat: 'MMMM dd, yyyy hh:mm a',
+              signingOrder: 'SEQUENTIAL',
+              redirectUrl: '',
+              language: 'en',
+              typedSignatureEnabled: false,
+              drawSignatureEnabled: false,
+              distributionMethod: 'EMAIL',
+            },
+          })
+
+          await notion.pages.update({
+            page_id: projectId,
+            properties: {
+              Status: {
+                status: {
+                  name: 'Shoot',
+                },
               },
             },
-            { type: 'SIGNATURE', page: 5, x: 21, y: 22.6, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
-            { type: 'NAME', page: 5, x: 21, y: 28.47, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
-            { type: 'DATE', page: 5, x: 21, y: 34.33, width: 21.3, height: 4, recipient: redcatpicturesDetails.email },
-            {
-              type: 'TEXT',
-              page: 5,
-              x: 21,
-              y: 40.2,
-              width: 21.3,
-              height: 4,
-              recipient: redcatpicturesDetails.email,
-              fieldMeta: {
-                label: 'Place',
-                required: true,
-                readOnly: false,
-                type: 'text',
-                fontSize: 12,
-                textAlign: 'left',
-              },
-            },
-          ],
-          meta: {
-            subject: 'RED CAT PICTURES Quotation',
-            message: 'Please review and sign',
-            timezone: 'Asia/Kolkata',
-            dateFormat: 'MMMM dd, yyyy hh:mm a',
-            signingOrder: 'SEQUENTIAL',
-            redirectUrl: '',
-            language: 'en',
-            typedSignatureEnabled: false,
-            drawSignatureEnabled: false,
-            distributionMethod: 'EMAIL',
-          },
-        })
+          })
 
-        await notion.pages.update({
-          page_id: projectId,
-          properties: {
-            Status: {
-              status: {
-                name: 'Shoot',
-              },
-            },
-          },
-        })
+          console.log('📤 Quotation Sent')
 
-        console.log('📤 Quotation Sent')
+          project.record.properties.Status.status.name = 'Shoot'
+          await projectStorage.setItem(notionNormalizeId(projectId), project)
+        } catch (error) {
+          console.error('error:', error)
+          console.error('data:', inspect(error?.data, { depth: null, colors: true, maxArrayLength: null }))
 
-        project.record.properties.Status.status.name = 'Shoot'
-        await projectStorage.setItem(notionNormalizeId(projectId), project)
+          throw error // rethrow so caller can handle
+        }
       })
     )
 

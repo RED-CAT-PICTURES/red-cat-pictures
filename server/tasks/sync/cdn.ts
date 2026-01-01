@@ -35,9 +35,19 @@ export default defineTask({
   async run() {
     const config = useRuntimeConfig()
     const notionDbId = config.private.notionDbId as unknown as NotionDB
-    const driveAssetSlugs = await $fetch<string[]>(`/api/media`, {
-      baseURL: config.public.cdnUrl,
-    })
+    const driveAssetSlugs = (
+      await $fetch<
+        {
+          slug: string
+          name: string
+          image: string
+          type: 'image' | 'video'
+          size: number
+        }[]
+      >(`/api/media`, {
+        baseURL: config.public.cdnUrl,
+      })
+    ).map(({ slug }) => slug)
     const notionAssets = await notionQueryDb<NotionAsset>(notion, notionDbId.asset)
     const slugToId = new Map(
       notionAssets
