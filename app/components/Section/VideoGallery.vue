@@ -87,7 +87,7 @@ function slideClick() {
 </script>
 
 <template>
-  <section id="video-gallery" ref="video-gallery" class="relative -mx-2 h-fit w-[calc(100%+16px)]">
+  <section id="video-gallery" ref="video-gallery" class="relative h-fit min-h-screen">
     <SectionLabel icon="movie" title="Video Gallery" />
     <div v-if="filterVideos.length" ref="video-container-wrapper" class="relative left-1/2 flex h-screen -translate-x-1/2 items-center justify-center overflow-hidden bg-black">
       <ClientOnly>

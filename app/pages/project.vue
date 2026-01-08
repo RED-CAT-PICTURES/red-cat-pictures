@@ -96,7 +96,7 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
 </script>
 
 <template>
-  <main class="mx-auto min-h-screen w-full px-3 pt-20 md:pt-28">
+  <main class="mx-auto min-h-screen w-full pt-20 md:pt-28">
     <section class="flex flex-col gap-10">
       <div v-for="projectId in sortedProjectIds" :key="projectId" class="flex flex-col gap-3">
         <!--  <h2 class="text-center text-md font-semibold uppercase md:text-xl">

@@ -39,9 +39,9 @@ const columns = computed<Photo[][]>(() => {
               <NuxtImg
                 :src="extractCdnId(card.image!)"
                 alt="Card"
-                sizes="33vw md:16vw 2xl:16vw"
                 :width="420"
                 :height="Math.round(420 / (3 / 4))"
+                sizes="33vw md:16vw 2xl:16vw"
                 fit="cover"
                 loading="lazy"
                 class="size-full object-cover"

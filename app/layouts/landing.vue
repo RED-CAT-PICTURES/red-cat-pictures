@@ -16,17 +16,19 @@ function onContact(action: boolean) {
 const route = useRoute()
 const hasFloatingActionBar = computed(() => route.path === '/')
 
-const isLightMode = computed(() => route.path === '/' || route.path.includes('/episode/'))
-const isDarkMode = computed(() => route.path.includes('/blog/'))
+const isLightMode = ref(true)
+const isDarkMode = ref(false)
 </script>
 
 <template>
   <div class="isolate flex min-h-screen w-screen flex-col items-center justify-start">
     <LazyAppHeader hydrate-on-idle :color-mode="isLightMode ? 'light' : isDarkMode ? 'dark' : 'auto'" />
-    <main class="relative mx-auto flex w-full grow flex-col gap-4 px-2 md:px-4">
+    <main class="relative mx-auto flex w-full grow flex-col gap-4">
       <slot />
     </main>
-    <LazyAppFooter hydrate-on-visible :class="hasFloatingActionBar ? 'mb-20' : 'mb-2'" @contact="onContact(true)" />
+    <div class="w-full bg-light-400 dark:bg-dark-400">
+      <LazyAppFooter hydrate-on-visible :class="hasFloatingActionBar ? 'mb-20' : 'mb-2'" @contact="onContact(true)" />
+    </div>
     <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
   </div>
 </template>

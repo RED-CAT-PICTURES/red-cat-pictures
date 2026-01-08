@@ -29,9 +29,9 @@ const { height: sliderHeight } = useElementSize(slider)
             <NuxtImg
               :src="extractCdnId(image)"
               :alt="description"
-              sizes="50vw md:25vw 2xl:16vw"
               :width="420"
               :height="Math.round(420 / (3 / 4))"
+              sizes="50vw md:25vw 2xl:16vw"
               fit="cover"
               loading="lazy"
               :placeholder="[120, Math.round(120 / (3 / 4)), 50, 5]"

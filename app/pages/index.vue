@@ -8,6 +8,10 @@ const {
 } = useRuntimeConfig()
 const imageUrl = `${siteUrl}/previews/landing.jpg`
 
+definePageMeta({
+  layout: 'landing',
+})
+
 useHead({
   bodyAttrs: {
     class: 'scrollbar-hidden',
@@ -107,12 +111,14 @@ function onContact(action: boolean) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div>
     <LazyButtonFloatingAction hydrate-on-idle :active-category="activeCategory" @update="(value) => (activeCategory = value)" />
-    <SectionHero :video="featuredVideo" @contact="onContact(true)" />
-    <SectionPhotoGallery :photos="allPhotos" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
-    <LazySectionVideoGallery hydrate-on-visible :videos="videos" :active-category="activeCategory" />
-    <LazySectionFeaturedPhoto hydrate-on-visible :photos="allPhotos" :active-category="activeCategory" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
-    <SectionPricing :photos="allPhotos" @contact="onContact(true)" />
+    <SectionHero :video="featuredVideo" class="fixed inset-0 -z-10" @contact="onContact(true)" />
+    <div class="mt-[100vh] flex flex-col gap-4 bg-light-400 px-2 dark:bg-dark-400 md:px-4">
+      <SectionPhotoGallery :photos="allPhotos" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
+      <LazySectionVideoGallery hydrate-on-visible :videos="videos" :active-category="activeCategory" />
+      <LazySectionFeaturedPhoto hydrate-on-visible :photos="allPhotos" :active-category="activeCategory" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
+      <SectionPricing :photos="allPhotos" @contact="onContact(true)" />
+    </div>
   </div>
 </template>
