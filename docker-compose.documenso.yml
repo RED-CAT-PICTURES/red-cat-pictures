@@ -1,0 +1,45 @@
+services:
+  documenso:
+    image: documenso/documenso:latest
+    env_file:
+      - .env
+    volumes:
+      - /root/documenso-rcp/certificate.p12:/opt/documenso/cert.p12
+    networks:
+      - internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: 'on-failure:3'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+
+  postgres:
+    image: postgres:16
+    env_file:
+      - .env
+    volumes:
+      - documenso-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U documenso']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - internal
+    restart: 'on-failure:3'
+
+volumes:
+  documenso-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/documenso-rcp/database
+
+networks:
+  internal:
+    driver: bridge

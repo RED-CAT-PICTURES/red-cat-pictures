@@ -5,66 +5,62 @@ services:
     env_file:
       - .env
     volumes:
-      - backend_data:/cloudreve/data
-    expose:
-      - 5212
+      - backend-data:/cloudreve/data
     networks:
-      - front-tier
+      - internal
     depends_on:
-      - postgresql
+      - postgres
       - redis
+    restart: 'on-failure:3'
     deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
+      resources:
+        limits:
+          cpus: '1'
 
-  postgresql:
+  postgres:
     image: postgres:17
     env_file:
       - .env
     volumes:
-      - database_postgres:/var/lib/postgresql/data
+      - database-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U documenso']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
-      - front-tier
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
+      - internal
+    restart: 'on-failure:3'
 
   redis:
     image: redis:latest
     volumes:
-      - redis_data:/data
+      - redis-data:/data
     networks:
-      - front-tier
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
+      - internal
+    restart: 'on-failure:3'
 
 volumes:
-  backend_data:
+  backend-data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /root/cloudreve/data
-  database_postgres:
+      device: /root/cloudreve-rcp/data
+  database-postgres:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /root/cloudreve/postgres
-  redis_data:
+      device: /root/cloudreve-rcp/postgres
+  redis-data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /root/cloudreve/redis
+      device: /root/cloudreve-rcp/redis
 
 networks:
-  front-tier:
-    driver: overlay
+  internal:
+    driver: bridge

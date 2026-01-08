@@ -10,7 +10,6 @@ services:
     env_file:
       - .env.prod
     volumes:
-      - static:/app/static
       - data:/app/.data
     ports:
       - 4300:3000
@@ -53,14 +52,6 @@ services:
   #     DB_CLIENT: 'sqlite3'
   #     DB_FILENAME: '/directus/database/data.db'
   #     WEBSOCKETS_ENABLED: 'true'
-
-volumes:
-  static:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./static
 
   data:
     driver: local

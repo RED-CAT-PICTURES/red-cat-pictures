@@ -81,9 +81,7 @@ export default function (name: string, sources: FileSources): Source[] {
     const hasBoth = orientations.includes('landscape') && orientations.includes('portrait')
     for (const orientation of orientations) {
       const media = hasBoth ? (orientation === 'landscape' ? '(orientation: landscape)' : '(orientation: portrait)') : ''
-      // const src = `${cdnUrl}/media/video/h_${resolution.slice(0, -1)}&c_${codec}&q_90/${name}` // -${orientation}
-      if (!name) continue
-
+      // const src = `${cdnUrl}/video/h_${resolution.slice(0, -1)}&c_${codec}&q_90/${name}` // -${orientation}
       result.push({
         src: name.includes('video-0000-0000') ? `${name}-${orientation}` : name,
         type: typeWithCodecs,
