@@ -113,6 +113,10 @@ svg.iconify--local {
   @apply !m-0 !box-content;
 }
 
+.bg-fixed {
+  background-attachment: fixed;
+}
+
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
