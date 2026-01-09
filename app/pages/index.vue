@@ -55,7 +55,7 @@ useSchemaOrg([
       addressCountry: 'IN',
     },
     sameAs: [
-      'https://wa.me/c/918910489578',
+      'https://wa.me/c/02269711501',
       'https://www.instagram.com/redcatpictures',
       'https://www.facebook.com/redcatpictures',
       'https://www.linkedin.com/company/red-cat-pictures',

@@ -10,8 +10,8 @@ const { proxy: gaProxy } = useScriptGoogleAnalytics()
 
 const methods = ref([
   { method: 'email', icon: 'email', link: 'mailto:contact@redcatpictures.com', position: 'top-left' },
-  { method: 'whatsapp', icon: 'whatsapp', link: 'https://wa.me/918910489578', position: 'top-right' },
-  { method: 'call', icon: 'phone', link: 'tel:+918910489578', position: 'bottom' },
+  { method: 'whatsapp', icon: 'whatsapp', link: 'https://wa.me/02269711501', position: 'top-right' },
+  { method: 'call', icon: 'phone', link: 'tel:02269711501', position: 'bottom' },
 ])
 
 function contact(method: string) {

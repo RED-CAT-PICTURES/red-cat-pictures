@@ -142,7 +142,7 @@ function onClick(title: Category) {
           :style="{ aspectRatio }" />
       </NuxtLink>
     </div>
-    <div class="mt-4 flex gap-0.5 overflow-hidden bg-white shadow-[0_0_28px_10px_rgba(205,45,45,0.3)] dark:bg-black">
+    <div class="mx-auto mt-4 flex w-fit gap-0.5 overflow-hidden shadow-[0_0_28px_10px_rgba(205,45,45,0.3)]">
       <ButtonLabel
         v-for="{ icon, title } in categories"
         :key="title"

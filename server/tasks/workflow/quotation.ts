@@ -61,7 +61,7 @@ async function headerTemplate() {
   <div style="margin-bottom:6px;">
     Email: <a href="mailto:contact@redcatpictures.com" style="color:#1565C0; text-decoration:underline;">contact@redcatpictures.com</a>
     &nbsp;&nbsp;
-    Phone: +918910489578
+    Phone: 02269711501
   </div>
   <div>
     Website: <a href="https://redcatpictures.com" style="color:#1565C0; text-decoration:underline;">https://redcatpictures.com</a>
