@@ -1,8 +1,12 @@
 # red-cat-pictures
 
-## v3.10.1
+## v3.11.0
 
-[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.10.0...v3.10.1)
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.10.0...v3.11.0)
+
+### 🚀 Enhancements
+
+- Add RxPlayer for enhanced video playback and update styles in Hero and NuxtVideo components ([a07269b](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/a07269b))
 
 ### 💅 Refactors
 
