@@ -3,10 +3,6 @@ const props = defineProps<{
   photos: Photo[]
 }>()
 
-const emit = defineEmits<{
-  contact: []
-}>()
-
 const isMobile = useMediaQuery('(max-width: 767px)')
 
 const allPhotos = computed(() => {
@@ -67,7 +63,6 @@ const columns = computed<Photo[][]>(() => {
             </li>
             <li>Brand-safe rights and tailored assets for digital campaigns—delivered with a focus on quality brands</li>
           </ul>
-          <ButtonCTA class="flex" :transparent="true" @click="emit('contact')" />
         </div>
       </div>
     </div>

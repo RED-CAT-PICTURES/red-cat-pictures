@@ -4,8 +4,8 @@ services:
     build:
       context: .
       args:
-        SITE_URL: https://algorithm-personal-being-realized.trycloudflare.com
-        CDN_URL: https://fin-quarters-shared-flexibility.trycloudflare.com
+        SITE_URL: http://localhost:4300
+        CDN_URL: http://localhost:3500
     restart: on-failure:3
     env_file:
       - .env.prod
@@ -53,6 +53,7 @@ services:
   #     DB_FILENAME: '/directus/database/data.db'
   #     WEBSOCKETS_ENABLED: 'true'
 
+volumes:
   data:
     driver: local
     driver_opts:

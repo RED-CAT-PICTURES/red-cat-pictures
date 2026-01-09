@@ -7,6 +7,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   active: [value: string]
+  update: [value: Category]
 }>()
 
 function objectToClass({ sm, md }: { sm: Position; md: Position }, size: string) {
@@ -95,6 +96,31 @@ const photos = computed<GalleryPhoto[]>(() =>
     })
     .filter((item) => item !== null)
 )
+
+const categories = ref<
+  {
+    icon: string
+    title: Category
+  }[]
+>([
+  {
+    icon: 'photo',
+    title: 'product',
+  },
+  {
+    icon: 'pizza',
+    title: 'food',
+  },
+  {
+    icon: 'cart',
+    title: 'ecommerce',
+  },
+])
+
+function onClick(title: Category) {
+  emit('update', title)
+  document.getElementById('featured-photos')!.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+}
 </script>
 
 <template>
@@ -115,6 +141,18 @@ const photos = computed<GalleryPhoto[]>(() =>
           :class="{ active: activePhoto === title }"
           :style="{ aspectRatio }" />
       </NuxtLink>
+    </div>
+    <div class="mt-4 flex gap-0.5 overflow-hidden bg-white shadow-[0_0_28px_10px_rgba(205,45,45,0.3)] dark:bg-black">
+      <ButtonLabel
+        v-for="{ icon, title } in categories"
+        :key="title"
+        :icon="icon"
+        :title="title"
+        :aria-label="title"
+        :active="title === activeCategory"
+        :collapsable="true"
+        class="flex-1 bg-white dark:bg-black md:w-52"
+        @click="onClick(title)" />
     </div>
   </section>
 </template>

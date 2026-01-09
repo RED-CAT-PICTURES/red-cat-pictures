@@ -14,7 +14,7 @@ function onContact(action: boolean) {
 }
 
 const route = useRoute()
-const hasFloatingActionBar = computed(() => route.path === '/')
+const hasFloatingActionButton = computed(() => route.path === '/')
 
 const isLightMode = ref(true)
 const isDarkMode = ref(false)
@@ -27,7 +27,7 @@ const isDarkMode = ref(false)
       <slot />
     </main>
     <div class="w-full bg-light-400 dark:bg-dark-400">
-      <LazyAppFooter hydrate-on-visible :class="hasFloatingActionBar ? 'mb-20' : 'mb-2'" @contact="onContact(true)" />
+      <LazyAppFooter hydrate-on-visible :has-floating-action-button="hasFloatingActionButton" @contact="onContact(true)" />
     </div>
     <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
   </div>

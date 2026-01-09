@@ -9,7 +9,7 @@ function onVisit() {
 </script>
 
 <template>
-  <div class="fixed bottom-72 right-0 z-50 -translate-y-1/2" role="alert">
+  <div class="fixed right-0 top-2/3 z-50 -translate-y-1/2 md:top-1/2" role="alert">
     <NuxtLink
       to="https://goldfishtalents.com?ref=redcatpictures.com"
       external

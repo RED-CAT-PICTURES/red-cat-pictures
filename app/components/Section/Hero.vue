@@ -3,7 +3,7 @@ defineProps<{
   video: Video
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   contact: []
 }>()
 </script>
@@ -32,10 +32,8 @@ const emit = defineEmits<{
         >
       </h1>
       <p class="mx-auto max-w-screen-sm text-lg leading-9 tracking-wide md:text-xl lg:mx-0">Create your brand identity that speaks to your clients, with our product photography/videography service</p>
-      <ButtonCTA class="hidden self-start lg:flex" :transparent="true" @click="emit('contact')" />
     </div>
     <div class="relative bottom-[5rem] col-span-full col-start-1 row-start-4 flex flex-col items-center gap-4 self-end md:bottom-16">
-      <ButtonCTA class="items-center justify-self-center lg:hidden" :transparent="true" @click="emit('contact')" />
       <BrandSlider />
     </div>
   </section>
