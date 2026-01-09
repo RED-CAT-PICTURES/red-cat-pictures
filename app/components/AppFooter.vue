@@ -20,9 +20,13 @@ const emit = defineEmits<{
         </NuxtLink>
       </div>
       <ButtonCTA v-if="!hasFloatingActionButton" class="col-span-2 col-start-1 row-start-1 self-center justify-self-center md:col-span-1 md:col-start-2 md:row-start-2" @click="emit('contact')" />
-      <ul class="col-start-2 row-start-2 flex gap-4 justify-self-end *:text-white *:transition-colors *:duration-500 *:ease-out hover:*:text-dark-600 md:col-start-3 md:row-start-3 md:gap-8">
+      <NuxtLink href="tel:+912269711501" class="font-medium col-start-3 flex items-center gap-2 justify-self-end transition-colors hover:text-dark-600 dark:hover:text-light-400">
+        <NuxtIcon name="local:phone" class="text-xl" />
+        <span>+91 22 6971 1501</span>
+      </NuxtLink>
+      <ul class="col-start-3 row-start-2 flex gap-4 justify-self-end *:text-white *:transition-colors *:duration-500 *:ease-out hover:*:text-dark-600 md:col-start-3 md:row-start-3 md:gap-8">
         <li>
-          <NuxtLink aria-label="whatsapp" to="https://wa.me/c/02269711501" target="_blank" external>
+          <NuxtLink aria-label="whatsapp" to="https://wa.me/c/912269711501" target="_blank" external>
             <NuxtIcon name="local:whatsapp" class="text-[28px] md:text-[40px]" />
           </NuxtLink>
         </li>

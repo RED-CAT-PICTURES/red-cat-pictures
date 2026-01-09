@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
   videos: Video[]
-  activeCategory: Category
 }>()
 
 const featuredVideos = useTemplateRef<HTMLDivElement>('video-gallery')

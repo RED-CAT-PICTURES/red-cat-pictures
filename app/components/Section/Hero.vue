@@ -2,10 +2,6 @@
 defineProps<{
   video: Video
 }>()
-
-defineEmits<{
-  contact: []
-}>()
 </script>
 
 <template>

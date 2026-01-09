@@ -55,7 +55,7 @@ useSchemaOrg([
       addressCountry: 'IN',
     },
     sameAs: [
-      'https://wa.me/c/02269711501',
+      'https://wa.me/c/912269711501',
       'https://www.instagram.com/redcatpictures',
       'https://www.facebook.com/redcatpictures',
       'https://www.linkedin.com/company/red-cat-pictures',
@@ -112,11 +112,11 @@ function onContact(action: boolean) {
 
 <template>
   <div>
-    <LazyButtonFloatingAction hydrate-on-idle :active-category="activeCategory" />
+    <LazyButtonFloatingAction hydrate-on-idle @contact="onContact(true)" />
     <SectionHero :video="featuredVideo" class="fixed inset-0 -z-10" @contact="onContact(true)" />
     <div class="gradient mt-[100vh] flex flex-col gap-4 bg-light-400 px-2 dark:bg-dark-400 md:px-4">
       <SectionPhotoGallery :photos="allPhotos" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
-      <LazySectionVideoGallery hydrate-on-visible :videos="videos" :active-category="activeCategory" />
+      <LazySectionVideoGallery hydrate-on-visible :videos="videos" />
       <LazySectionFeaturedPhoto
         hydrate-on-visible
         :photos="allPhotos"
