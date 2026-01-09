@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.11.2
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.1...v3.11.2)
+
+### 🩹 Fixes
+
+- Update phone number format across components ([ccd0aa8](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/ccd0aa8))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.11.1
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.0...v3.11.1)
