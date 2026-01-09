@@ -1,5 +1,27 @@
 # red-cat-pictures
 
+## v3.11.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.10.0...v3.11.0)
+
+### 🚀 Enhancements
+
+- Add RxPlayer for enhanced video playback and update styles in Hero and NuxtVideo components ([a07269b](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/a07269b))
+
+### 💅 Refactors
+
+- Update styles in MarkdownContent.vue and privacy.vue, remove unused dependencies ([e8af313](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/e8af313))
+- Update docker-compose files for consistency and improve health checks ([58134bb](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/58134bb))
+- Improve layout structure and styling across multiple components ([d50d5c3](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/d50d5c3))
+
+### 🏡 Chore
+
+- Update nuxt configuration and improve routing ([986e62c](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/986e62c))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.10.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.9.10...v3.10.0)
