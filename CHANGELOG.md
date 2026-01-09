@@ -1,5 +1,21 @@
 # red-cat-pictures
 
+## v3.11.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.0...v3.11.1)
+
+### 🩹 Fixes
+
+- Update contact information to new phone number across components ([631d79b](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/631d79b))
+
+### 🏡 Chore
+
+- Update docker-compose for local development and modify package.json dependencies ([8188ab6](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/8188ab6))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.11.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.10.0...v3.11.0)
