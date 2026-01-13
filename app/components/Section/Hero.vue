@@ -9,8 +9,9 @@ defineProps<{
     <div class="absolute left-1/2 top-0 col-span-full col-start-1 row-span-full row-start-1 h-screen w-screen -translate-x-1/2 bg-black">
       <NuxtVideo
         v-if="video"
+        :media="video.id"
+        :multi-orentation="true"
         class="gradient-mask size-full object-cover"
-        :source="video.sources"
         :poster="video.poster"
         :disable-picture-in-picture="true"
         controls-list="nodownload"

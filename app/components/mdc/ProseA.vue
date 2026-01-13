@@ -1,5 +1,13 @@
 <script setup lang="ts">
-defineProps<{ href: string; title?: string }>()
+const props = defineProps<{
+  href: string
+  title?: string
+  rel?: string
+  target?: string
+  external?: boolean
+  noRel?: boolean
+  prefetch?: boolean
+}>()
 const attrs = useAttrs()
 
 const {
@@ -33,12 +41,26 @@ function hideTooltip() {
 
 const activePhotoName = useState<string | null>()
 const activeVideoName = useState<string | null>()
+
+type MediaType = 'video' | 'image' | 'link'
+
+const mediaType = computed<MediaType>(() => {
+  if (props.href.includes('/media/video')) {
+    return 'video'
+  }
+
+  if (props.href.includes('/media/image')) {
+    return 'image'
+  }
+
+  return 'link'
+})
 </script>
 
 <template>
   <Suspense suspensible>
-    <template v-if="title === 'embed' || $slots.default?.()[0]?.children === 'embed'">
-      <NuxtLink :to="`/photo/${extractCdnId(href)}`" @click="activePhotoName = extractCdnId(href)">
+    <template v-if="mediaType === 'image'">
+      <NuxtLink :to="`/photo/${extractCdnId(href)}`" :rel :target :external :no-rel :prefetch @click="activePhotoName = extractCdnId(href)">
         <NuxtImg
           :src="extractCdnId(href)"
           alt="image"
@@ -52,11 +74,12 @@ const activeVideoName = useState<string | null>()
           v-bind="attrs" />
       </NuxtLink>
     </template>
-    <template v-else-if="title === 'video' || $slots.default?.()[0]?.children === 'video'">
-      <NuxtLink :to="`/video/${extractCdnId(href)}`" @click="activeVideoName = extractCdnId(href)">
+    <template v-else-if="mediaType === 'video'">
+      <NuxtLink :to="`/video/${extractCdnId(href)}`" :rel :target :external :no-rel :prefetch @click="activeVideoName = extractCdnId(href)">
         <NuxtVideo
+          v-if="extractCdnId(href)"
+          :media="extractCdnId(href)"
           :poster="`${cdnUrl}/media/image/fit_contain&s_1280x720/${extractCdnId(href)}`"
-          :source="videoGenerateSources(extractCdnId(href), landscapePreset)"
           :disable-picture-in-picture="true"
           controls-list="nodownload"
           :autoplay="true"
@@ -70,9 +93,9 @@ const activeVideoName = useState<string | null>()
     <NuxtLink
       v-else-if="!href.startsWith('#')"
       :to="href + '?utm_source=redcatpictures.com'"
-      external
       target="_blank"
-      rel="noopener"
+      external
+      :no-rel
       v-bind="attrs"
       class="relative"
       @touchstart.capture="showTooltip"
@@ -85,7 +108,7 @@ const activeVideoName = useState<string | null>()
       <MDCSlot unwrap="p" />
       <LazyLinkToolTip :active-link="hoveredLink" hydrate-on-idle />
     </NuxtLink>
-    <NuxtLink v-else internal :to="href" :title="title" v-bind="attrs">
+    <NuxtLink v-else internal :to="href" :title="title" v-bind="attrs" :rel :target :external :no-rel :prefetch>
       <slot />
     </NuxtLink>
   </Suspense>

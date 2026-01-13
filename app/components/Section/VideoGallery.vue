@@ -93,9 +93,9 @@ function slideClick() {
         <NuxtVideo
           :key="activeVideo.id"
           class="aspect-video"
-          :class="isLandscapeOriented(deviceOrientation?.split('-')[0]!, activeVideo.sources[0]!.orientation) ? 'w-[100vh] max-w-[100vh] rotate-90' : ''"
+          :class="isLandscapeOriented(deviceOrientation?.split('-')[0]!, activeVideo.aspectRatio >= 1 ? 'landscape' : 'portrait') ? 'w-[100vh] max-w-[100vh] rotate-90' : ''"
+          :media="activeVideo.media"
           :poster="activeVideo.poster"
-          :source="activeVideo.sources"
           :disable-picture-in-picture="true"
           controls-list="nodownload"
           :autoplay="isAutoplay"

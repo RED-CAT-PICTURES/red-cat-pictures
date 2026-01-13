@@ -10,7 +10,7 @@ export default defineTask({
   async run() {
     const config = useRuntimeConfig()
     const notionDbId = config.private.notionDbId as unknown as NotionDB
-    const resources: ResourceQueries = {
+    const resources: Pick<ResourceQueries, 'prospect' | 'client' | 'project' | 'content' | 'asset'> = {
       prospect: (await notionQueryDb<NotionProspect>(notion, notionDbId.prospect)).filter((a) => !!a),
       client: (await notionQueryDb<NotionProjectClient>(notion, notionDbId.client)).filter((a) => !!a),
       project: (await notionQueryDb<NotionProject>(notion, notionDbId.project)).filter((a) => !!a),

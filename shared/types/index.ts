@@ -57,13 +57,13 @@ export interface Video {
   title: string
   description: string
   type: 'hero' | 'feature'
+  media: string
   poster?: string
   aspectRatio: number
   duration: number
   category: Category
   gallery: boolean
   featured: null | number
-  sources: Source[]
   url: string
   uploadDate: string
 }
@@ -137,6 +137,9 @@ export interface ResourceRecordMap {
   content: NotionContent
   asset: NotionAsset
   terms: string
+  privacy: string
+  cancellation: string
+  license: string
 }
 
 export interface Resource<T extends ResourceType = ResourceType> {

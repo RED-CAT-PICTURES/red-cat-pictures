@@ -4,7 +4,9 @@ export default defineCachedEventHandler<Promise<Video[]>>(
       const assetStorage = useStorage<Resource<'asset'>>(`data:resource:asset`)
       const assets = (await assetStorage.getItems(await assetStorage.getKeys())).flatMap(({ value }) => value.record)
 
-      const videos = assets.filter(({ properties }) => properties.Type?.select.name === 'Video' && properties.Status.status.name === 'Release')
+      const videos = assets
+        .filter((a) => a?.properties && a.properties?.Type?.select?.name)
+        .filter(({ properties }) => properties.Type?.select.name === 'Video' && properties.Status.status.name === 'Release')
 
       if (!videos) throw createError({ statusCode: 500, statusMessage: 'videos is undefined' })
 
@@ -34,8 +36,8 @@ export default defineCachedEventHandler<Promise<Video[]>>(
               title: notionTextStringify(properties.Name.title),
               description: notionTextStringify(properties.Description.rich_text),
               type: slug.includes('video-0000-0000') ? 'hero' : 'feature',
+              media: slug,
               poster: cover?.type === 'external' ? cover.external.url : undefined,
-              sources: videoGenerateSources(slug, slug.includes('video-0000-0000') ? heroPreset : aspectRatio < 1 ? portraitPreset : landscapePreset),
               aspectRatio: aspectRatio,
               duration: additionalProperties.duration,
               category: properties.Segment.select.name,

@@ -4,7 +4,9 @@ export default defineCachedEventHandler<Promise<Photo[]>>(
       const assetStorage = useStorage<Resource<'asset'>>(`data:resource:asset`)
       const assets = (await assetStorage.getItems(await assetStorage.getKeys())).flatMap(({ value }) => value.record)
 
-      const photos = assets.filter(({ properties }) => properties.Type?.select.name === 'Photo' && properties.Status?.status.name === 'Release')
+      const photos = assets
+        .filter((a) => a?.properties && a.properties?.Type?.select?.name)
+        .filter(({ properties }) => properties.Type?.select.name === 'Photo' && properties.Status?.status.name === 'Release')
 
       if (!photos) throw createError({ statusCode: 500, statusMessage: 'photos is undefined' })
 

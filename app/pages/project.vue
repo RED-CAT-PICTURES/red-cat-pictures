@@ -71,7 +71,6 @@ const mediaItems = computed<ProjectMediaItem[]>(() => {
         title: v.title,
         url: v.url,
         poster: v.poster,
-        sources: v.sources,
         orientation,
       }
     })
@@ -142,7 +141,7 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                 </div>
                 <div class="w-full overflow-hidden" :class="item.orientation === 'portrait' ? 'aspect-[9/16]' : 'aspect-video'">
                   <NuxtVideo
-                    :source="item.sources"
+                    :media="item.id"
                     :poster="item.poster"
                     :autoplay="activeMediaId === item.id"
                     :state="activeMediaId === item.id ? 'play' : 'pause'"

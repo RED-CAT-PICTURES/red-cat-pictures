@@ -7,15 +7,10 @@ const {
 
 type Orientation = 'portrait' | 'landscape'
 
-interface Source {
-  src: string
-  orientation: Orientation
-  // resolution: Resolution
-}
-
 const props = withDefaults(
   defineProps<{
-    source: Source[]
+    media: string
+    multiOrentation?: boolean
     poster?: string
     controlsList?: string
     preload?: 'none' | 'metadata' | 'auto'
@@ -27,6 +22,7 @@ const props = withDefaults(
     disablePictureInPicture?: boolean
   }>(),
   {
+    multiOrentation: false,
     poster: undefined,
     controlsList: undefined,
     preload: 'auto',
@@ -49,17 +45,6 @@ const videoRef = useTemplateRef<HTMLVideoElement>('videoRef')
 let player: RxPlayer
 
 defineExpose({ videoRef })
-
-watch(
-  () => props.source,
-  async () => {
-    if (!videoRef.value) return
-
-    videoRef.value.pause()
-    videoRef.value.currentTime = 0
-    await videoRef.value.play()
-  }
-)
 
 watch(
   () => props.state,
@@ -145,7 +130,7 @@ const streamStats = ref({
 const currentOrientation = computed<Orientation>(() => (width.value > height.value ? 'landscape' : 'portrait'))
 
 // Add this computed to get the correct source based on orientation
-const activeSource = computed(() => props.source.find((s) => s.orientation === currentOrientation.value) || props.source[0]!)
+const activeSource = computed(() => (props.multiOrentation ? `${props.media}-${currentOrientation.value}` : props.media))
 
 onMounted(() => {
   player = new RxPlayer({
@@ -164,7 +149,7 @@ onMounted(() => {
   })
 
   player.loadVideo({
-    url: `${cdnUrl}/media/video/s_720-1080/${extractCdnId(activeSource.value.src)}.mpd`,
+    url: `${cdnUrl}/media/video/s_720-1080/${activeSource.value}.mpd`,
     transport: 'dash',
     autoPlay: props.autoplay,
   })
@@ -172,13 +157,13 @@ onMounted(() => {
 
 // Watch orientation changes and reload appropriate video
 watch(activeSource, (newSource, oldSource) => {
-  if (!player || newSource.src === oldSource?.src) return
+  if (!player || newSource === oldSource) return
 
   const currentTime = videoRef.value?.currentTime || 0
   const wasPlaying = !videoRef.value?.paused
 
   player.loadVideo({
-    url: `${cdnUrl}/media/video/s_720-1080/${extractCdnId(newSource.src)}.mpd`,
+    url: `${cdnUrl}/media/video/s_720-1080/${newSource}.mpd`,
     transport: 'dash',
     autoPlay: props.autoplay,
     startAt: { position: currentTime },

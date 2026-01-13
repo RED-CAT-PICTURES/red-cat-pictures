@@ -14,9 +14,9 @@ const emit = defineEmits<{
       <div class="relative col-start-1 row-start-2 flex flex-col gap-2 justify-self-start text-sm md:row-start-3">
         <NuxtIcon name="local:logo" filled class="absolute -left-[60px] top-0 -z-10 -translate-y-[56%] text-[309px] opacity-10 md:-left-[104px] md:-translate-y-[37%] md:text-[560px]" />
         <span>&copy; 2024-2025</span>
-        <NuxtLink to="https://shirsendu-bairagi.dev" target="__blank" class="flex items-center gap-1">
-          <span>Made by</span>
-          <NuxtIcon name="local:shba007" filled class="text-[20px]" />
+        <NuxtLink to="https://modesthumanbrands.com" target="__blank" class="flex items-center gap-2">
+          <span>Powered by</span>
+          <NuxtIcon name="local:mhb" filled class="text-[20px]" />
         </NuxtLink>
       </div>
       <ButtonCTA v-if="!hasFloatingActionButton" class="col-span-2 col-start-1 row-start-1 self-center justify-self-center md:col-span-1 md:col-start-2 md:row-start-2" @click="emit('contact')" />

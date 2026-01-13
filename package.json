@@ -45,7 +45,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.51.4",
     "@hannoeru/nuxt-otel": "^0.0.8",
-    "@notionhq/client": "^4.0.2",
+    "@notionhq/client": "^5.6.0",
     "@nuxt/eslint": "^1.12.1",
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/icon": "^2.2.0",

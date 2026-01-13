@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 let n2m: NotionToMarkdown
 
-export default defineCachedEventHandler<Promise<ContentDetails>>(
+export default defineEventHandler<Promise<ContentDetails>>(
   async (event) => {
     try {
       const { content: contentType, slug } = await getValidatedRouterParams(
@@ -55,6 +55,6 @@ export default defineCachedEventHandler<Promise<ContentDetails>>(
         statusMessage: 'Some Unknown Error Found',
       })
     }
-  },
-  { maxAge: 60 * 60, swr: true }
+  }
+  // { maxAge: 60 * 60, swr: true }
 )

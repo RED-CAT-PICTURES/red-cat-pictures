@@ -43,7 +43,7 @@ const members: Member[] = [
     image: `/images/hero-1.webp`,
     socials: {
       instagram: 'https://www.instagram.com/photos_by_aratrik/',
-      linkedin: 'https://www.linkedin.com/in/aratrik-nandy-rcp/',
+      linkedin: 'https://www.linkedin.com/in/aratrik-nandy/',
     },
     isHero: true,
     animation: 'fly-in',
@@ -53,7 +53,9 @@ const members: Member[] = [
     designation: 'Script Writer',
     content: `Avishek crafts scripts with engaging stories and rich narratives, giving each project a distinctive and compelling voice.`,
     image: `/images/hero-5.webp`,
-    socials: {},
+    socials: {
+      instagram: 'https://www.instagram.com/aabhishek.dass/',
+    },
     isHero: false,
     animation: 'burn',
   },
@@ -72,24 +74,28 @@ const members: Member[] = [
     isHero: false,
     animation: 'burn',
   },
-  /*  {
-     name: 'Aishik Kar',
-     designation: 'Coordinator',
-     content: `Aishik keeps every production on track, expertly managing teams and details to guarantee smooth project execution.`,
-     image: `/images/hero-6.webp`,
-     socials: {},
-     isHero: false,
-     animation: 'burn',
-   },
-   {
-     name: 'Avijit Sardar',
-     designation: 'Photographer',
-     content: `Avijit captures memorable moments with creativity and precision, turning every frame into a striking visual story.`,
-     image: `/images/hero-7.webp`,
-     socials: {},
-     isHero: false,
-     animation: 'burn',
-   }, */
+  /* {
+    name: 'Aishik Kar',
+    designation: 'Coordinator',
+    content: `Aishik keeps every production on track, expertly managing teams and details to guarantee smooth project execution.`,
+    image: `/images/hero-6.webp`,
+    socials: {
+      instagram: 'https://www.instagram.com/karaishik/'
+    },
+    isHero: false,
+    animation: 'burn',
+  },
+  {
+    name: 'Avijit Sardar',
+    designation: 'Photographer',
+    content: `Avijit captures memorable moments with creativity and precision, turning every frame into a striking visual story.`,
+    image: `/images/hero-7.webp`,
+    socials: {
+      instagram: 'https://www.instagram.com/avijit_sardar08/'
+    },
+    isHero: false,
+    animation: 'burn',
+  }, */
 ]
 </script>
 

@@ -80,7 +80,7 @@ export default defineTask({
         const data = normalizeEmptyToNull(response.content)
         await notion.pages.create({
           parent: {
-            database_id: notionDbId.prospect,
+            data_source_id: notionDbId.prospect,
           },
           properties: {
             Name: {

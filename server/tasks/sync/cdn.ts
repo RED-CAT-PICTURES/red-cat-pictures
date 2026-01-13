@@ -119,8 +119,8 @@ export default defineTask({
 
           console.log('🍃 Updating', { slug, updateCoverURL })
         } else {
-          const { results } = await notion.databases.query({
-            database_id: notionDbId.project,
+          const { results } = await notion.dataSources.query({
+            data_source_id: notionDbId.project,
             filter: {
               property: 'Index',
               number: { equals: parseInt(slug.split('-')[1]) },

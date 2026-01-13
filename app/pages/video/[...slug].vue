@@ -24,7 +24,7 @@ const {
 const url = `${siteUrl}/video/${activeVideoSlug.value}`
 const cover = activeVideo.value?.poster ? extractCdnId(activeVideo.value?.poster) : ''
 const imageUrl = `${cdnUrl}/media/image/f_jpeg&fit_cover&s_${Math.round(640 * activeVideo.value.aspectRatio)}x${640}/${cover}`
-const videoUrl = `${cdnUrl}/media/video/s_${Math.round(720 * activeVideo.value.aspectRatio)}x${720}&c_avc&q_75/${activeVideoSlug.value}`
+const videoUrl = `${cdnUrl}/media/video/s_720-1920/${activeVideoSlug.value}`
 const uploadDate = activeVideo.value.uploadDate
 
 useSeoMeta({
@@ -96,7 +96,7 @@ async function toggleFullScreen() {
       ref="videoContainerRef"
       :key="activeVideoSlug"
       :poster="cover"
-      :source="activeVideo.sources"
+      :media="activeVideo.media"
       :disable-picture-in-picture="true"
       controls-list="nodownload"
       :autoplay="true"
