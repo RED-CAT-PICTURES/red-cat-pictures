@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.11.3
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.2...v3.11.3)
+
+### 💅 Refactors
+
+- Update video and image handling in components, improve API interactions ([f59f59a](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/f59f59a))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.11.2
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.1...v3.11.2)
