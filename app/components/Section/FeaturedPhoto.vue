@@ -139,7 +139,8 @@ function onClick(title: Category) {
           :placeholder="[240, Math.round(240 / aspectRatio), 50, 5]"
           class="size-full overflow-hidden bg-light-600 object-cover dark:bg-dark-500"
           :class="{ active: activePhoto === title }"
-          :style="{ aspectRatio }" />
+          :style="{ aspectRatio }"
+          @contextmenu.prevent />
       </NuxtLink>
     </div>
     <div class="mx-auto mt-4 flex w-fit gap-0.5 overflow-hidden shadow-[0_0_28px_10px_rgba(205,45,45,0.3)]">

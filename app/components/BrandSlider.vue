@@ -30,7 +30,7 @@ useIntersectionObserver(slider, onIntersectionObserver)
                 rel="noopener"
                 class="relative size-12 overflow-hidden rounded-full bg-black dark:bg-white"
                 :aria-label="`Visit ${name} website`">
-                <NuxtImg :src="extractCdnId(logo)" :alt="name" :width="64" :height="64" fit="contain" loading="lazy" />
+                <NuxtImg :src="extractCdnId(logo)" :alt="name" :width="64" :height="64" fit="contain" loading="lazy" @contextmenu.prevent />
               </NuxtLink>
             </template>
           </template>

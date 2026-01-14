@@ -71,7 +71,8 @@ const mediaType = computed<MediaType>(() => {
           preload
           :placeholder="[320, Math.round(320 / (16 / 9)), 50, 5]"
           class="aspect-video w-full object-contain"
-          v-bind="attrs" />
+          v-bind="attrs"
+          @contextmenu.prevent />
       </NuxtLink>
     </template>
     <template v-else-if="mediaType === 'video'">

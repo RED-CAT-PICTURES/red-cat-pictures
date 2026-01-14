@@ -48,7 +48,8 @@ const logo = computed<string>(() => data.value?.logo?.toString() ?? (isDark.valu
           :width="32"
           :height="32"
           fit="cover"
-          class="absolute left-0 top-0 z-10 aspect-square -translate-y-1/2 translate-x-1/2 overflow-hidden" />
+          class="absolute left-0 top-0 z-10 aspect-square -translate-y-1/2 translate-x-1/2 overflow-hidden"
+          @contextmenu.prevent />
         <h5 class="!m-0 line-clamp-2 !text-lg">{{ title }}</h5>
         <p class="!m-0 line-clamp-3 !text-sm opacity-80">{{ description }}</p>
         <span v-if="lastUpdated" class="!m-0 !text-sm opacity-60">

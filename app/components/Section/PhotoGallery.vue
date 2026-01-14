@@ -36,7 +36,8 @@ const { height: sliderHeight } = useElementSize(slider)
               loading="lazy"
               :placeholder="[120, Math.round(120 / (3 / 4)), 50, 5]"
               class="aspect-[3/4] size-full bg-light-600 object-cover dark:bg-dark-500"
-              :class="{ active: activePhoto === `${dupIndex}-${title}` }" />
+              :class="{ active: activePhoto === `${dupIndex}-${title}` }"
+              @contextmenu.prevent />
           </NuxtLink>
         </template>
       </div>

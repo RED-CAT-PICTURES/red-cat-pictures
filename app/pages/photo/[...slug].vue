@@ -90,7 +90,8 @@ const isImageLoaded = ref(false)
         :placeholder="img(cover, { width: Math.round(240 * activePhoto.aspectRatio), height: 240, q: 80 })"
         class="size-full object-contain"
         :class="{ shimmer: !isImageLoaded }"
-        @load="isImageLoaded = true" />
+        @load="isImageLoaded = true"
+        @contextmenu.prevent />
     </div>
     <!-- <h1 class="text-center my-8">{{ activeImage.title }}</h1> -->
   </main>

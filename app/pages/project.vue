@@ -15,10 +15,17 @@ type ProjectMediaItem =
       projectId: string
       id: string
       title: string
+      description: string
+      type: string
+      media: string
+      poster: string
+      aspectRatio: number
+      duration: number
+      category: string
+      gallery: boolean
+      featured: null | number
       url: string
-      poster?: string
-      sources: Source[]
-      orientation: 'portrait' | 'landscape'
+      uploadDate: string
     }
 
 const { data: photos } = await useAPI<Photo[]>('/api/photo', { default: (): Photo[] => [] })
@@ -63,7 +70,6 @@ const mediaItems = computed<ProjectMediaItem[]>(() => {
   const videoItems: ProjectMediaItem[] = (videos.value || [])
     .filter((v) => !v.id.includes('video-0000-0000'))
     .map((v) => {
-      const orientation = v.sources?.[0]?.orientation === 'portrait' ? 'portrait' : 'landscape'
       return {
         kind: 'video',
         projectId: extractProjectId(v.id),
@@ -71,7 +77,7 @@ const mediaItems = computed<ProjectMediaItem[]>(() => {
         title: v.title,
         url: v.url,
         poster: v.poster,
-        orientation,
+        aspectRatio: v.aspectRatio,
       }
     })
 
@@ -123,7 +129,8 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                   :placeholder="[120, Math.round(120 / item.aspectRatio), 50, 5]"
                   class="size-full object-cover"
                   :class="{ active: activeMediaId === item.id }"
-                  :style="{ aspectRatio: item.aspectRatio }" />
+                  :style="{ aspectRatio: item.aspectRatio }"
+                  @contextmenu.prevent />
               </NuxtLink>
             </template>
 
@@ -139,7 +146,7 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                     <NuxtIcon v-else name="local:play" class="fill-white text-[24px]" />
                   </div>
                 </div>
-                <div class="w-full overflow-hidden" :class="item.orientation === 'portrait' ? 'aspect-[9/16]' : 'aspect-video'">
+                <div class="w-full overflow-hidden" :style="{ aspectRatio: item.aspectRatio }">
                   <NuxtVideo
                     :media="item.id"
                     :poster="item.poster"
@@ -151,7 +158,7 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                     :disable-picture-in-picture="true"
                     controls-list="nodownload"
                     preload="metadata"
-                    class="size-full object-cover" />
+                    class="object-cover" />
                 </div>
               </NuxtLink>
             </template>

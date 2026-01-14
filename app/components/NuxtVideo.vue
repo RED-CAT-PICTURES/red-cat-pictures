@@ -37,6 +37,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   started: []
+  buffer: [value: number]
   progress: [value: number]
   ended: []
 }>()
@@ -66,6 +67,7 @@ watch(
 )
 
 const progress = ref(0)
+const buffer = ref(0)
 const isVideoLoaded = ref(false)
 
 function handleError(e?: Error) {
@@ -104,7 +106,6 @@ function handleEnded() {
   emit('ended')
 }
 
-// const qualtiy = 80
 const { width, height } = useElementSize(videoRef)
 
 // TODO: remove when hero video is same as landscape and portrait
@@ -119,17 +120,14 @@ const streamStats = ref({
   resolution: '',
 })
 
-// Helper to format bitrate (bps -> kbps/Mbps)
-/* const formattedBitrate = computed(() => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const formattedBitrate = computed(() => {
   const bps = streamStats.value.bitrate || 0
-  return bps > 1000000
-    ? `${(bps / 1000000).toFixed(2)} Mbps`
-    : `${Math.round(bps / 1000)} kbps`
-}) */
+  return bps > 1000000 ? `${(bps / 1000000).toFixed(2)} Mbps` : `${Math.round(bps / 1000)} kbps`
+})
 
 const currentOrientation = computed<Orientation>(() => (width.value > height.value ? 'landscape' : 'portrait'))
 
-// Add this computed to get the correct source based on orientation
 const activeSource = computed(() => (props.multiOrentation ? `${props.media}-${currentOrientation.value}` : props.media))
 
 onMounted(() => {
@@ -137,7 +135,6 @@ onMounted(() => {
     videoElement: videoRef.value!,
   })
 
-  // LISTEN FOR QUALITY CHANGES
   player.addEventListener('videoRepresentationChange', (rep) => {
     if (rep) {
       streamStats.value = {
@@ -148,6 +145,14 @@ onMounted(() => {
     }
   })
 
+  // Add buffer tracking
+  player.addEventListener('positionUpdate', () => {
+    buffer.value = parseFloat(player.getCurrentBufferGap().toFixed(2))
+    if (buffer.value !== undefined) {
+      emit('buffer', 0)
+    }
+  })
+
   player.loadVideo({
     url: `${cdnUrl}/media/video/s_720-1080/${activeSource.value}.mpd`,
     transport: 'dash',
@@ -155,7 +160,6 @@ onMounted(() => {
   })
 })
 
-// Watch orientation changes and reload appropriate video
 watch(activeSource, (newSource, oldSource) => {
   if (!player || newSource === oldSource) return
 
@@ -196,26 +200,17 @@ watch(activeSource, (newSource, oldSource) => {
     @timeupdate="handleProgress"
     @ended="handleEnded"
     @loadeddata="handleLoadedData"
-    @loadedmetadata="handleLoadedData">
-    <!--  <template v-if="Array.isArray(source)">
-      <source v-for="{ src, type, media, codec, orientation } of source" :key="src"
-        :src="`${cdnUrl}/media/video/s_${videoFitCoverAspect(orientation, orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${codec}&q_${qualtiy}/${src}`"
-        :type="type" :media="media" />
-    </template>
-<template v-else>
-      <source
-        :src="`${cdnUrl}/media/video/s_${videoFitCoverAspect(source.orientation, source.orientation === 'landscape' ? 16 / 9 : 9 / 16, width, height)}&c_${source.codec}&q_${qualtiy}/${source.src}`"
-        :type="source.type" />
-    </template> -->
+    @loadedmetadata="handleLoadedData"
+    @contextmenu.prevent>
     Your browser does not support the video tag.
   </video>
-
   <!-- STATS OVERLAY -->
-  <!--  <div v-if="isVideoLoaded"
-      class="absolute top-2 left-2 bg-black/60 text-white text-xs p-2 rounded font-mono pointer-events-none">
-      <p>Res: {{ streamStats.resolution }}</p>
+  <!-- <div v-if="isVideoLoaded"
+      class="absolute bottom-2 right-2 bg-black/60 text-white text p-2 rounded font-mono pointer-events-none">
       <p>Bitrate: {{ formattedBitrate }}</p>
+      <p>Resolution: {{ streamStats.resolution }}</p>
       <p>Codec: {{ streamStats.codec }}</p>
+      <p>Buffer: {{ buffer }} sec</p>
     </div> -->
   <!-- </div> -->
 </template>

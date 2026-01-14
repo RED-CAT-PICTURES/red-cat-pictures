@@ -54,7 +54,8 @@ useSchemaOrg([
       :height="Math.round(1280 / (16 / 9))"
       fit="cover"
       class="cover-img absolute left-0 aspect-[5/3] max-h-[20rem] w-screen object-cover"
-      :placeholder="[320, Math.round(320 / (16 / 9)), 50, 5]" />
+      :placeholder="[320, Math.round(320 / (16 / 9)), 50, 5]"
+      @contextmenu.prevent />
     <div class="invisible -left-4 aspect-[5/3] max-h-[20rem] w-screen" />
     <div class="content relative mx-auto max-w-6xl leading-relaxed">
       <h1 class="my-4 text-xl font-semi-bold md:text-3xl">{{ blog.title }}</h1>

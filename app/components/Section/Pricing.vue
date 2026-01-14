@@ -41,7 +41,8 @@ const columns = computed<Photo[][]>(() => {
                 fit="cover"
                 loading="lazy"
                 class="size-full object-cover"
-                :draggable="false" />
+                :draggable="false"
+                @contextmenu.prevent />
             </div>
           </div>
         </div>
