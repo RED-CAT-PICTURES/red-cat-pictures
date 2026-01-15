@@ -575,7 +575,7 @@ export default defineTask({
           await projectStorage.setItem(notionNormalizeId(projectId), project)
         } catch (error) {
           console.error('error:', error)
-          console.error('data:', inspect(error?.data, { depth: null, colors: true, maxArrayLength: null }))
+          console.error('data:', inspect(project.record, { depth: null, colors: true, maxArrayLength: null }))
 
           throw error // rethrow so caller can handle
         }

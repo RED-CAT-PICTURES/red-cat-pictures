@@ -70,6 +70,8 @@ export default defineTask({
       // current cover -> https://ucarecdn.com/17dc5f16-3961-47c2-9ea2-996b4fac0d19/-/preview/1620x1080/
       // update cover -> https://cdn.redcatpictures.com/media/w_1620&h_1080/product-photo-033-033
 
+      if (!slug.includes('-0054-')) continue
+
       try {
         const metaData = await $fetch<MetaPhoto | MetaVideo>(`/api/media/${slug}`, {
           baseURL: config.public.cdnUrl,
@@ -131,7 +133,7 @@ export default defineTask({
 
           await notion.pages.create({
             parent: {
-              database_id: notionDbId.asset,
+              data_source_id: notionDbId.asset,
             },
             cover: {
               type: 'external',
