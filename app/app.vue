@@ -83,6 +83,7 @@ watch(permissionGranted, async (value) => {
   </NuxtLayout>
   <LazyAppInstallPrompt hydrate-on-idle />
   <LazyAppVisitPrompt hydrate-on-idle />
+  <Chatbot/>
 </template>
 
 <style>
