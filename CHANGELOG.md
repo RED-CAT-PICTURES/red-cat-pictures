@@ -1,5 +1,18 @@
 # red-cat-pictures
 
+## v3.11.4
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.3...v3.11.4)
+
+### 💅 Refactors
+
+- Enhance context menu handling across components ([344b4a0](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/344b4a0))
+- Update redirect mappings and enhance CDN sync logic ([1bd6580](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/1bd6580))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.11.3
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.2...v3.11.3)
