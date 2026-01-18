@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.12.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.4...v3.12.0)
+
+### 🚀 Enhancements
+
+- Added offers and app section ([1c11686](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/1c11686))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.11.4
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.3...v3.11.4)
