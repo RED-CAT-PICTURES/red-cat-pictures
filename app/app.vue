@@ -7,6 +7,8 @@ const {
 } = useRuntimeConfig()
 const imageUrl = `${siteUrl}/previews/placeholder-blank.jpg`
 
+const { proxy: gaProxy } = useScriptGoogleAnalytics()
+
 useHead({
   htmlAttrs: {
     lang: 'en',
@@ -72,6 +74,20 @@ onMounted(async () => {
 watch(permissionGranted, async (value) => {
   if (value) await getExistingSubscription()
 })
+
+const isModelContactOpen = useState<boolean>('isModelContactOpen', () => false)
+
+function onContact(action: boolean) {
+  if (action) {
+    isModelContactOpen.value = true
+    gaProxy.gtag('event', 'contact_open')
+  } else {
+    isModelContactOpen.value = false
+    gaProxy.gtag('event', 'contact_close')
+  }
+}
+
+const { data: offers } = await useAPI('/api/offer')
 </script>
 
 <template>
@@ -83,6 +99,8 @@ watch(permissionGranted, async (value) => {
   </NuxtLayout>
   <LazyAppInstallPrompt hydrate-on-idle />
   <LazyAppVisitPrompt hydrate-on-idle />
+  <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
+  <LazyModalOffer v-if="offers && offers?.length" :offers="offers" hydrate-on-idle />
 </template>
 
 <style>
@@ -184,6 +202,26 @@ svg.iconify--local {
 
   to {
     transform: translateY(-50%);
+  }
+}
+
+.sweep-gradient {
+  background: linear-gradient(90deg, var(--tw-gradient-stops));
+  background-size: 200%;
+  background-position: 0% 50%;
+  animation: bg-sweep 2.5s linear alternate infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes bg-sweep {
+  from {
+    background-position: 60% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
   }
 }
 </style>

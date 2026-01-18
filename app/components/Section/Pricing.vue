@@ -88,24 +88,4 @@ const columns = computed<Photo[][]>(() => {
     transform: translateY(-50%);
   }
 }
-
-.sweep-gradient {
-  background: linear-gradient(90deg, var(--tw-gradient-stops));
-  background-size: 200%;
-  background-position: 0% 50%;
-  animation: bg-sweep 2.5s linear alternate infinite;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@keyframes bg-sweep {
-  from {
-    background-position: 60% 50%;
-  }
-
-  to {
-    background-position: 100% 50%;
-  }
-}
 </style>

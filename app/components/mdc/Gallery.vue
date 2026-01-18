@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{ photos: string }>()
 
-const { data } = await useFetch('/api/photo', { default: () => [] })
+const { data } = await useAPI('/api/photo', { default: () => [] })
 
 const activePhotoName = useState<string>()
 const activePhotoIds = computed(() => props.photos.split(','))

@@ -29,6 +29,5 @@ const isDarkMode = ref(false)
     <div class="w-full bg-light-400 dark:bg-dark-400">
       <LazyAppFooter hydrate-on-visible :has-floating-action-button="hasFloatingActionButton" @contact="onContact(true)" />
     </div>
-    <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
   </div>
 </template>

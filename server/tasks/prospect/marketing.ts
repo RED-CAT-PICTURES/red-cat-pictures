@@ -74,113 +74,118 @@ export default defineTask({
 
     await Promise.allSettled(
       (await prospectStorage.getItems(await prospectStorage.getKeys())).map(async ({ value: prospect }) => {
-        const prospectId = prospect.record.id
-        const companyName = notionTextStringify(prospect.record.properties.Name.title)
-        const companyType = prospect.record.properties.Type.select.name as BrandType
-        const email = prospect.record.properties.Email.email
-        const whatsapp = prospect.record.properties.Whatsapp.url?.replace(/^https?:\/\/wa\.me\//, '')
-        const status = prospect.record.properties.Status.status.name
+        try {
+          const status = prospect.record.properties.Status.status.name
+          if (!(status === 'Verified')) return
 
-        if (!(status === 'Verified')) return
+          const prospectId = prospect.record.id
+          const companyName = notionTextStringify(prospect.record.properties.Name.title)
+          const companyType = prospect.record.properties.Type.select.name as BrandType
+          const email = prospect.record.properties.Email.email
+          const whatsapp = undefined //prospect.record.properties.Whatsapp.url?.replace(/^https?:\/\/wa\.me\//, '')
 
-        if (email) {
-          console.log(`Sending new marketing email →`, companyName)
+          if (email) {
+            console.log(`Sending new marketing email →`, companyName)
 
-          // Send Email
-          try {
-            await $fetch('/events/trigger', {
-              baseURL: config.private.novuApi,
-              method: 'POST',
-              headers: {
-                Authorization: `ApiKey ${config.private.novuApiKey}`,
-              },
-              body: {
-                name: 'outreach-prospect-client',
-                to: {
-                  subscriberId: hash({ email }),
-                  email: email,
-                  firstName: companyName,
+            // Send Email
+            try {
+              await $fetch('/events/trigger', {
+                baseURL: config.private.novuApi,
+                method: 'POST',
+                headers: {
+                  Authorization: `ApiKey ${config.private.novuApiKey}`,
                 },
-                payload: {
-                  brandType: getBrandType(companyType),
+                body: {
+                  name: 'outreach-prospect-client',
+                  to: {
+                    subscriberId: hash({ email }),
+                    email: email,
+                    firstName: companyName,
+                  },
+                  payload: {
+                    brandType: getBrandType(companyType),
+                  },
                 },
-              },
+              })
+            } catch (error) {
+              console.error(error)
+            }
+
+            // Subscribe to Email Notification
+            await emailStorage.setItem(email, {
+              name: companyName,
+              email,
             })
-          } catch (error) {
-            console.error(error)
           }
 
-          // Subscribe to Email Notification
-          await emailStorage.setItem(email, {
-            name: companyName,
-            email,
-          })
-        }
+          if (whatsapp) {
+            console.log(`Sending new marketing whatsapp →`, companyName)
 
-        if (whatsapp) {
-          console.log(`Sending new marketing whatsapp →`, companyName)
-
-          await sendWhatsappMessage([
-            {
-              to: whatsapp,
-              data: {
-                asset: '',
-                text: messageTemplates.prospectStart,
+            await sendWhatsappMessage([
+              {
+                to: whatsapp,
+                data: {
+                  asset: '',
+                  text: messageTemplates.prospectStart,
+                },
               },
-            },
-          ])
-          await Promise.allSettled(
-            messageTemplates.prospectMiddle.map(async (key) => {
-              try {
-                const data = await $fetch(`/api/photo/${(key as unknown as string).toLowerCase()}`)
-                if (Array.isArray(data)) throw new Error('Unexpected array response')
+            ])
+            await Promise.allSettled(
+              messageTemplates.prospectMiddle.map(async (key) => {
+                try {
+                  const data = await $fetch(`/api/photo/${(key as unknown as string).toLowerCase()}`)
+                  if (Array.isArray(data)) throw new Error('Unexpected array response')
 
-                const link = `${config.public.cdnUrl}/media/image/f_jpeg&s_${Math.min(1080, Math.round(1080 * data.aspectRatio))}x${Math.min(1080, Math.round(1080 / data.aspectRatio))}/${extractCdnId(data.image)}`
+                  const link = `${config.public.cdnUrl}/media/image/f_jpeg&s_${Math.min(1080, Math.round(1080 * data.aspectRatio))}x${Math.min(1080, Math.round(1080 / data.aspectRatio))}/${extractCdnId(data.image)}`
 
-                await sendWhatsappMessage([
-                  {
-                    to: whatsapp,
-                    data: {
-                      asset: link,
-                      text: ``,
+                  await sendWhatsappMessage([
+                    {
+                      to: whatsapp,
+                      data: {
+                        asset: link,
+                        text: ``,
+                      },
                     },
-                  },
-                ])
-              } catch {
-                return null
-              }
+                  ])
+                } catch {
+                  return null
+                }
+              })
+            )
+            await sendWhatsappMessage([
+              {
+                to: whatsapp,
+                data: {
+                  asset: '',
+                  text: messageTemplates.prospectEnd,
+                },
+              },
+            ])
+
+            // Subscribe to Whatsapp Notification
+            await whatsappStorage.setItem(whatsapp, {
+              name: companyName,
+              phone: whatsapp,
             })
-          )
-          await sendWhatsappMessage([
-            {
-              to: whatsapp,
-              data: {
-                asset: '',
-                text: messageTemplates.prospectEnd,
+          }
+
+          await notion.pages.update({
+            page_id: prospectId,
+            properties: {
+              Status: {
+                status: {
+                  name: 'Initiate',
+                },
               },
             },
-          ])
-
-          // Subscribe to Whatsapp Notification
-          await whatsappStorage.setItem(whatsapp, {
-            name: companyName,
-            phone: whatsapp,
           })
+
+          prospect.record.properties.Status.status.name = 'Initiate'
+          await prospectStorage.setItem(notionNormalizeId(prospectId), prospect)
+        } catch (error) {
+          console.warn(error)
+          throw error
         }
-
-        await notion.pages.update({
-          page_id: prospectId,
-          properties: {
-            Status: {
-              status: {
-                name: 'Initiate',
-              },
-            },
-          },
-        })
-
-        prospect.record.properties.Status.status.name = 'Initiate'
-        await prospectStorage.setItem(notionNormalizeId(prospectId), prospect)
       })
     )
 

@@ -124,7 +124,7 @@ export interface WhatsappSubscription {
 }
 
 /* Server Only */
-export const resourceTypes = ['prospect', 'client', 'project', 'content', 'asset', 'terms', 'privacy', 'cancellation', 'license'] as const
+export const resourceTypes = ['offer', 'prospect', 'client', 'project', 'content', 'asset', 'terms', 'privacy', 'cancellation', 'license'] as const
 
 export type ResourceType = (typeof resourceTypes)[number]
 
@@ -491,6 +491,58 @@ export interface NotionAsset {
       }
     }
     Additional: {
+      type: 'rich_text'
+      rich_text: {
+        text: {
+          content: string
+        }
+      }[]
+    }
+  }
+}
+
+export interface NotionOffer {
+  id: string
+  created_time: string
+  last_edited_time: string
+  cover: NotionImage
+  icon: NotionImage
+  properties: {
+    Name: {
+      type: 'title'
+      title: {
+        plain_text: string
+      }[]
+    }
+    ID: {
+      type: 'rich_text'
+      rich_text: {
+        text: {
+          content: string
+        }
+      }[]
+    }
+    Amount: {
+      type: 'rich_text'
+      rich_text: {
+        text: {
+          content: string
+        }
+      }[]
+    }
+    Status: {
+      type: 'select'
+      status: {
+        name: 'Planned' | 'Active' | 'Expired'
+      }
+    }
+    Features: {
+      type: 'select'
+      multi_select: {
+        name: string
+      }[]
+    }
+    Description: {
       type: 'rich_text'
       rich_text: {
         text: {
