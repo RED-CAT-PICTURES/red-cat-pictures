@@ -1,5 +1,18 @@
 # red-cat-pictures
 
+## v3.12.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.0...v3.12.1)
+
+### 🏡 Chore
+
+- Update dependencies and package manager version ([857ed70](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/857ed70))
+- Update nuxt dependency to version 4.3.0 ([277b4f9](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/277b4f9))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.12.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.11.4...v3.12.0)
