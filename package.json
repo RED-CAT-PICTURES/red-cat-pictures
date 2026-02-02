@@ -74,7 +74,7 @@
     "magic-regexp": "^0.10.0",
     "markdown-it": "^14.1.0",
     "notion-to-md": "^3.1.9",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.3.0",
     "p-map": "^7.0.4",
     "puppeteer": "^24.36.1",
     "regl": "^2.1.1",
