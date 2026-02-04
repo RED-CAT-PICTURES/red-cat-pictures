@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.12.2
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.1...v3.12.2)
+
+### 🏡 Chore
+
+- Update license and dependencies in Cargo.toml; format default.json for better readability ([5773f34](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/5773f34))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.12.1
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.0...v3.12.1)
