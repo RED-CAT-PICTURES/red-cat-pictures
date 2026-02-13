@@ -6,6 +6,15 @@ defineProps<{
 const emit = defineEmits<{
   contact: []
 }>()
+
+const socialLinks = [
+  { label: 'whatsapp', icon: 'local:whatsapp', to: 'https://wa.me/c/912269711501' },
+  { label: 'instagram', icon: 'local:instagram', to: 'https://www.instagram.com/redcatpictures' },
+  { label: 'facebook', icon: 'local:facebook', to: 'https://www.facebook.com/redcatpictures' },
+  { label: 'linkedin', icon: 'local:linkedin', to: 'https://www.linkedin.com/company/red-cat-pictures' },
+  { label: 'youtube', icon: 'local:youtube', to: 'https://www.youtube.com/@red_cat_pictures' },
+  { label: 'google-map', icon: 'local:map', to: 'https://maps.app.goo.gl/a5RZtb1rxHC8MoaY6' },
+]
 </script>
 
 <template>
@@ -37,34 +46,9 @@ const emit = defineEmits<{
 
       <!-- Social Media Icons - Right column on mobile, two rows of 3 icons -->
       <ul class="col-span-1 grid grid-cols-3 gap-4 justify-self-end *:text-white *:transition-colors *:duration-500 *:ease-out hover:*:text-dark-600 md:col-start-3 md:row-start-3 md:flex md:gap-8">
-        <li>
-          <NuxtLink aria-label="whatsapp" to="https://wa.me/c/912269711501" target="_blank" external>
-            <NuxtIcon name="local:whatsapp" class="text-[28px] md:text-[40px]" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink aria-label="instagram" to="https://www.instagram.com/redcatpictures" target="_blank" external>
-            <NuxtIcon name="local:instagram" class="text-[28px] md:text-[40px]" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink aria-label="facebook" to="https://www.facebook.com/redcatpictures" target="_blank" external>
-            <NuxtIcon name="local:facebook" class="text-[28px] md:text-[40px]" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink aria-label="linkedin" to="https://www.linkedin.com/company/red-cat-pictures" target="_blank" external>
-            <NuxtIcon name="local:linkedin" class="text-[28px] md:text-[40px]" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink aria-label="youtube" to="https://www.youtube.com/@red_cat_pictures" target="_blank" external>
-            <NuxtIcon name="local:youtube" class="text-[28px] md:text-[40px]" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink aria-label="google" to="https://maps.app.goo.gl/a5RZtb1rxHC8MoaY6" target="_blank" external>
-            <NuxtIcon name="local:map" class="text-[28px] md:text-[40px]" />
+        <li v-for="link in socialLinks" :key="link.label">
+          <NuxtLink :aria-label="link.label" :to="link.to" target="_blank" external>
+            <NuxtIcon :name="link.icon" class="text-[28px] md:text-[40px]" />
           </NuxtLink>
         </li>
       </ul>

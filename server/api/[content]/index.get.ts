@@ -1,5 +1,5 @@
 import { NotionToMarkdown } from 'notion-to-md'
-import { z } from 'zod'
+import * as z from 'zod'
 
 let n2m: NotionToMarkdown
 

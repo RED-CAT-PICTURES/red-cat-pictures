@@ -107,7 +107,6 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
         <!--  <h2 class="text-center text-md font-semibold uppercase md:text-xl">
           Project {{ projectId }}
         </h2> -->
-
         <!-- Mixed masonry: photos + videos together -->
         <div class="columns-2 gap-2 md:columns-4 2xl:columns-6">
           <div
@@ -133,7 +132,6 @@ const activeMediaId = useState<string | null>('active-media-id', () => null)
                   @contextmenu.prevent />
               </NuxtLink>
             </template>
-
             <!-- Video -->
             <template v-else>
               <NuxtLink :to="item.url" class="block" @mouseenter="activeMediaId = item.id" @mouseleave="activeMediaId = null" @click="activeMediaId = item.id">

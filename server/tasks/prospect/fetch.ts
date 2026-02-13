@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { initAI } from '@shba007/unai'
 import { scrapeData } from '~~/server/tasks/sync/meta-data'
 
