@@ -1,5 +1,21 @@
 # red-cat-pictures
 
+## v3.13.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.2...v3.13.0)
+
+### 🚀 Enhancements
+
+- Add new icons and refactor packaging section ([ff7dbbe](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/ff7dbbe))
+
+### 💅 Refactors
+
+- Update zod import style to use namespace import ([a6c3050](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/a6c3050))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.12.2
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.1...v3.12.2)
