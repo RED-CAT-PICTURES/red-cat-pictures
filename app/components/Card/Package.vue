@@ -13,9 +13,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div
-    class="my-4 flex aspect-[5/8] w-[254px] flex-col items-center justify-between bg-light-500 px-5 py-8 drop-shadow-md dark:bg-dark-500 md:mx-auto md:w-[323px] md:px-9 md:py-12 xl:w-[392px]"
-    :class="[isActive ? 'border border-primary-500' : 'scale-95']">
+  <div class="flex aspect-[5/8] size-full flex-col items-center justify-between bg-light-500 px-5 py-8 drop-shadow-md dark:bg-dark-500 md:mx-auto md:w-[323px] md:px-9 md:py-12 xl:w-[392px]">
     <h2
       class="w-min whitespace-nowrap text-center text-lg text-primary-500 md:text-2xl"
       v-html="
@@ -30,7 +28,7 @@ const emit = defineEmits<{
     </span>
     <ul class="flex w-full flex-col gap-3 md:gap-5">
       <li v-for="{ icon, title } in points" :key="icon" class="relative flex w-full items-center gap-3 overflow-hidden bg-light-400 px-4 py-3 text-center dark:bg-dark-400">
-        <NuxtIcon :name="`local:${icon}`" class="shrink-0 fill-primary-500 text-[24px] md:text-[36px]" />
+        <NuxtIcon :name="icon" class="shrink-0 fill-primary-500 text-[24px] md:text-[36px]" />
         <span class="text-left text-2xs md:text-base">{{ title }}</span>
       </li>
     </ul>

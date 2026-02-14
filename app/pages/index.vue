@@ -125,7 +125,8 @@ function onContact(action: boolean) {
         @active="(name) => (activePhotoName = name)"
         @update="(value) => (activeCategory = value)" />
       <SectionPricing :photos="allPhotos" @contact="onContact(true)" />
-      <SectionApps />
+      <SectionPackages />
+      <!-- <SectionApps /> -->
     </div>
   </div>
 </template>

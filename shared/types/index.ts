@@ -79,7 +79,7 @@ export interface ServicePrice {
   points: { icon: string; title: string }[]
 }
 
-export type Price = Record<Category, Record<Service, ServicePrice[]>>
+export type Price = Record<Service, ServicePrice[]>
 
 export interface Content {
   id: string
