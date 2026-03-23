@@ -1,6 +1,6 @@
 services:
   documenso:
-    image: documenso/documenso:latest
+    image: documenso/documenso:v2.8.0
     env_file:
       - .env
     volumes:

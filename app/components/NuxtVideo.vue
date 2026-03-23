@@ -20,6 +20,7 @@ const props = withDefaults(
     muted?: boolean
     playsinline?: boolean
     disablePictureInPicture?: boolean
+    baseUrl?: string
   }>(),
   {
     multiOrentation: false,
@@ -32,8 +33,11 @@ const props = withDefaults(
     muted: false,
     playsinline: false,
     disablePictureInPicture: false,
+    baseUrl: undefined,
   }
 )
+
+const baseUrl = computed(() => props.baseUrl ?? cdnUrl)
 
 const emit = defineEmits<{
   started: []
@@ -154,7 +158,7 @@ onMounted(() => {
   })
 
   player.loadVideo({
-    url: `${cdnUrl}/media/video/s_720-1080/${activeSource.value}.mpd`,
+    url: `${baseUrl.value}/media/video/s_720-1080/${activeSource.value}.mpd`,
     transport: 'dash',
     autoPlay: props.autoplay,
   })
@@ -167,7 +171,7 @@ watch(activeSource, (newSource, oldSource) => {
   const wasPlaying = !videoRef.value?.paused
 
   player.loadVideo({
-    url: `${cdnUrl}/media/video/s_720-1080/${newSource}.mpd`,
+    url: `${baseUrl.value}/media/video/s_720-1080/${newSource}.mpd`,
     transport: 'dash',
     autoPlay: props.autoplay,
     startAt: { position: currentTime },

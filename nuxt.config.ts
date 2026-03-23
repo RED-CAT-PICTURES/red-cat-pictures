@@ -61,6 +61,8 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils/module',
     '@nuxtjs/color-mode',
+    // '@nuxtjs/i18n',
+    '@nuxtjs/mcp-toolkit',
     '@nuxtjs/mdc',
     '@nuxtjs/seo',
     '@nuxtjs/tailwindcss',
@@ -188,6 +190,10 @@ export default defineNuxtConfig({
     preference: 'dark',
     fallback: 'light',
     classSuffix: '',
+  },
+  mcp: {
+    name: 'RED CAT PICTURES MCP Server',
+    version: '1.0.0',
   },
   site: {
     name: 'RED CAT PICTURES',
