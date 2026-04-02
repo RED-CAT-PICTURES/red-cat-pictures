@@ -29,8 +29,8 @@ export default defineCachedEventHandler<Promise<VideoDetails>>(
         category: video.properties.Segment.select.name,
         gallery: video.properties.Gallery.checkbox,
         featured: video.properties.Featured.number,
-        url: `/video/${slug}`,
         uploadDate: video.created_time,
+        url: `/video/${slug}`,
       } as VideoDetails
     } catch (error: unknown) {
       console.error('API video/slug GET', error)
