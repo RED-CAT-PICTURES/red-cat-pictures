@@ -20,7 +20,7 @@ const columns = computed<Photo[][]>(() => {
 </script>
 
 <template>
-  <section id="pricing">
+  <section id="branding">
     <SectionLabel icon="chess-knight" title="Signature Branding" />
     <div class="bg-neutral-900 relative flex h-screen w-full items-center justify-center overflow-hidden">
       <div class="pointer-events-none absolute inset-0 flex items-center justify-center before:absolute before:z-10 before:size-full before:bg-black/90 before:content-['']">

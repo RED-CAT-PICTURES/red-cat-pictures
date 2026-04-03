@@ -1,5 +1,4 @@
 export type Category = 'ecommerce' | 'product' | 'food'
-export type Service = 'photo' | 'video'
 export type Orientation = 'portrait' | 'landscape'
 
 export interface Photo {
@@ -72,14 +71,19 @@ export interface VideoDetails extends Video {
   title: string
 }
 
-export interface ServicePrice {
+export type PackageFeature = {
+  icon: string
   title: string
-  price: number
-  unit: 'photo' | 'video' | 'session'
-  points: { icon: string; title: string }[]
 }
 
-export type Price = Record<Service, ServicePrice[]>
+export type Package = {
+  id: 'standard' | 'custom'
+  title: string
+  subtitle: string
+  price: string
+  unit: 'day' | 'project'
+  features: PackageFeature[]
+}
 
 export interface Content {
   id: string

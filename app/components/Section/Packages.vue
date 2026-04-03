@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import type { Service } from '~~/shared/types'
-
 const { proxy: gaProxy } = useScriptGoogleAnalytics()
-const { data: prices, pending } = await useAPI('/api/price')
-
-const tabs = [
-  { icon: 'photo', title: 'photo' },
-  { icon: 'youtube', title: 'video' },
-] as const
-
-const activeTab = ref<Service>('photo')
+const { data: packages, pending } = await useAPI('/api/package')
 
 const isModelContactOpen = useState<boolean>('isModelContactOpen', () => false)
 
@@ -17,131 +8,53 @@ function onContact(open: boolean) {
   isModelContactOpen.value = open
   gaProxy.gtag('event', open ? 'contact_open' : 'contact_close')
 }
-
-const packages = computed(() => {
-  return prices.value?.[activeTab.value] ?? []
-})
-
-const featuredIndex = computed(() => {
-  const n = packages.value.length
-  return n ? Math.floor((n - 1) / 2) : 0
-})
-
-const activeIndex = ref(0)
-watch(
-  () => packages.value.length,
-  () => (activeIndex.value = featuredIndex.value),
-  { immediate: true }
-)
-
-function setActive(i: number) {
-  activeIndex.value = i
-}
-function resetActive() {
-  activeIndex.value = featuredIndex.value
-}
-
-// Carousel navigation
-const scrollContainer = ref<HTMLElement | null>(null)
-
-function scrollPrev() {
-  if (!scrollContainer.value) return
-  const cards = scrollContainer.value.querySelectorAll('.package-card')
-  if (cards.length === 0) return
-
-  const cardWidth = cards[0].getBoundingClientRect().width
-  const gap = 48 // gap-6 = 48px
-
-  scrollContainer.value.scrollBy({
-    left: -(cardWidth + gap),
-    behavior: 'smooth',
-  })
-}
-
-function scrollNext() {
-  if (!scrollContainer.value) return
-  const cards = scrollContainer.value.querySelectorAll('.package-card')
-  if (cards.length === 0) return
-
-  const cardWidth = cards[0].getBoundingClientRect().width
-  const gap = 48 // gap-6 = 48px
-
-  scrollContainer.value.scrollBy({
-    left: cardWidth + gap,
-    behavior: 'smooth',
-  })
-}
 </script>
 
 <template>
-  <section v-if="!pending" id="packages" class="relative mx-auto w-full">
-    <!-- Tabs -->
-    <div class="mb-6 flex w-full justify-center md:mb-10">
-      <div class="inline-flex gap-2 rounded-full bg-light-400/70 p-1 dark:bg-dark-400/60" role="tablist" aria-label="Pricing service type">
-        <ButtonLabel
-          v-for="{ icon, title } in tabs"
-          :key="title"
-          :icon="icon"
-          :title="title"
-          :active="title === activeTab"
-          role="tab"
-          :aria-selected="title === activeTab"
-          @click="activeTab = title" />
-      </div>
-    </div>
-    <!-- Cards Container with Navigation -->
-    <div class="relative">
-      <!-- Previous Button -->
-      <button
-        class="absolute -left-2 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center bg-primary-500 px-2 py-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50"
-        aria-label="Previous packages"
-        @click="scrollPrev">
-        <NuxtIcon name="local:chevron-bold" class="text-[16px] md:text-[20px]" />
-      </button>
-      <div ref="scrollContainer" class="scrollbar-hidden flex snap-x snap-mandatory gap-6 overflow-x-auto px-1 md:px-12">
-        <div
-          v-for="({ title, price, unit, points }, index) in packages"
-          :key="title"
-          class="package-card shrink-0 snap-center"
-          @mouseenter="setActive(index)"
-          @focusin="setActive(index)"
-          @mouseleave="resetActive()"
-          @focusout="resetActive()">
-          <CardPackage :is-active="index === activeIndex" :title="title" :price="price" :unit="unit" :points="points" @contact="onContact(true)" />
+  <section v-if="!pending && packages?.length" id="packages" class="relative h-min">
+    <SectionLabel icon="cart" title="Packages" />
+    <div
+      class="scrollbar-hidden flex aspect-[3/5] h-min snap-x snap-mandatory gap-4 overflow-x-auto text-black dark:text-white md:mx-auto md:grid md:aspect-auto md:max-w-4xl md:grid-cols-2 md:overflow-visible">
+      <article
+        v-for="plan in packages"
+        :key="plan.id"
+        class="relative flex w-[78vw] min-w-[78vw] flex-shrink-0 snap-start flex-col overflow-hidden border border-light-600 bg-light-500 transition-transform duration-300 dark:border-dark-600 dark:bg-dark-500 md:w-auto md:min-w-0 md:flex-shrink md:hover:-translate-y-1">
+        <div class="relative h-36 w-full overflow-hidden bg-gradient-to-br from-light-500 to-light-600 dark:from-dark-500 dark:to-dark-600"></div>
+
+        <div class="flex flex-1 flex-col gap-4 p-5">
+          <div>
+            <h2 class="text-xl font-bold">
+              {{ plan.title }}
+            </h2>
+            <p class="mt-1 text-xs font-regular leading-relaxed">
+              {{ plan.subtitle }}
+            </p>
+          </div>
+
+          <div class="flex items-baseline gap-1">
+            <span class="text-sm font-semi-bold">₹</span>
+            <span class="text-2xl font-bold tracking-tight">
+              {{ plan.price === 'custom' ? 'Custom' : Number(plan.price).toLocaleString('en-IN') }}
+            </span>
+            <span class="text-xs font-regular"> / {{ plan.unit }} </span>
+          </div>
+
+          <button
+            class="w-full border border-light-600 bg-light-600/40 py-3 text-sm font-semi-bold transition-all duration-200 hover:bg-light-600 active:scale-95 dark:border-dark-600 dark:bg-dark-600/40 hover:dark:bg-dark-600"
+            @click="onContact(true)">
+            Contact Us
+          </button>
+
+          <hr class="border-dark-600" />
+
+          <ul class="flex flex-col gap-2">
+            <li v-for="feature in plan.features" :key="feature.title" class="flex items-center gap-2 text-sm font-regular">
+              <NuxtIcon name="local:badge-check" class="fill-primary-500 text-[20px]" />
+              <span>{{ feature.title }}</span>
+            </li>
+          </ul>
         </div>
-      </div>
-      <!-- Next Button -->
-      <button
-        class="absolute -right-2 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center bg-primary-500 px-2 py-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50"
-        aria-label="Next packages"
-        @click="scrollNext">
-        <NuxtIcon name="local:chevron-bold" class="rotate-180 text-[16px] md:text-[20px]" />
-      </button>
+      </article>
     </div>
   </section>
 </template>
-
-<style scoped>
-#pricing {
-  scroll-margin-top: 96px;
-}
-
-#pricing :where(.overflow-x-auto)::-webkit-scrollbar {
-  height: 10px;
-}
-
-#pricing :where(.overflow-x-auto)::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, #000 18%, transparent);
-  border-radius: 999px;
-}
-
-:global(.dark) #pricing :where(.overflow-x-auto)::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, #fff 18%, transparent);
-}
-
-@media (min-width: 768px) {
-  #pricing :where(.overflow-x-auto)::-webkit-scrollbar {
-    height: 6px;
-  }
-}
-</style>

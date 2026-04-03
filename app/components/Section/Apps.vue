@@ -1,28 +1,24 @@
 <script setup lang="ts">
-const container = ref<HTMLElement | null>(null)
+import type { CSSProperties } from 'vue'
+
+const container = useTemplateRef<HTMLElement>('container')
 const isHovering = ref(false)
 
-const { tilt, roll } = useParallax(container)
+const parallax = reactive(useParallax(container))
 
-const MAX_ROTATE = 20 // degrees
-const LIFT = 2 // px
+const MAX_ROTATE = 40
 
-const phoneStyle = computed(() => {
-  // roll -> rotateX, tilt -> rotateY (swap if you prefer the opposite feel)
-  const rx = (-roll.value * MAX_ROTATE).toFixed(3)
-  const ry = (tilt.value * MAX_ROTATE).toFixed(3)
-  const ty = isHovering.value ? -LIFT : 0
-
-  return {
-    transform: `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(${ty}px)`,
-  }
-})
+const phoneStyle = computed<CSSProperties>(() => ({
+  perspective: '900px',
+  transform: `rotateX(${parallax.roll * MAX_ROTATE}deg) rotateY(${parallax.tilt * MAX_ROTATE}deg)`,
+  transition: '0.3s ease-out all',
+}))
 
 const appFeatures = ['Book shoots instantly', 'Watch production pipeline', 'Read Episodes on the go']
 </script>
 
 <template>
-  <section class="relative min-h-dvh w-full overflow-hidden bg-black text-white">
+  <section class="lbg-white relative min-h-dvh w-full overflow-hidden text-black dark:bg-black dark:text-white">
     <div class="absolute -left-20 top-20 h-56 w-56 rounded-full bg-primary-500 opacity-20 blur-[100px] sm:h-72 sm:w-72" />
     <div class="absolute bottom-0 right-0 h-72 w-72 translate-x-1/3 translate-y-1/3 rounded-full bg-primary-600/40 blur-[120px]" />
     <div
@@ -35,11 +31,11 @@ const appFeatures = ['Book shoots instantly', 'Watch production pipeline', 'Read
             Control <br />
             <span class="sweep-gradient bg-gradient-to-r from-primary-500 from-50% to-white">The Chaos.</span>
           </h2>
-          <p class="font-medium mb-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
+          <p class="font-medium mb-6 max-w-lg text-base leading-relaxed opacity-70 sm:text-lg">
             Watch our production pipeline, book your next campaign directly from the messy reality of your pocket.
           </p>
           <ul class="mb-7 space-y-2 sm:mb-8 sm:space-y-3">
-            <li v-for="(feature, index) in appFeatures" :key="index" class="flex items-center text-xs font-bold uppercase tracking-wider text-white/50 sm:text-sm">
+            <li v-for="(feature, index) in appFeatures" :key="index" class="flex items-center text-xs font-bold uppercase tracking-wider opacity-70 md:text-sm">
               <span class="mr-3 flex h-2 w-2 items-center justify-center bg-primary-600"></span>
               {{ feature }}
             </li>
@@ -48,12 +44,12 @@ const appFeatures = ['Book shoots instantly', 'Watch production pipeline', 'Read
             to="https://play.google.com/store/apps/details?id=com.redcatpictures.studio"
             external
             target="__blank"
-            class="hover:border-red-600 hover:bg-red-600/10 group relative inline-flex items-center gap-3 overflow-hidden border border-white/20 bg-white/5 px-5 py-3 backdrop-blur-sm transition-all duration-300">
+            class="hover:border-red-600 hover:bg-red-600/10 group relative inline-flex items-center gap-3 overflow-hidden border border-black/20 bg-black/5 px-5 py-3 backdrop-blur-sm transition-all duration-300 dark:border-white/20 dark:bg-white/5">
             <div class="absolute inset-y-0 left-0 w-1 bg-primary-600 transition-all duration-300 group-hover:w-full group-hover:opacity-10" />
             <NuxtIcon name="local:playstore" class="z-10 text-[2rem] transition-transform duration-300 group-hover:scale-110" />
             <div class="relative z-10 flex flex-col items-start">
-              <span class="text-[10px] font-bold uppercase text-white/70 group-hover:text-primary-400">Get it on</span>
-              <span class="text-lg font-bold leading-none tracking-wide text-white">Google Play</span>
+              <span class="text-[10px] font-bold uppercase opacity-70 group-hover:text-primary-400 group-hover:opacity-100">Get it on</span>
+              <span class="text-lg font-bold leading-none tracking-wide">Google Play</span>
             </div>
           </NuxtLink>
         </div>

@@ -65,6 +65,13 @@ const isAnimate = ref(false)
 
 .text-shadow-lg {
   text-shadow:
+    0px 1px 1px rgb(255 255 255 / 0.2),
+    0px 1px 2px rgb(255 255 255 / 0.2),
+    0px 2px 4px rgb(255 255 255 / 0.2);
+}
+
+.dark .text-shadow-lg {
+  text-shadow:
     0px 1px 1px rgb(0 0 0 / 0.2),
     0px 1px 2px rgb(0 0 0 / 0.2),
     0px 2px 4px rgb(0 0 0 / 0.2);

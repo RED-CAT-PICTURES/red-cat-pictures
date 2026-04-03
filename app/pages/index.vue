@@ -108,6 +108,8 @@ function onContact(action: boolean) {
     gaProxy.gtag('event', 'contact_close')
   }
 }
+
+const isNative = computed(() => import.meta.env.PLATFORM_ENV !== 'native')
 </script>
 
 <template>
@@ -124,9 +126,9 @@ function onContact(action: boolean) {
         :active-photo="activePhotoName"
         @active="(name) => (activePhotoName = name)"
         @update="(value) => (activeCategory = value)" />
-      <SectionPricing :photos="allPhotos" @contact="onContact(true)" />
+      <SectionBranding :photos="allPhotos" @contact="onContact(true)" />
       <SectionPackages />
-      <!-- <SectionApps /> -->
+      <SectionApps v-if="isNative" />
     </div>
   </div>
 </template>
