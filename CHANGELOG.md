@@ -1,5 +1,25 @@
 # red-cat-pictures
 
+## v3.14.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.13.0...v3.14.0)
+
+### 🚀 Enhancements
+
+- Added mcp server and updated packages ([f7e16b5](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/f7e16b5))
+
+### 💅 Refactors
+
+- Packing section, fixed native email and call links ([4bb81b1](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/4bb81b1))
+
+### 🏡 Chore
+
+- Update dependencies and fix URL assignment in video API ([1f0633e](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/1f0633e))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.13.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.12.2...v3.13.0)
