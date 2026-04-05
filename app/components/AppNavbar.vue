@@ -19,6 +19,7 @@ const urls = ref([
   { url: '/project', id: 'project', label: 'Projects' },
   { url: '/episode', id: 'episodes', label: 'Episodes' },
   { url: '/blog', id: 'blogs', label: 'Blogs' },
+  { url: '/stream', id: 'livestream', label: 'LiveStream' },
   // { url: '/experience', id: 'experience', label: 'Experience' },
   { url: '/about', id: 'about', label: 'About Us' },
 ])
