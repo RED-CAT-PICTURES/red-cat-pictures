@@ -1,5 +1,19 @@
 # red-cat-pictures
 
+## v3.14.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.14.0...v3.14.1)
+
+### 🏡 Chore
+
+- Update node engine version and dependencies ([b771066](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/b771066))
+- Update dependencies and package manager version ([197e536](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/197e536))
+- Update Node.js setup and upgrade TypeScript to version 6.0.2 ([92079f1](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/92079f1))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.14.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.13.0...v3.14.0)
