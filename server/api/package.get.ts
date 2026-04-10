@@ -6,7 +6,7 @@ export default defineEventHandler<Promise<Package[]>>(
           id: 'standard',
           title: 'Standard',
           subtitle: 'Everything you need for great product visuals',
-          price: '10000',
+          price: '20000',
           unit: 'day',
           features: [
             { icon: 'local:camera', title: 'Photo & video shoots included' },
