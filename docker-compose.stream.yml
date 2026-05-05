@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+  # Main red-cat-pictures app image (same as production)
+  app:
+    image: ghcr.io/red-cat-pictures/red-cat-pictures:latest
+    env_file:
+      - .env
+    environment:
+      # Ensure app can talk to RTMP/HLS nginx if needed
+      - NUXT_PUBLIC_STREAM_BASE_URL=http://nginx-rtmp
+      - NUXT_HOST=0.0.0.0
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - red-cat-pictures_data:/app/.data
+      # Mount HLS/DASH/recordings from the RTMP server for serving VOD if desired
+      - hls_data:/app/static/hls
+      - dash_data:/app/static/dash
+      - recordings_data:/app/static/recordings
+    networks:
+      - internal
+      - stream-network
+    depends_on:
+      - browserless
+      - nginx-rtmp
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  # Headless browser (carried over from production)
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    environment:
+      - CORS=true
+    networks:
+      - internal
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  # Nginx reverse proxy with RTMP and HLS/DASH/recordings (from RedCat_live)
+  nginx-rtmp:
+    image: tiangolo/nginx-rtmp:latest
+    container_name: nginx-rtmp
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '1935:1935' # RTMP ingest
+      # Optionally expose HTTPS here when SSL is configured
+      # - '443:443'
+    volumes:
+      - hls_data:/var/www/html/hls
+      - dash_data:/var/www/html/dash
+      - recordings_data:/var/www/html/recordings
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - stream-network
+
+volumes:
+  red-cat-pictures_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /root/red-cat-pictures/.data
+  hls_data:
+  dash_data:
+  recordings_data:
+
+networks:
+  internal:
+    driver: overlay
+  stream-network:
+    driver: bridge

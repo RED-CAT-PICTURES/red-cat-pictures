@@ -26,12 +26,12 @@ const activeBlog = useState()
 <template>
   <section class="relative">
     <ul v-if="blogs?.length" class="mx-auto mt-28 grid h-full w-fit max-w-screen-2xl grow grid-cols-1 justify-center gap-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-      <li v-for="{ id, cover, title, description, url, createdAt, publishedAt, modifiedAt } in blogs" :key="id">
+      <li v-for="{ id, cover, title: blogTitle, description: blogDescription, url, createdAt, publishedAt, modifiedAt } in blogs" :key="id">
         <CardContent
           :id="id"
           :cover="cover"
-          :title="title"
-          :description="description"
+          :title="blogTitle"
+          :description="blogDescription"
           :url="url"
           :created-at="createdAt"
           :published-at="publishedAt"
