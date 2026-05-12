@@ -4,9 +4,9 @@ export default defineEventHandler<Promise<Package[]>>(
       const packages: Package[] = [
         {
           id: 'standard',
-          title: 'Standard',
+          title: 'Standard Photography Package',
           subtitle: 'Everything you need for great product visuals',
-          price: '20000',
+          price: '15000',
           unit: 'day',
           features: [
             { icon: 'local:camera', title: 'Photo & video shoots included' },
@@ -19,7 +19,7 @@ export default defineEventHandler<Promise<Package[]>>(
         },
         {
           id: 'custom',
-          title: 'Custom',
+          title: 'Custom Photography Package',
           subtitle: 'Tailored end-to-end for premium brands',
           price: 'custom',
           unit: 'day',

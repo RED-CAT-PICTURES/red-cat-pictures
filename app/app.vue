@@ -98,7 +98,7 @@ const { data: offers } = await useAPI('/api/offer')
     <NuxtPage />
   </NuxtLayout>
   <LazyAppInstallPrompt hydrate-on-idle />
-  <LazyAppVisitPrompt hydrate-on-idle />
+  <!-- <LazyAppVisitPrompt hydrate-on-idle /> -->
   <LazyModalContact v-show="isModelContactOpen" hydrate-on-visible :is-open="isModelContactOpen" @close="onContact(false)" />
   <LazyModalOffer v-if="offers && offers?.length" :offers="offers" hydrate-on-idle />
 </template>

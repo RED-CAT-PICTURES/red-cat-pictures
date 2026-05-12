@@ -109,7 +109,7 @@ function onContact(action: boolean) {
   }
 }
 
-const isNative = computed(() => import.meta.env.PLATFORM_ENV !== 'native')
+// const isNative = computed(() => import.meta.env.PLATFORM_ENV !== 'native')
 </script>
 
 <template>
@@ -128,7 +128,7 @@ const isNative = computed(() => import.meta.env.PLATFORM_ENV !== 'native')
         @update="(value) => (activeCategory = value)" />
       <SectionBranding :photos="allPhotos" @contact="onContact(true)" />
       <SectionPackages />
-      <SectionApps v-if="isNative" />
+      <!-- <SectionApps v-if="isNative" /> -->
     </div>
   </div>
 </template>

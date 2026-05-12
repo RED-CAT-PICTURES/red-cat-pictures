@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import type { ServicePrice } from '~~/shared/types'
-
-interface PriceProp extends ServicePrice {
-  isActive: boolean
-}
-
-defineProps<PriceProp>()
+defineProps<{ package: Package }>()
 
 const emit = defineEmits<{
   contact: []
@@ -13,27 +7,40 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="flex aspect-[5/8] size-full flex-col items-center justify-between bg-light-500 px-5 py-8 drop-shadow-md dark:bg-dark-500 md:mx-auto md:w-[323px] md:px-9 md:py-12 xl:w-[392px]">
-    <h2
-      class="w-min whitespace-nowrap text-center text-lg text-primary-500 md:text-2xl"
-      v-html="
-        title
-          .split(' ')
-          .map((w, i, a) => (i === Math.ceil(a.length / 2) ? `<br>${w}` : w))
-          .join(' ')
-      " />
-    <span class="flex items-center justify-center gap-2">
-      <h3 class="text-center text-3xl md:text-3xl">₹{{ price }}</h3>
-      <h4>/ {{ unit }}</h4>
-    </span>
-    <ul class="flex w-full flex-col gap-3 md:gap-5">
-      <li v-for="{ icon, title } in points" :key="icon" class="relative flex w-full items-center gap-3 overflow-hidden bg-light-400 px-4 py-3 text-center dark:bg-dark-400">
-        <NuxtIcon :name="icon" class="shrink-0 fill-primary-500 text-[24px] md:text-[36px]" />
-        <span class="text-left text-2xs md:text-base">{{ title }}</span>
-      </li>
-    </ul>
-    <button class="bg-primary-500 px-7 py-2 text-xs font-semi-bold text-white transition-colors duration-300 ease-out hover:bg-primary-400 md:px-10 md:py-4 md:text-lg" @click="emit('contact')">
-      Contact
-    </button>
-  </div>
+  <article
+    class="relative flex aspect-[418/628] flex-shrink-0 snap-start flex-col overflow-hidden bg-light-500 p-6 transition-transform duration-300 dark:bg-dark-500 md:w-auto md:min-w-0 md:max-w-[418px] md:flex-shrink md:hover:-translate-y-1">
+    <div class="absolute -top-1/2 left-1/2 aspect-square w-full -translate-x-1/2">
+      <div class="aspect-square w-full rounded-full bg-primary-500/50 blur-[120px]" />
+      <!-- Secondary deeper glow -->
+      <div class="absolute left-1/2 top-1/2 aspect-square w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-500/30 blur-[80px]" />
+    </div>
+    <div class="relative mt-16 flex max-w-80 flex-1 flex-col justify-start gap-4 md:mt-32">
+      <div>
+        <h2 class="text-lg font-bold md:text-xl">
+          {{ package.title }}
+        </h2>
+        <p class="mt-2 text-xs md:text-sm">
+          {{ package.subtitle }}
+        </p>
+      </div>
+
+      <div class="flex items-baseline gap-1">
+        <span class="text-2xl capitalize"> ₹{{ package.price }} </span>
+        <span class="ml-0.5 text-lg"> / {{ package.unit }} </span>
+      </div>
+
+      <button
+        class="w-full border border-light-600 bg-light-600/40 py-3 text-sm font-semi-bold transition-all duration-200 hover:bg-light-600 active:scale-95 dark:border-dark-600 dark:bg-dark-600/40 hover:dark:bg-dark-600"
+        @click="emit('contact')">
+        Contact Us
+      </button>
+
+      <ul class="flex flex-col gap-2">
+        <li v-for="feature in package.features" :key="feature.title" class="flex items-center gap-2 text-xs md:text-sm">
+          <NuxtIcon name="local:badge-check" class="fill-primary-500 text-[20px]" />
+          <span>{{ feature.title }}</span>
+        </li>
+      </ul>
+    </div>
+  </article>
 </template>
