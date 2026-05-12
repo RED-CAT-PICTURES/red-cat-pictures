@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.15.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.14.1...v3.15.0)
+
+### 🚀 Enhancements
+
+- New pricing section and removed playstore section ([5681e52](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/5681e52))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.14.1
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.14.0...v3.14.1)
