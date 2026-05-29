@@ -1,5 +1,18 @@
 # red-cat-pictures
 
+## v3.15.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.0...v3.15.1)
+
+### 🏡 Chore
+
+- Update dependencies and package manager version ([2feb06b](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/2feb06b))
+- Update dependencies in package.json ([3e0bae4](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/3e0bae4))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.14.1...v3.15.0)
