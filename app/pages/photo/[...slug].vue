@@ -66,16 +66,16 @@ const isImageLoaded = ref(false)
 </script>
 
 <template>
-  <main v-if="activePhoto" class="relative mx-auto flex h-screen w-screen flex-col items-center justify-center overflow-hidden p-4 md:p-8">
+  <main v-if="activePhoto" class="gradient relative mx-auto flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
     <!-- App Header -->
-    <header class="absolute left-0 right-0 top-4 mx-auto fill-black px-4 text-black dark:fill-white dark:text-white md:px-16">
+    <header class="fixed left-0 right-0 top-4 z-50 mx-auto fill-black px-4 text-black dark:fill-white dark:text-white md:px-16">
       <nav class="relative z-20 grid grid-cols-3 items-center">
         <NuxtLink to="/" class="size-fit" aria-label="home">
           <NuxtIcon name="local:logo" filled class="hidden text-[64px] dark:inline md:text-[96px]" />
           <NuxtIcon name="local:logo-dark" filled class="inline text-[64px] dark:hidden md:text-[96px]" />
         </NuxtLink>
         <div class="col-start-3 justify-self-end">
-          <LazyButtonColorMode hydrate-on-visible />
+          <LazyButtonColorMode hydrate-on-visible class="hidden md:block" />
         </div>
       </nav>
     </header>
