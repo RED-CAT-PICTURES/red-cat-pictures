@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.15.2
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.1...v3.15.2)
+
+### 🩹 Fixes
+
+- Expand content type options and refine resource filtering logic ([40cb9b8](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/40cb9b8))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.1
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.0...v3.15.1)
