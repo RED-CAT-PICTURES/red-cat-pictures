@@ -9,7 +9,7 @@ export default defineCachedEventHandler<Promise<Content[]>>(
       const { content: contentType } = await getValidatedRouterParams(
         event,
         z.object({
-          content: z.enum(['episode', 'blog']),
+          content: z.enum(['episode', 'blog', 'education']),
         }).parse
       )
 

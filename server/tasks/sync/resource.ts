@@ -11,11 +11,11 @@ export default defineTask({
     const config = useRuntimeConfig()
     const notionDbId = config.private.notionDbId as unknown as NotionDB
     const resources: Pick<ResourceQueries, 'prospect' | 'client' | 'project' | 'content' | 'asset'> = {
-      prospect: (await notionQueryDb<NotionProspect>(notion, notionDbId.prospect)).filter((a) => !!a),
-      client: (await notionQueryDb<NotionProjectClient>(notion, notionDbId.client)).filter((a) => !!a),
-      project: (await notionQueryDb<NotionProject>(notion, notionDbId.project)).filter((a) => !!a),
-      content: (await notionQueryDb<NotionContent>(notion, notionDbId.content)).filter((a) => !!a),
-      asset: (await notionQueryDb<NotionAsset>(notion, notionDbId.asset)).filter((a) => !!a),
+      prospect: (await notionQueryDb<NotionProspect>(notion, notionDbId.prospect)).filter((a) => !!a && a?.properties?.Name?.title?.length > 0),
+      client: (await notionQueryDb<NotionProjectClient>(notion, notionDbId.client)).filter((a) => !!a && a?.properties?.Name?.title?.length > 0),
+      project: (await notionQueryDb<NotionProject>(notion, notionDbId.project)).filter((a) => !!a && a?.properties?.Name?.title?.length > 0),
+      content: (await notionQueryDb<NotionContent>(notion, notionDbId.content)).filter((a) => !!a && a?.properties?.Name?.title?.length > 0),
+      asset: (await notionQueryDb<NotionAsset>(notion, notionDbId.asset)).filter((a) => !!a && a?.properties?.Name?.title?.length > 0),
     }
     const results = await Promise.allSettled(Object.values(resources))
 

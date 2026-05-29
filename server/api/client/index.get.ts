@@ -10,6 +10,8 @@ export default defineCachedEventHandler<Promise<ProjectClient[]>>(
   async () => {
     try {
       const clientStorage = useStorage<Resource<'client'>>(`data:resource:client`)
+      const projectStorage = useStorage<Resource<'project'>>(`data:resource:project`)
+
       const clients = (await clientStorage.getItems(await clientStorage.getKeys()))
         .flatMap(({ value }) => value.record)
         .toSorted((a, b) => {
@@ -20,6 +22,7 @@ export default defineCachedEventHandler<Promise<ProjectClient[]>>(
           if (!bv) return -1
           return new Date(bv).getTime() - new Date(av).getTime()
         })
+      const projects = await projectStorage.getItems(await projectStorage.getKeys())
 
       return (
         await Promise.all(
@@ -28,14 +31,14 @@ export default defineCachedEventHandler<Promise<ProjectClient[]>>(
 
             if (icon?.type !== 'external') return null
 
-            const projects = properties.Project.relation.map(() => {
-              const data = { results: { properties: { Name: { title: [{ plain_text: '' }] } } } }
+            const clientProjects = properties.Project.relation.map(({ id }) => {
+              const data = projects.filter(({ key }) => key === id.replaceAll('-', ''))[0]
 
-              const project = data.results as unknown as NotionProject
+              const project = data!.value.record
               return notionTextStringify(project.properties.Name.title)
             })
 
-            return { id, name, projects, website: properties.Website.url ?? properties.Instagram.url, logo: icon.external.url }
+            return { id, name, projects: clientProjects, website: properties.Website.url ?? properties.Instagram.url, logo: icon.external.url }
           })
         )
       ).filter((item) => item !== null)
