@@ -115,8 +115,8 @@ function onContact(action: boolean) {
 <template>
   <div>
     <LazyButtonFloatingAction hydrate-on-idle @contact="onContact(true)" />
-    <SectionHero :video="featuredVideo" class="fixed inset-0 -z-10" @contact="onContact(true)" />
-    <div class="gradient mt-[100vh] flex flex-col gap-4 bg-light-400 px-2 dark:bg-dark-400 md:px-4">
+    <SectionHero :video="featuredVideo" class="" @contact="onContact(true)" />
+    <div class="gradient flex flex-col gap-4 bg-light-400 px-2 pt-4 dark:bg-dark-400 md:px-4">
       <SectionPhotoGallery :photos="allPhotos" :active-photo="activePhotoName" @active="(name) => (activePhotoName = name)" />
       <LazySectionVideoGallery hydrate-on-visible :videos="videos" />
       <LazySectionFeaturedPhoto
