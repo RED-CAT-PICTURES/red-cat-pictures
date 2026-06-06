@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.15.3
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.2...v3.15.3)
+
+### 🩹 Fixes
+
+- **deps:** Downgrade several dependencies for compatibility ([6e64560](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/6e64560))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.2
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.1...v3.15.2)
