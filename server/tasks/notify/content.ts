@@ -1,6 +1,5 @@
 import { NotionToMarkdown } from 'notion-to-md'
 import { sendPushNotification } from '~~/server/api/notification/push/[id]/send.post'
-import { sendEmail } from '~~/server/api/notification/email/[id]/send.post'
 import { sendWhatsappMessage } from '~~/server/api/notification/whatsapp/[id]/send.post'
 import { postFacebook } from '~~/server/api/notification/facebook/send.post'
 
@@ -50,19 +49,19 @@ export default defineTask({
         if (contentType === 'Episode' || contentType === 'Blog' || contentType === 'Photo' || contentType === 'Video')
           await sendPushNotification({ title: `New ${contentType} release | ${title}`, body: `${description.split('. ')[0]}...`, url: url + '?ref=push' }, pushNotificationSubscriptions)
         try {
-          if (contentType === 'Episode' || contentType === 'Blog')
-            await sendEmail(
-              'content',
-              emailSubscriptions.map(({ name, email }) => ({
-                toPersonName: name,
-                toEmail: email,
-                emailSubject: `New ${contentType} release | ${title}`,
-                contentTitle: `${description.split('. ')[0]}...`,
-                contentImage: image,
-                contentUrl: 'https://redcatpictures.com' + url,
-                unsubscribeUrl: '',
-              }))
-            )
+          // if (contentType === 'Episode' || contentType === 'Blog')
+          // await sendEmail(
+          //   'content',
+          //   emailSubscriptions.map(({ name, email }) => ({
+          //     toPersonName: name,
+          //     toEmail: email,
+          //     emailSubject: `New ${contentType} release | ${title}`,
+          //     contentTitle: `${description.split('. ')[0]}...`,
+          //     contentImage: image,
+          //     contentUrl: 'https://redcatpictures.com' + url,
+          //     unsubscribeUrl: '',
+          //   }))
+          // )
         } catch (e) {
           console.warn(e)
         }

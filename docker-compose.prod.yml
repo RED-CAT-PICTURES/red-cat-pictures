@@ -8,6 +8,11 @@ services:
       - red-cat-pictures_data:/app/.data
     networks:
       - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://localhost:3000/api/health || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
     depends_on:
       - browserless
     deploy:
@@ -22,6 +27,11 @@ services:
       - CORS=true
     networks:
       - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:3000/pressure || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
     deploy:
       replicas: 1
       restart_policy:

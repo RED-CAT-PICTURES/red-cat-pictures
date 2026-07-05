@@ -6,20 +6,7 @@ import { messageTemplates } from '~~/server/plugins/whatsapp'
 export type BrandType = 'Agency' | 'Food' | 'FMCG' | 'Sweet' | 'Real Estate' | 'Hotel' | 'Home Decor' | 'Product' | 'Leather' | 'Garment' | 'Cosmetics' | 'Jewellery' | 'Accessories' | 'Luxury'
 
 type FlagKey =
-  | 'isAgency'
-  | 'isFood'
-  | 'isFMCG'
-  | 'isSweet'
-  | 'isRealEstate'
-  | 'isHotel'
-  | 'isHomeDecor'
-  | 'isProduct'
-  | 'isLeather'
-  | 'isGarment'
-  | 'isCosmetics'
-  | 'isJewellery'
-  | 'isAccessories'
-  | 'isLuxury'
+  'isAgency' | 'isFood' | 'isFMCG' | 'isSweet' | 'isRealEstate' | 'isHotel' | 'isHomeDecor' | 'isProduct' | 'isLeather' | 'isGarment' | 'isCosmetics' | 'isJewellery' | 'isAccessories' | 'isLuxury'
 
 const BASE_FLAGS: Record<FlagKey, boolean> = {
   isAgency: false,

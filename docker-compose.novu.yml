@@ -1,26 +1,35 @@
 services:
   dashboard:
-    image: 'ghcr.io/novuhq/novu/dashboard:latest'
+    image: 'ghcr.io/novuhq/novu/dashboard:3.17.0'
     depends_on:
-      - api
-      - worker
+      api:
+        condition: service_healthy
+      worker:
+        condition: service_healthy
     networks:
       - internal
-    restart: unless-stopped
     environment:
       VITE_API_HOSTNAME: ${VITE_API_HOSTNAME}
       VITE_SELF_HOSTED: true
       VITE_WEBSOCKET_HOSTNAME: ${VITE_WEBSOCKET_HOSTNAME}
       VITE_LEGACY_DASHBOARD_URL: ${VITE_LEGACY_DASHBOARD_URL}
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://127.0.0.1:4000 || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: 'on-failure:3'
 
   api:
-    image: 'ghcr.io/novuhq/novu/api:latest'
+    image: 'ghcr.io/novuhq/novu/api:3.17.0'
     depends_on:
-      - mongodb
-      - redis
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - internal
-    restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
       API_ROOT_URL: ${API_ROOT_URL}
@@ -54,19 +63,27 @@ services:
       IS_API_RATE_LIMITING_ENABLED: ${IS_API_RATE_LIMITING_ENABLED}
       IS_NEW_MESSAGES_API_RESPONSE_ENABLED: ${IS_NEW_MESSAGES_API_RESPONSE_ENABLED}
       IS_V2_ENABLED: ${IS_V2_ENABLED}
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://127.0.0.1:${API_PORT:-3000}/v1/health-check || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: 'on-failure:3'
     deploy:
       resources:
         limits:
           cpus: '0.5'
 
   worker:
-    image: 'ghcr.io/novuhq/novu/worker:latest'
+    image: 'ghcr.io/novuhq/novu/worker:3.17.0'
     depends_on:
-      - mongodb
-      - redis
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - internal
-    restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGO_URL: ${MONGO_URL}
@@ -94,19 +111,27 @@ services:
       API_ROOT_URL: http://api:${API_PORT}
       IS_EMAIL_INLINE_CSS_DISABLED: ${IS_EMAIL_INLINE_CSS_DISABLED}
       IS_USE_MERGED_DIGEST_ID_ENABLED: ${IS_USE_MERGED_DIGEST_ID_ENABLED}
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://127.0.0.1:3004/v1/health-check || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: 'on-failure:3'
     deploy:
       resources:
         limits:
           cpus: '0.5'
 
   ws:
-    image: 'ghcr.io/novuhq/novu/ws:latest'
+    image: 'ghcr.io/novuhq/novu/ws:3.17.0'
     depends_on:
-      - mongodb
-      - redis
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - internal
-    restart: unless-stopped
     environment:
       PORT: ${WS_PORT}
       NODE_ENV: ${NODE_ENV}
@@ -121,6 +146,13 @@ services:
       NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED}
       NEW_RELIC_APP_NAME: ${NEW_RELIC_APP_NAME}
       NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://localhost:${WS_PORT:-3002}/v1/health-check || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: 'on-failure:3'
     deploy:
       resources:
         limits:
@@ -130,18 +162,17 @@ services:
     image: 'redis:alpine'
     networks:
       - internal
-    restart: unless-stopped
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
-      interval: 10s
+      interval: 30s
       timeout: 5s
-      retries: 5
+      retries: 3
+    restart: 'on-failure:3'
 
   mongodb:
     image: mongo:8.0.3
     networks:
       - internal
-    restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
@@ -150,10 +181,12 @@ services:
     volumes:
       - mongodb:/data/db
     healthcheck:
-      test: ['CMD', 'mongo', '--eval', "db.adminCommand('ping')"]
-      interval: 10s
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')", '--quiet']
+      interval: 30s
       timeout: 5s
-      retries: 5
+      retries: 3
+      start_period: 20s
+    restart: 'on-failure:3'
 
 volumes:
   mongodb:

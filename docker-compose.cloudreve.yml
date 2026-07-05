@@ -1,6 +1,6 @@
 services:
   cloudreve:
-    image: cloudreve/cloudreve:4.15.0
+    image: cloudreve/cloudreve:4.17.0
     env_file:
       - .env
     volumes:
@@ -8,8 +8,15 @@ services:
     networks:
       - internal
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider -q http://localhost:5212 || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
     restart: 'on-failure:3'
     deploy:
       resources:
@@ -22,14 +29,14 @@ services:
       - .env
     volumes:
       - database-postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U documenso']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
     networks:
       - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     restart: 'on-failure:3'
 
   redis:
@@ -38,6 +45,11 @@ services:
       - redis-data:/data
     networks:
       - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli ping']
+      interval: 30s
+      timeout: 5s
+      retries: 3
     restart: 'on-failure:3'
 
 volumes:
