@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.15.4
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.3...v3.15.4)
+
+### 🏡 Chore
+
+- Update docker-compose files to use specific image versions and add health checks ([20d585d](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/20d585d))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.3
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.2...v3.15.3)
