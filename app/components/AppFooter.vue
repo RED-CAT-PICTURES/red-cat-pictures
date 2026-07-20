@@ -15,7 +15,7 @@ const policyLinks = [
 ]
 
 const socialLinks = [
-  { label: 'whatsapp', icon: 'local:whatsapp', to: 'https://wa.me/c/912269711501' },
+  { label: 'whatsapp', icon: 'local:whatsapp', to: 'https://wa.me/c/918910489578' },
   { label: 'instagram', icon: 'local:instagram', to: 'https://www.instagram.com/redcatpictures' },
   { label: 'facebook', icon: 'local:facebook', to: 'https://www.facebook.com/redcatpictures' },
   { label: 'linkedin', icon: 'local:linkedin', to: 'https://www.linkedin.com/company/red-cat-pictures' },
@@ -29,7 +29,7 @@ const socialLinks = [
     <div class="relative isolate grid grid-cols-2 gap-6 overflow-hidden bg-white p-6 text-dark-600/50 dark:bg-black dark:text-light-600 md:h-52 md:grid-cols-3 md:grid-rows-3 md:items-end md:p-8">
       <ButtonCTA v-if="!hasFloatingActionButton" class="col-span-2 justify-self-center md:col-span-1 md:col-start-2 md:row-start-2 md:self-center" @click="emit('contact')" />
       <NuxtLink
-        href="tel:+912269711501"
+        href="tel:+918910489578"
         class="font-medium col-span-2 flex items-center justify-center gap-2 transition-colors hover:text-dark-600 dark:hover:text-light-400 md:col-span-1 md:col-start-3 md:row-start-1 md:justify-self-end">
         <NuxtIcon name="local:phone" class="text-xl" />
         <span>+91 22 6971 1501</span>
