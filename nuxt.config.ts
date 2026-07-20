@@ -123,7 +123,7 @@ export default defineNuxtConfig({
     '/license': { isr: 86400 },
   },
   runtimeConfig: {
-    app: {
+    meta: {
       version: '',
       buildTime: '',
     },
