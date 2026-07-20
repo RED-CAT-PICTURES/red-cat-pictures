@@ -1,5 +1,32 @@
 # red-cat-pictures
 
+## v3.15.5
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.3...v3.15.5)
+
+### 💅 Refactors
+
+- Rename app configuration to meta in nuxt config and health API ([ccef160](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/ccef160))
+
+### 📖 Documentation
+
+- Add design system and UI specification documentation ([7252ed5](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/7252ed5))
+
+### 🏡 Chore
+
+- Update docker-compose files to use specific image versions and add health checks ([20d585d](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/20d585d))
+- Update @unhead/vue to version 3.2.1 in package.json and bun.lock ([9e32ad7](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/9e32ad7))
+
+### 🤖 CI
+
+- **release:** Update version ([9cdd261](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/9cdd261))
+- **release:** Update version ([e580d0d](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/e580d0d))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+- Shba007 ([@shba007](https://github.com/shba007))
+
 ## v3.15.4
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.3...v3.15.4)
