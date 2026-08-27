@@ -13,25 +13,6 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-    depends_on:
-      - browserless
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
-
-  browserless:
-    image: ghcr.io/browserless/chromium:latest
-    environment:
-      - CORS=true
-    networks:
-      - internal
-    healthcheck:
-      test: ['CMD-SHELL', 'curl -f http://localhost:3000/pressure || exit 1']
-      interval: 30s
-      timeout: 5s
-      retries: 3
     deploy:
       replicas: 1
       restart_policy:

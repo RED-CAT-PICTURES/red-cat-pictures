@@ -32,7 +32,7 @@ const socialLinks = [
         href="tel:+918910489578"
         class="font-medium col-span-2 flex items-center justify-center gap-2 transition-colors hover:text-dark-600 dark:hover:text-light-400 md:col-span-1 md:col-start-3 md:row-start-1 md:justify-self-end">
         <NuxtIcon name="local:phone" class="text-xl" />
-        <span>+91 22 6971 1501</span>
+        <span>+91 8910 489 578</span>
       </NuxtLink>
       <div class="relative col-span-1 flex flex-col gap-2 self-end justify-self-start text-sm md:col-start-1 md:row-start-3">
         <NuxtIcon
