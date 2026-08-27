@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.15.6
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.5...v3.15.6)
+
+### 💅 Refactors
+
+- Bump package deps remove prospect fetch, marketing, cache and meta-data sync tasks ([3149252](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/3149252))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.5
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.3...v3.15.5)
