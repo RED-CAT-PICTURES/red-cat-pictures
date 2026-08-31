@@ -275,6 +275,7 @@ jobs:
           file: src-tauri/gen/android/app/build/outputs/bundle/universalRelease/app-universal-release.aab
           asset_name: redcatpictures_${{ env.VERSION }}_arm64.aab
           tag: ${{ env.VERSION }}
+
   # deploy-mobile:
   #   needs: build-mobile
   #   runs-on: ubuntu-latest
