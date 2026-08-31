@@ -7,6 +7,7 @@
 ### 🚀 Enhancements
 
 - Add recover keystore workflow and update .gitignore for app-sign.key ([bf1210f](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/bf1210f))
+- Update dependencies and add Tauri plugins for process and updater functionality ([f3de4a2](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/f3de4a2))
 
 ### ❤️ Contributors
 
