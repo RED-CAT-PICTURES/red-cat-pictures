@@ -176,11 +176,13 @@ jobs:
         uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           args: ${{ matrix.args }}
-          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+          tagName: v__VERSION__
           releaseName: 'v__VERSION__'
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
 
   # deploy-desktop:
@@ -228,8 +230,8 @@ jobs:
 
       - name: Setup Android NDK
         run: |
-          sdkmanager "ndk;27.0.11902837"
-          echo "NDK_HOME=${{ env.ANDROID_HOME }}/ndk/27.0.11902837" >> $GITHUB_ENV
+          sdkmanager "ndk;29.0.13846066"
+          echo "NDK_HOME=${{ env.ANDROID_HOME }}/ndk/29.0.13846066" >> $GITHUB_ENV
 
       - name: Setup Android Signing
         run: |
