@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.16.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.16.0...v3.16.1)
+
+### 🩹 Fixes
+
+- Update dependencies and improve workflow configurations ([b5e83c7](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/b5e83c7))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.16.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.6...v3.16.0)
