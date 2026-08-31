@@ -1,5 +1,17 @@
 # red-cat-pictures
 
+## v3.16.0
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.6...v3.16.0)
+
+### 🚀 Enhancements
+
+- Add recover keystore workflow and update .gitignore for app-sign.key ([bf1210f](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/bf1210f))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi ([@shba007](https://github.com/shba007))
+
 ## v3.15.6
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.15.5...v3.15.6)
