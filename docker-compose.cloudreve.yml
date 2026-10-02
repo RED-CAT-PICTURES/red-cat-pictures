@@ -1,6 +1,6 @@
 services:
   cloudreve:
-    image: cloudreve/cloudreve:4.17.0
+    image: cloudreve/cloudreve:4.17.0@sha256:5a73890b7fc35c5de76ed35a5901e9ae1d199e8a33a88eb9d31615505d93e3c4
     env_file:
       - .env
     volumes:
@@ -24,7 +24,7 @@ services:
           cpus: '1'
 
   postgres:
-    image: postgres:17
+    image: postgres:17@sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f
     env_file:
       - .env
     volumes:
@@ -40,7 +40,7 @@ services:
     restart: 'on-failure:3'
 
   redis:
-    image: redis:latest
+    image: redis:latest@sha256:6f81e8915c60b065a524e6967e0ad1c639ba6efa84d669f823683ea04d9150ee
     volumes:
       - redis-data:/data
     networks:
