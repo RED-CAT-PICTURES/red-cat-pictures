@@ -159,7 +159,7 @@ services:
           cpus: '0.5'
 
   redis:
-    image: 'redis:alpine'
+    image: 'redis:alpine@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0'
     networks:
       - internal
     healthcheck:
@@ -170,7 +170,7 @@ services:
     restart: 'on-failure:3'
 
   mongodb:
-    image: mongo:8.0.3
+    image: mongo:8.0.3@sha256:8565ecda5b221016d70f7745ac1ba0b97ccb05836157f8a343e987338fdc8350
     networks:
       - internal
     environment:
