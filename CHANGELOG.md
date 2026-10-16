@@ -1,5 +1,21 @@
 # red-cat-pictures
 
+## v3.17.1
+
+[compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.17.0...v3.17.1)
+
+### 🩹 Fixes
+
+- Update video player skin imports and component references ([7e6d459](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/7e6d459))
+
+### 🏡 Chore
+
+- Update rust edition and version, dependencies, and patch zip crate ([7e5b549](https://github.com/RED-CAT-PICTURES/red-cat-pictures/commit/7e5b549))
+
+### ❤️ Contributors
+
+- Shirsendu Bairagi <shirsendu2001@gmail.com>
+
 ## v3.17.0
 
 [compare changes](https://github.com/RED-CAT-PICTURES/red-cat-pictures/compare/v3.16.2...v3.17.0)
