@@ -6,12 +6,12 @@ let customElementsPromise: Promise<void> | null = null
 function ensureVideoCustomElementsRegistered(): Promise<void> {
   if (!customElementsPromise) {
     customElementsPromise = Promise.all([
-      import('@videojs/html/video/minimal-skin'),
+      import('@videojs/html/video/skin'),
       import('@videojs/html/video/player'),
       import('@videojs/html/media/dash-video'),
       import('@videojs/html/media/hlsjs-video'),
       // ?raw tells Vite to skip PostCSS and transformers entirely
-      import('@videojs/html/video/minimal-skin.css?raw').then((cssModule) => {
+      import('@videojs/html/video/skin.css?raw').then((cssModule) => {
         if (typeof document !== 'undefined' && !document.getElementById('vjs-skin-styles')) {
           const style = document.createElement('style')
           style.id = 'vjs-skin-styles'
@@ -461,7 +461,7 @@ onMounted(async () => {
       <img v-if="!customElementsReady && poster" :src="poster" class="absolute inset-0 size-full object-cover" alt="" />
 
       <video-player v-if="customElementsReady" class="size-full" :class="{ shimmer: !isVideoLoaded && !poster }">
-        <video-minimal-skin v-if="controls" class="size-full">
+        <video-skin v-if="controls" class="size-full">
           <component
             :is="mediaTag"
             ref="videoRef"
@@ -483,7 +483,7 @@ onMounted(async () => {
             @ended="handleEnded"
             @error="handleError"
             @contextmenu.prevent />
-        </video-minimal-skin>
+        </video-skin>
 
         <media-container v-else class="size-full">
           <component
@@ -536,12 +536,12 @@ onMounted(async () => {
 
 <style>
 video-player,
-video-minimal-skin,
+video-skin,
 media-container,
 dash-video,
 hlsjs-video,
 video-player video,
-video-minimal-skin video,
+video-skin video,
 media-container video,
 dash-video video,
 hlsjs-video video,
@@ -551,7 +551,7 @@ video {
 }
 
 video-player,
-video-minimal-skin {
+video-skin {
   --media-border-radius: 0;
   --vjs-border-radius: 0;
 }
