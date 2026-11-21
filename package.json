@@ -47,7 +47,7 @@
     "@hannoeru/nuxt-otel": "^0.0.8",
     "@notionhq/client": "^5.26.0",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/fonts": "^0.14.0",
+    "@nuxt/fonts": "^1.2.0",
     "@nuxt/icon": "^2.5.1",
     "@nuxt/image": "^2.1.0",
     "@nuxt/scripts": "^1.3.9",
