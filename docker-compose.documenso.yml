@@ -1,6 +1,6 @@
 services:
   documenso:
-    image: documenso/documenso:v2.14.0
+    image: documenso/documenso:v2.22.0@sha256:f9976d2142d34ee89506e161b0a5ec859a0c327f3fe0a398b46d3941fc8dd35e
     env_file:
       - .env
     volumes:
